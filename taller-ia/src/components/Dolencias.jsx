@@ -1,13 +1,36 @@
-import { useState, useRef } from 'react'
-import { dolencias } from '../data/contenido'
+import { useState, useRef, useEffect } from 'react'
+import { useTaller } from '../taller/contexto'
+
+// La lista se guarda en el navegador porque el componente se DESMONTA al
+// navegar a otra seccion (App.jsx solo monta el interactivo de la seccion
+// activa). Sin esto, un clic en el menu borra el levantamiento entero.
+function leerGuardado(clave) {
+  try {
+    const crudo = localStorage.getItem(clave)
+    const datos = crudo ? JSON.parse(crudo) : null
+    return Array.isArray(datos) ? datos : []
+  } catch {
+    return []
+  }
+}
 
 export default function Dolencias() {
+  const { dolencias, marca } = useTaller()
+  const clave = `fricciones:${marca.id}`
   const [texto, setTexto] = useState('')
   const [categoria, setCategoria] = useState(dolencias.categorias[0].id)
-  const [lista, setLista] = useState([])
+  const [lista, setLista] = useState(() => leerGuardado(clave))
   const [copiado, setCopiado] = useState(false)
   const [errorClip, setErrorClip] = useState(false)
   const tidRef = useRef(null)
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(clave, JSON.stringify(lista))
+    } catch {
+      // Modo privado o almacenamiento lleno: la lista sigue en memoria.
+    }
+  }, [clave, lista])
 
   const agregar = () => {
     const t = texto.trim()
@@ -18,15 +41,32 @@ export default function Dolencias() {
 
   const quitar = (i) => setLista((l) => l.filter((_, j) => j !== i))
 
-  const copiar = async () => {
+  const comoTexto = () => {
     const cuerpo = lista
       .map((d) => {
         const cat = dolencias.categorias.find((c) => c.id === d.categoria)
         return `- [${cat ? cat.etiqueta : d.categoria}] ${d.texto}`
       })
       .join('\n')
+    return `${dolencias.encabezadoCopia}\n${cuerpo}`
+  }
+
+  // El portapapeles es volatil: se pierde con el siguiente Ctrl+C. Un archivo
+  // en Descargas sobrevive incluso a cerrar el navegador.
+  const descargar = () => {
+    const url = URL.createObjectURL(
+      new Blob([comoTexto()], { type: 'text/plain;charset=utf-8' }),
+    )
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `fricciones-${marca.id}.txt`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const copiar = async () => {
     try {
-      await navigator.clipboard.writeText(`Fricciones levantadas en la jornada UIA:\n${cuerpo}`)
+      await navigator.clipboard.writeText(comoTexto())
       setCopiado(true)
       setErrorClip(false)
       clearTimeout(tidRef.current)
@@ -107,6 +147,9 @@ export default function Dolencias() {
             </span>
             <button className="btn btn--primary" onClick={copiar}>
               {copiado ? '✅ Copiada' : '📋 Copiar lista para la UIA'}
+            </button>
+            <button className="btn" onClick={descargar}>
+              ⬇️ Descargar como archivo
             </button>
             {errorClip && (
               <span className="dolencias__error-clip">

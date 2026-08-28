@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { secciones } from './data/contenido'
+import { useTaller } from './taller/contexto'
 import Bloque from './components/Bloque'
 import Icon from './components/Icon'
 import Perceptron from './components/Perceptron'
@@ -15,7 +15,6 @@ import DocAccion from './components/DocAccion'
 import RedNeuronal from './components/RedNeuronal'
 import Attention from './components/Attention'
 import Alucina from './components/Alucina'
-import DetectiveDatos from './components/DetectiveDatos'
 import RolesDatos from './components/RolesDatos'
 import MadurezDatos from './components/MadurezDatos'
 import Dolencias from './components/Dolencias'
@@ -34,19 +33,10 @@ const INTERACTIVOS = {
   redNeuronal: RedNeuronal,
   attention: Attention,
   alucina: Alucina,
-  detectiveDatos: DetectiveDatos,
   rolesDatos: RolesDatos,
   madurezDatos: MadurezDatos,
   dolencias: Dolencias,
 }
-
-const GRUPOS = [
-  { id: 'inicio', etiqueta: 'Inicio', icono: '🌲' },
-  { id: 'gobernanza', etiqueta: 'Gobernanza de datos', icono: '🗂️' },
-  { id: 'taller', etiqueta: 'El Taller de IA', icono: '📖' },
-  { id: 'lab', etiqueta: 'El Laboratorio', icono: '🧪' },
-  { id: 'final', etiqueta: 'Para cerrar', icono: '🏁' },
-]
 
 // Badge mostrado bajo la cabecera según el grupo de la sección.
 const BADGES = {
@@ -55,16 +45,21 @@ const BADGES = {
   lab: '🧪 Laboratorio',
 }
 
-function App() {
-  const [activa, setActiva] = useState(secciones[0].id)
+function App({ seccionInicial, proyeccion }) {
+  const { secciones, marca, grupos } = useTaller()
+  const [activa, setActiva] = useState(() =>
+    seccionInicial && secciones.some((s) => s.id === seccionInicial)
+      ? seccionInicial
+      : secciones[0].id,
+  )
   const [menuAbierto, setMenuAbierto] = useState(false)
+  // Claro por defecto, a propósito: un proyector no produce negro, produce gris,
+  // y en una sala con luz el modo oscuro se lava. El toggle sigue disponible
+  // para quien lo quiera en su escritorio.
   const [tema, setTema] = useState(() => {
+    if (proyeccion) return 'light'
     const g = typeof localStorage !== 'undefined' && localStorage.getItem('tema')
-    if (g === 'dark' || g === 'light') return g
-    return typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
+    return g === 'dark' || g === 'light' ? g : 'light'
   })
   const seccion = secciones.find((s) => s.id === activa) ?? secciones[0]
 
@@ -73,8 +68,15 @@ function App() {
     document.documentElement.style.colorScheme = tema
     try {
       localStorage.setItem('tema', tema)
-    } catch {}
+    } catch {
+      // Modo privado: el tema simplemente no se recuerda.
+    }
   }, [tema])
+
+  useEffect(() => {
+    document.title = marca.docTitle
+    document.documentElement.dataset.taller = marca.id
+  }, [marca.docTitle, marca.id])
 
   const alternarTema = () => setTema((t) => (t === 'dark' ? 'light' : 'dark'))
 
@@ -83,6 +85,32 @@ function App() {
     setMenuAbierto(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  // PageUp/PageDown y flechas recorren las secciones en orden. Es lo que manda
+  // un presentador inalámbrico, y despega al facilitador del notebook.
+  useEffect(() => {
+    const onKey = (e) => {
+      // Sin este guard, las flechas le robarían el valor a los <input range>
+      // del perceptrón y de "Sube el nivel".
+      // e.target puede ser window o document (sin foco): comprobar antes de
+      // llamar a closest(), o el handler revienta y no navega nunca.
+      const t = e.target
+      if (t instanceof Element && t.closest('input, textarea, select')) return
+      if (e.altKey || e.ctrlKey || e.metaKey) return
+      const i = secciones.findIndex((s) => s.id === activa)
+      const adelante = e.key === 'ArrowRight' || e.key === 'PageDown'
+      const atras = e.key === 'ArrowLeft' || e.key === 'PageUp'
+      if (adelante && secciones[i + 1]) {
+        e.preventDefault()
+        ir(secciones[i + 1].id)
+      } else if (atras && secciones[i - 1]) {
+        e.preventDefault()
+        ir(secciones[i - 1].id)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  })
 
   const Interactivo = seccion.interactivo ? INTERACTIVOS[seccion.interactivo] : null
 
@@ -107,8 +135,8 @@ function App() {
             <Icon name="leaf" size={18} />
           </span>
           <div>
-            <strong>Taller de IA</strong>
-            <span className="topbar__sub">UIA · CONAF</span>
+            <strong>{marca.titulo}</strong>
+            <span className="topbar__sub">{marca.sub}</span>
           </div>
         </div>
         <span className="topbar__spacer" />
@@ -127,12 +155,12 @@ function App() {
             <Icon name="leaf" size={22} />
           </span>
           <span className="nav__marca-txt">
-            <span className="nav__marca-tit">Taller de IA</span>
-            <span className="nav__marca-sub">UIA · CONAF</span>
+            <span className="nav__marca-tit">{marca.titulo}</span>
+            <span className="nav__marca-sub">{marca.subNav ?? marca.sub}</span>
           </span>
         </div>
         <nav>
-          {GRUPOS.map((g) => {
+          {grupos.map((g) => {
             const items = secciones.filter((s) => (s.grupo ?? 'taller') === g.id)
             if (!items.length) return null
             return (
@@ -162,7 +190,7 @@ function App() {
           <Icon name={tema === 'dark' ? 'sun' : 'moon'} size={16} />
           {tema === 'dark' ? 'Modo claro' : 'Modo oscuro'}
         </button>
-        <p className="nav__pie">Gobierno de Chile · UIA · CONAF · 2026</p>
+        <p className="nav__pie">{marca.pie}</p>
       </aside>
 
       {menuAbierto && <div className="overlay" onClick={() => setMenuAbierto(false)} />}
@@ -209,6 +237,7 @@ function App() {
 
 // Botones anterior / siguiente al pie de cada sección.
 function Navegacion({ activa, ir }) {
+  const { secciones } = useTaller()
   const idx = secciones.findIndex((s) => s.id === activa)
   const prev = secciones[idx - 1]
   const next = secciones[idx + 1]

@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { madurezDatos } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Actividad de gobernanza G3: autodiagnóstico exprés de madurez de datos.
 // 5 preguntas sí/no → nivel (Inicial / En desarrollo / Básico logrado).
 export default function MadurezDatos() {
+  const { madurezDatos } = useTaller()
   const [respuestas, setRespuestas] = useState({}) // idx → true (sí) / false (no)
   const [resultado, setResultado] = useState(false)
 

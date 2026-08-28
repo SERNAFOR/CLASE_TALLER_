@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { alucina } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Por qué sabe pero alucina: comparación visual pre-entrenado vs RLHF.
 // Rediseñado: menos texto, foco en el contraste y el juego de recompensa.
 export default function Alucina() {
+  const { alucina } = useTaller()
   const { prompt, antes, despues, rlhf } = alucina
   const [elegida, setElegida] = useState(null)
   const [rondas, setRondas] = useState(0)

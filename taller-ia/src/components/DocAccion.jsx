@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { docAccion } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "de documento a acción": transforma un párrafo legal denso en una
 // checklist accionable al pulsar el botón.
 export default function DocAccion() {
+  const { docAccion } = useTaller()
   const [transformado, setTransformado] = useState(false)
 
   return (

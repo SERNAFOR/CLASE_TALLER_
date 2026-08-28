@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { privacidad } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "qué NO contarle a la IA": el usuario marca los fragmentos sensibles.
 // Hay señuelos (datos públicos) que NO deben marcarse — así la evaluación mide juicio.
 export default function Privacidad() {
+  const { privacidad } = useTaller()
   const [marcados, setMarcados] = useState({})
   const [revelado, setRevelado] = useState(false)
 

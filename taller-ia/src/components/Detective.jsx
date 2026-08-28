@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { detective } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "detective de alucinaciones": el usuario marca las frases que cree
 // falsas; al comprobar, se revela cuáles eran inventadas y por qué.
 export default function Detective() {
+  const { detective } = useTaller()
   const [marcadas, setMarcadas] = useState({})
   const [revelado, setRevelado] = useState(false)
 

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Guion del facilitador · Taller de IA · Gerencia de Desarrollo de las Personas</title>
+<style>
+  @page { size: letter portrait; margin: 11mm 12mm 13mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", system-ui, Roboto, Arial, sans-serif;
+    color: #1f2421; margin: 0; font-size: 11.5px; line-height: 1.45;
+  }
+  .cabecera {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: #fff; border-radius: 12px; padding: 14px 20px; margin-bottom: 12px;
+  }
+  h1 { margin: 0 0 3px; font-size: 21px; }
+  .cabecera p { margin: 0; font-size: 11.5px; opacity: .95; }
+  .aviso {
+    border: 2px solid #c62828; background: #fff5f4; border-radius: 10px;
+    padding: 10px 14px; margin-bottom: 12px; font-size: 12px;
+  }
+  .aviso strong { color: #c62828; }
+  h2 {
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #55605a;
+    margin: 16px 0 7px; border-bottom: 1px solid #dde5df; padding-bottom: 3px;
+  }
+  .ficha {
+    border: 1px solid #e1e8e2; border-left: 5px solid #2e7d32; border-radius: 9px;
+    padding: 9px 13px; margin-bottom: 7px; background: #fbfdfb;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .ficha--cort { border-left-color: #b8c6bb; background: #fafbfa; }
+  .ficha--clave { border-left-color: #ef6c00; background: #fffaf4; }
+  .fh { display: flex; align-items: baseline; gap: 9px; margin-bottom: 4px; }
+  .hora {
+    font-weight: 700; color: #1b5e20; font-variant-numeric: tabular-nums;
+    font-size: 13px; white-space: nowrap;
+  }
+  .tit { font-weight: 700; font-size: 13.5px; flex: 1; }
+  .etq {
+    font-size: 9px; letter-spacing: .06em; border-radius: 20px; padding: 1px 8px;
+    background: #2e7d32; color: #fff; white-space: nowrap;
+  }
+  .etq--cort { background: #90a094; }
+  .etq--clave { background: #ef6c00; }
+  .ficha dl { margin: 0; display: grid; grid-template-columns: 74px 1fr; gap: 2px 8px; }
+  .ficha dt {
+    font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase;
+    color: #7b877f; padding-top: 1px;
+  }
+  .ficha dd { margin: 0; }
+  .dice { color: #1b5e20; font-style: italic; }
+  .ojo { color: #c62828; font-weight: 600; }
+  .pie { margin-top: 12px; font-size: 10px; color: #55605a; text-align: center; }
+  .recorte {
+    border: 2px dashed #90a094; border-radius: 10px; padding: 10px 14px;
+    margin-top: 12px; font-size: 11px; background: #f7f9f7;
+  }
+  .recorte ol { margin: 5px 0 0; padding-left: 18px; }
+  .recorte li { margin-bottom: 2px; }
+</style>
+</head>
+<body>
+  <div class="cabecera">
+    <h1>Guion del facilitador</h1>
+    <p>Taller de IA · UIA · Gerencia de Desarrollo de las Personas · CONAF · 09:00 – 12:00</p>
+  </div>
+
+  <div class="aviso">
+    <strong>Antes de que entre nadie.</strong>
+    (1) Llegar 40 minutos antes, no 15. (2) Abrir
+    <code>/CLASE_TALLER_/personal</code> y <strong>recorrer las 23 secciones una vez</strong> con el
+    proyector conectado: así todo queda cargado y, si se cae el wifi, la sesión sigue.
+    (3) <strong class="ojo">No pulsar F5 en toda la jornada.</strong> (4) Comprobar que el tema está
+    en claro. (5) Si el proyector queda chico, añadir <code>?proyeccion</code> a la URL.
+    (6) Repartir en la puerta: guía de fricciones y tarjetas de votación.
+  </div>
+
+  <h2>Bloque 1 · Apertura (09:00 – 09:10)</h2>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">09:00</span><span class="tit">La pregunta incómoda</span><span class="etq etq--clave">NÚCLEO</span></div>
+    <dl>
+      <dt>Pantalla</dt><dd>Nada todavía, o la Bienvenida. Hablas tú.</dd>
+      <dt>Entrada</dt><dd class="dice">"Antes de partir. La pregunta que ustedes trajeron. No la que van a hacer al final: la que trajeron." <em>(pausa)</em> "¿Esto me va a dejar sin pega?"</dd>
+      <dt>Y sigues</dt><dd class="dice">"Se las contesto ahora, porque si no van a estar tres horas pensando en eso y yo voy a estar hablando solo. No. Y no por cortesía: la IA hace lo que hace un practicante brillante que llegó el lunes. Lee rapidísimo, escribe decente, y no tiene idea de nada de acá. Y sobre todo, no firma. Nunca va a firmar."</dd>
+      <dt>El giro</dt><dd class="dice">"Lo que sí pasa: no los reemplaza la IA, los pasa por arriba el colega que sí la aprendió a usar. Por eso los mandaron. Y por eso, aunque los mandaron, les conviene quedarse."</dd>
+      <dt>Ojo</dt><dd class="ojo">Este chiste se hace UNA vez. Volver a él a las 10:30 le devuelve el poder al miedo.</dd>
+    </dl>
+  </div>
+
+  <div class="ficha">
+    <div class="fh"><span class="hora">09:03</span><span class="tit">Censo a mano alzada</span><span class="etq">NÚCLEO</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd>Tres preguntas, y <strong>cuentas en voz alta</strong> — el conteo hablado es lo que hace que valga la pena levantar la mano.</dd>
+      <dt>Preguntas</dt><dd>1. "¿Quién NO ha usado nunca ChatGPT, Copilot o Gemini?" (es más fácil admitir eso). 2. "De los que sí, ¿quién lo ha usado para algo del trabajo?" 3. "¿A quién le han dicho que no lo use?"</dd>
+      <dt>Sirve para</dt><dd>Calibrar la sala en 2 minutos y enseñar que aquí se levanta la mano. La tercera pregunta rompe el hielo sola.</dd>
+    </dl>
+  </div>
+
+  <h2>Bloque 2 · Charla (09:10 – 09:40)</h2>
+
+  <div class="ficha ficha--cort">
+    <div class="fh"><span class="hora">09:10</span><span class="tit">Datos y transformación digital · secciones "La UIA" y "Plan UIA"</span><span class="etq etq--cort">CORTABLE</span></div>
+    <dl>
+      <dt>Ojo</dt><dd class="ojo">Zona de riesgo. Si aparecen cinco siglas seguidas en pantalla, salen los celulares y no vuelven hasta el café.</dd>
+      <dt>Antídoto</dt><dd class="dice">"Vienen unas siglas. De estas, dos les van a cambiar la pega y el resto es para un informe que alguien tiene que entregar. Les digo cuáles son cuáles y seguimos."</dd>
+      <dt>Y esto</dt><dd class="dice">"¿Alguien sabe qué significa MGDE?" <em>(silencio)</em> "Perfecto. Yo tampoco me lo sabía hace un año, y me pagan por esto."</dd>
+      <dt>Si vas tarde</dt><dd>"Plan UIA 2026–2030" y "La UIA" se resumen hablados en 30 segundos. Recuperas 8 minutos.</dd>
+    </dl>
+  </div>
+
+  <h2>Bloque 3 · Datos de personas (09:40 – 10:00)</h2>
+
+  <div class="ficha">
+    <div class="fh"><span class="hora">09:40</span><span class="tit">Por qué gobernanza, por qué ahora</span><span class="etq">NÚCLEO</span></div>
+    <dl>
+      <dt>La idea</dt><dd>Diciembre de 2026, dos veces: el PMG-MEI y la Ley 21.719 en el mismo mes.</dd>
+      <dt>Entrada</dt><dd class="dice">"Aquí el dato no es una superficie ni un presupuesto. Es una persona con nombre. Y cuando está malo, el error no sale en un informe: sale en la vida de alguien."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">09:45</span><span class="tit">¿Quién responde por este dato?</span><span class="etq etq--clave">NÚCLEO</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd><strong>Tarjetas de tres colores.</strong> Lees la situación → "tarjetas arriba, ya" → miras el reparto → <strong>dices en voz alta lo que ves</strong> → recién ahí clicas la mayoritaria.</dd>
+      <dt>Ojo</dt><dd class="ojo">No clicar antes de que la sala se comprometa. Todos los clics de este sitio son revelaciones: gastarlas antes es perder la actividad.</dd>
+      <dt>Si se equivocan</dt><dd class="dice">"La mitad de la sala cree que esto lo decide informática. Ahí está el problema completo." — Que se equivoquen es el mejor momento pedagógico de la mañana, no un fracaso.</dd>
+      <dt>Cierre</dt><dd class="dice">"Si nadie es dueño, nadie corrige. Y el que termina dando la explicación es el que iba pasando."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--cort">
+    <div class="fh"><span class="hora">09:52</span><span class="tit">¿Qué tan maduros son tus datos?</span><span class="etq etq--cort">CORTABLE</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd>Censo a mano alzada. Cinco preguntas, marcas Sí/No por mayoría. El nivel que sale es <strong>el de la gerencia</strong>, no el de nadie.</dd>
+      <dt>Cierre</dt><dd class="dice">"Cada 'no' que marcamos es, literalmente, un punto de la lista que vamos a armar a las once."</dd>
+    </dl>
+  </div>
+
+  <h2>Bloque 4 · Coffee (10:00 – 10:15)</h2>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">10:00</span><span class="tit">El café no es una pausa, es un insumo</span><span class="etq etq--clave">NÚCLEO</span></div>
+    <dl>
+      <dt>Consigna</dt><dd class="dice">"Vuelvan con UNA pega suya que odien. La más aburrida que tengan. La vamos a usar a las once."</dd>
+      <dt>Y tú</dt><dd>Vas a <strong>tres personas</strong>, les preguntas su fricción y les pides permiso: "¿lo puedo mencionar y te doy la palabra?". Vuelves con tres intervenciones garantizadas para el bloque difícil.</dd>
+      <dt>Realidad</dt><dd>Presupuesta 18 minutos, no 15. Con 50 personas y una mesa, siempre son 18.</dd>
+    </dl>
+  </div>
+
+  <h2>Bloque 5 · Taller de IA + Laboratorio (10:15 – 11:00)</h2>
+  <p style="margin:-2px 0 7px; font-size:11px; color:#55605a;">
+    45 minutos. El menú está ordenado con el núcleo primero: bajando en orden se dicta la versión
+    corta. <strong>No abras el menú si puedes evitarlo</strong> — usa los botones ← / → del pie, o
+    RePág / AvPág (funciona el presentador inalámbrico).
+  </p>
+
+  <div class="ficha">
+    <div class="fh"><span class="hora">10:15</span><span class="tit">¿Qué es la IA? + Riesgos</span><span class="etq">NÚCLEO</span></div>
+    <dl>
+      <dt>Anclaje</dt><dd>"El practicante que llegó el lunes." Ellos tramitan practicantes: la metáfora deja de ser metáfora.</dd>
+      <dt>Añade</dt><dd class="dice">"…y con todo respeto a los practicantes de verdad, que trabajan más que nadie."</dd>
+      <dt>Riesgos</dt><dd>Tres minutos, cuatro tarjetas. La cuarta —responsabilidad final— es el marco de todo el día.</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">10:22</span><span class="tit">Pídelo bien</span><span class="etq etq--clave">NÚCLEO</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd><strong>Dictado colectivo.</strong> Empiezas con el prompt flojo, el medidor marca poco. "Falta el rol. Grítenme un rol." Escribes lo que digan y se enciende el ✅. Ingrediente a ingrediente hasta 4 de 4.</dd>
+      <dt>Por qué</dt><dd>Es la mejor mecánica participativa del sitio y ya está construida: el medidor da feedback colectivo instantáneo.</dd>
+      <dt>Cierre</dt><dd class="dice">"Es la misma diferencia que entre el correo que dice 'necesito unos datos' y el que dice 'necesito la dotación por estamento al 31 de agosto, en Excel'. Ustedes reciben los dos todas las semanas."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">10:30</span><span class="tit">Detective de alucinaciones</span><span class="etq etq--clave">NÚCLEO</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd><strong>Pulgares.</strong> Lees cada frase: arriba si es verdad, abajo si la IA la inventó. Marcas lo que diga la sala. Si vas tarde, reparte por filas.</dd>
+      <dt>Ojo</dt><dd class="ojo">Las 8 frases tienen que estar validadas antes (ver VALIDAR-CONTENIDO-LEGAL.md). Esta es la única sala que sabe la respuesta correcta.</dd>
+      <dt>El remate</dt><dd class="dice">"Las tres mentiras eran números: un plazo, un artículo y un organismo. No es casualidad. El modelo fue premiado por sonar bien, nunca por tener razón."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">10:38</span><span class="tit">Qué NO contarle a la IA</span><span class="etq etq--clave">NÚCLEO</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd>Lees el prompt <strong>despacio</strong> y la sala grita <strong>"¡tacha!"</strong>. Variante mejor: alguien pasa adelante y clica (elígelo en el café, nunca en frío).</dd>
+      <dt>El momento</dt><dd>Cuando alguien tache "Departamento de Gestión de Personas": <span class="dice">"Ese está publicado. Ustedes lo publicaron."</span></dd>
+      <dt>Y el fondo</dt><dd class="dice">"El diagnóstico va en la sección confidencial. Es información que la institución ni siquiera debería tener a la vista — y alguien la estaba pegando en un chat."</dd>
+      <dt>Sin humor</dt><dd class="ojo">Aquí el registro es literal. Varios en la sala tramitan esas licencias.</dd>
+    </dl>
+  </div>
+
+  <div class="ficha">
+    <div class="fh"><span class="hora">10:46</span><span class="tit">Del artículo a la lista de pendientes</span><span class="etq">NÚCLEO</span></div>
+    <dl>
+      <dt>Un botón</dt><dd>Párrafo denso → checklist. Se ve solo.</dd>
+      <dt>El remate</dt><dd class="dice">"Y fíjense en lo importante: la checklist salió del texto que USTED le pegó. Si en vez de eso le pide que recuerde la norma, ahí empieza a inventar. Dale el texto; no le pidas la ley."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--cort">
+    <div class="fh"><span class="hora">10:51</span><span class="tit">Una palabra lo cambia todo · Dónde se pone la raya</span><span class="etq etq--cort">SEGUNDO NIVEL</span></div>
+    <dl>
+      <dt>Si vas en hora</dt><dd>"Una palabra" es un clic y se ve todo: pregunta antes "¿qué creen que va a pasar?".</dd>
+      <dt>El perceptrón</dt><dd class="dice">"Esto que muevo con el dedo es lo que ustedes hacen cada vez que arman una terna. La diferencia es que ustedes pueden explicar por qué pusieron la raya ahí. La máquina no."</dd>
+      <dt>Y el silencio</dt><dd>Después de eso, plantea el sesgo y <strong>aguanta cinco segundos de silencio.</strong> No rescates la sala. Ese es el momento en que entienden por qué los mandaron.</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--cort">
+    <div class="fh"><span class="hora">—</span><span class="tit">Sube el nivel · Le preguntamos a las tres · ¿Y ahora cómo se lo explico? · Red neuronal · Attention · Por qué alucina</span><span class="etq etq--cort">OPCIONALES</span></div>
+    <dl>
+      <dt>Regla</dt><dd>Estas seis se caen primero y sin dolor. Están al final del menú a propósito.</dd>
+      <dt>Si abres "Le preguntamos a las tres"</dt><dd>No la leas: proyéctala 20 segundos y di solo la conclusión — <span class="dice">"CONAF ya paga licencia de Gemini Pro, la tienen desde hoy."</span></dd>
+    </dl>
+  </div>
+
+  <h2>Bloque 6 · La parte donde hablan ustedes (11:00 – 11:50)</h2>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">11:00</span><span class="tit">Fricciones · el motivo por el que la UIA vino</span><span class="etq etq--clave">INTOCABLE</span></div>
+    <dl>
+      <dt>11:00</dt><dd><strong>8 min en silencio.</strong> Cada uno escribe en la guía de papel. Nadie habla. Es incómodo los primeros 90 segundos y después funciona solo.</dd>
+      <dt>11:08</dt><dd><strong>10 min en mesas de 5–6.</strong> "Comparen y elijan las TRES que más duelen. Nombren a quien las dice." Tú <strong>caminas las mesas</strong>, no tocas el computador.</dd>
+      <dt>11:18</dt><dd><strong>20 min de plenario POR MESAS.</strong> Cada mesa dicta sus tres. Son ~30 entradas, no 70 — y la mesa da cobertura: el vocero dice "en nuestra mesa salió", no "a mí me pasa". Ahí desaparece el problema del que nunca habla.</dd>
+      <dt>Mientras tecleas</dt><dd class="ojo">Repite en voz alta lo que escribes. Si no, son 20 segundos de silencio por fricción y la sala mira un cursor.</dd>
+      <dt>11:38</dt><dd><strong>Agrupas en vivo.</strong> "Cinco mesas dijeron certificados. Eso ya no es una molestia, es un proceso roto."</dd>
+      <dt>11:44</dt><dd><strong>Priorizan.</strong> Lees las cinco más repetidas y pides mano alzada: "¿cuál resolverían primero?". Sale un top 3 con respaldo de sala.</dd>
+      <dt>Antes de salir</dt><dd class="ojo">Pulsa "⬇️ Descargar como archivo". El portapapeles se pierde con el siguiente Ctrl+C. Y recoge los papeles: valen más que la pantalla.</dd>
+    </dl>
+  </div>
+
+  <h2>Bloque 7 · Cierre (11:50 – 12:00)</h2>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="hora">11:50</span><span class="tit">Cierre y compromiso</span><span class="etq etq--clave">INTOCABLE</span></div>
+    <dl>
+      <dt>11:50</dt><dd><strong>Devuelves el top 3.</strong> "Esto es lo que dijo la Gerencia de Desarrollo de las Personas hoy." Cierras con lo que ELLOS produjeron, no con lo que tú enseñaste.</dd>
+      <dt>11:53</dt><dd><strong>El compromiso, al dorso de la tarjeta.</strong> "Una frase. Qué van a probar la próxima semana. No la recojo, es suya." Dos minutos de 50 personas escribiendo.</dd>
+      <dt>11:56</dt><dd><strong>Tu compromiso, con fecha.</strong> "De estas tres, la UIA se lleva la primera. En cuatro semanas les escribo con qué se puede y qué no." Un compromiso verificable compra más credibilidad que toda la mañana.</dd>
+      <dt>11:58</dt><dd class="dice">"Terminamos a las 11:58. Ese es mi primer aporte a su productividad." — y afuera. <strong>Sin "¿preguntas?"</strong>: genera silencio. Di "me quedo cinco minutos acá adelante" y llegan las buenas.</dd>
+    </dl>
+  </div>
+
+  <div class="recorte">
+    <strong>Si empiezas tarde — orden de sacrificio, decidido ahora y no a las 11:07</strong>
+    <ol>
+      <li>Plan UIA 2026–2030 y La UIA (hablado en 30 segundos) &nbsp;→ −8 min</li>
+      <li>Programa del día (se dice, no se proyecta) &nbsp;→ −3 min</li>
+      <li>Los seis opcionales del Laboratorio, en bloque &nbsp;→ −20 min</li>
+      <li>¿Qué tan maduros son tus datos? &nbsp;→ −5 min</li>
+      <li>Segundo nivel: Una palabra lo cambia todo, y el perceptrón &nbsp;→ −9 min</li>
+    </ol>
+    <p style="margin:6px 0 0;">
+      <strong>Nunca se recorta:</strong> Qué NO contarle a la IA · Detective de alucinaciones ·
+      Pídelo bien · Riesgos · Fricciones · Cierre. Y la hora de término no se mueve.
+    </p>
+  </div>
+
+  <div class="recorte" style="border-color:#c62828; background:#fff5f4;">
+    <strong style="color:#c62828;">Planes B</strong>
+    <ol>
+      <li><strong>Se cae el wifi:</strong> si la página ya está cargada, sigue funcionando entera. <strong>No pulses F5.</strong></li>
+      <li><strong>No hay red desde el inicio:</strong> lleva la carpeta <code>dist/</code> en un pendrive, dentro de una carpeta llamada <code>CLASE_TALLER_</code>, y sirve la carpeta padre con <code>python -m http.server 8000</code>. Abre <code>http://localhost:8000/CLASE_TALLER_/personal/</code>. <strong>Abrir el index.html con doble clic NO funciona.</strong> Ensáyalo la semana anterior.</li>
+      <li><strong>El proyector no toma el HDMI:</strong> bolsa con HDMI→VGA, USB-C→HDMI y cable propio de 3 m. Si nada funciona, la jornada se da con la guía de fricciones en la mano: por eso el papel es el registro principal.</li>
+      <li><strong>Proyector chico o sala grande:</strong> añade <code>?proyeccion</code> a la URL.</li>
+    </ol>
+  </div>
+
+  <p class="pie">
+    UIA · Unidad de Información y Análisis Institucional · CONAF · 2026 &nbsp;·&nbsp;
+    Este guion es tuyo: no va en la web, porque la pantalla del auditorio está espejada.
+  </p>
+</body>
+</html>

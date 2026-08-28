@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Tarjetas de votación · roles del dato</title>
+<style>
+  @page { size: letter portrait; margin: 8mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", system-ui, Roboto, Arial, sans-serif;
+    color: #1f2421; margin: 0;
+  }
+  .nota {
+    font-size: 11px; color: #55605a; margin: 0 0 6px; text-align: center;
+  }
+  .hoja { display: grid; grid-template-rows: repeat(3, 1fr); gap: 5mm; height: 243mm; }
+  .tarjeta {
+    border: 3px solid; border-radius: 14px; display: flex; align-items: center;
+    justify-content: center; gap: 22px; padding: 8mm;
+  }
+  .icono { font-size: 70px; line-height: 1; }
+  .txt h2 { margin: 0 0 6px; font-size: 40px; letter-spacing: -0.02em; }
+  .txt p { margin: 0; font-size: 15px; max-width: 105mm; line-height: 1.4; }
+  /* Cada tarjeta se distingue por COLOR, ICONO y TEXTO: quien no distingue
+     colores la reconoce igual, y desde el escenario se ve a 15 metros. */
+  .t-dueno   { border-color: #b8860b; background: #fff8e6; }
+  .t-dueno h2   { color: #8a5a00; }
+  .t-custodio{ border-color: #1565c0; background: #eef5fd; }
+  .t-custodio h2{ color: #0d47a1; }
+  .t-usuario { border-color: #2e7d32; background: #f1f8f2; }
+  .t-usuario h2 { color: #1b5e20; }
+  .corte { text-align: center; font-size: 10px; color: #9aa79d; letter-spacing: .3em; }
+</style>
+</head>
+<body>
+  <p class="nota">
+    Imprimir una hoja por participante (~50) y recortar por las líneas. Se reparten en la puerta.
+    En blanco y negro también funcionan: cada tarjeta lleva icono y texto propios.
+  </p>
+  <div class="hoja">
+    <div class="tarjeta t-dueno">
+      <span class="icono">👑</span>
+      <div class="txt">
+        <h2>DUEÑO</h2>
+        <p>Del negocio. Define qué significa el dato, para qué se usa y quién accede. Responde cuando alguien pide corregirlo.</p>
+      </div>
+    </div>
+    <div class="corte">— — — — — — — — — — — — — — — — — — — — — — — — — — — — — —</div>
+    <div class="tarjeta t-custodio">
+      <span class="icono">🛠️</span>
+      <div class="txt">
+        <h2>CUSTODIO</h2>
+        <p>De informática. Administra el sistema, los respaldos, los perfiles de acceso y el registro de quién entra.</p>
+      </div>
+    </div>
+    <div class="corte">— — — — — — — — — — — — — — — — — — — — — — — — — — — — — —</div>
+    <div class="tarjeta t-usuario">
+      <span class="icono">🙋</span>
+      <div class="txt">
+        <h2>USUARIO</h2>
+        <p>Lo usa para trabajar. Debe usarlo solo para lo que corresponde, no sacarlo del sistema, y reportar los errores.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

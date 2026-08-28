@@ -4,6 +4,27 @@
 // `grupo` agrupa las secciones en el menú: 'inicio', 'gobernanza', 'taller',
 // 'lab' (ejercicios de IA) y 'final' (dolencias + cierre).
 
+// Identidad de este taller. La lee App.jsx desde el contexto, de modo que el
+// mismo componente sirve a los dos talleres sin duplicarse.
+export const marca = {
+  id: 'conaf',
+  titulo: 'Taller de IA',
+  sub: 'UIA · CONAF',
+  subNav: 'UIA · CONAF',
+  docTitle: 'Taller de IA · UIA CONAF',
+  pie: 'Gobierno de Chile · UIA · CONAF · 2026',
+}
+
+// Grupos del menú lateral. Los ids se comparten entre talleres a propósito:
+// así siguen funcionando la barra de progreso ('lab') y el mapa de badges.
+export const grupos = [
+  { id: 'inicio', etiqueta: 'Inicio', icono: '🌲' },
+  { id: 'gobernanza', etiqueta: 'Gobernanza de datos', icono: '🗂️' },
+  { id: 'taller', etiqueta: 'El Taller de IA', icono: '📖' },
+  { id: 'lab', etiqueta: 'El Laboratorio', icono: '🧪' },
+  { id: 'final', etiqueta: 'Para cerrar', icono: '🏁' },
+]
+
 export const secciones = [
   // ===================== INICIO =====================
   {
@@ -15,6 +36,7 @@ export const secciones = [
     bloques: [
       {
         tipo: 'hero',
+        irA: 'programa',
         kicker: 'JORNADA DE DATOS E INTELIGENCIA ARTIFICIAL · UIA CONAF',
         titulo: 'Hoy vas a perderle el miedo a la IA',
         texto:
@@ -27,7 +49,7 @@ export const secciones = [
         tipo: 'tarjetas',
         titulo: 'El recorrido de hoy',
         items: [
-          { icono: '🗂️', titulo: '1 · Gobernanza de datos', texto: 'Los cimientos: 3 actividades para entender por qué los datos importan (15–20 min).' },
+          { icono: '🗂️', titulo: '1 · Gobernanza de datos', texto: 'Los cimientos: 2 actividades para entender por qué los datos importan (10–15 min).' },
           { icono: '📖', titulo: '2 · El Taller de IA', texto: 'Qué es realmente la IA y qué riesgos hay que cuidar.' },
           { icono: '🧪', titulo: '3 · El Laboratorio', texto: '12 ejercicios interactivos de IA para practicar tú mismo.' },
           { icono: '🗣️', titulo: '4 · Fricciones y oportunidades', texto: 'Levantamos las fricciones reales de tu área y cerramos con compromisos.' },
@@ -37,7 +59,7 @@ export const secciones = [
         tipo: 'tarjetas',
         titulo: 'Lo que vas a practicar hoy',
         items: [
-          { icono: '🔍', titulo: 'Cuidar los datos', texto: 'Detectar inconsistencias y saber quién responde por cada dato.' },
+          { icono: '🔍', titulo: 'Cuidar los datos', texto: 'Saber quién responde por cada dato antes de usarlo.' },
           { icono: '✍️', titulo: 'Escribir prompts', texto: 'La habilidad #1: pedirle bien a la IA.' },
           { icono: '🕵️', titulo: 'Cazar mentiras', texto: 'Detectar cuándo la IA inventa datos.' },
           { icono: '🔒', titulo: 'Proteger datos', texto: 'Qué nunca debes pegar en una IA.' },
@@ -65,7 +87,7 @@ export const secciones = [
         items: [
           { hora: '09:00', dur: '10 min', icono: '👋', titulo: 'Bienvenida y presentación de la jornada', desc: 'Apertura, contexto institucional y qué esperamos de la sesión.' },
           { hora: '09:10', dur: '30 min', icono: '🎤', titulo: 'Charla: datos y transformación digital en el Estado', desc: 'El marco general: por qué el Estado —y CONAF— está moviéndose hacia la gestión de datos.' },
-          { hora: '09:40', dur: '20 min', icono: '🗂️', titulo: 'Gobernanza de datos', desc: 'Los cimientos antes de la IA: 3 actividades prácticas — detectar datos inconsistentes, roles del dato y autodiagnóstico de madurez.' },
+          { hora: '09:40', dur: '20 min', icono: '🗂️', titulo: 'Gobernanza de datos', desc: 'Los cimientos antes de la IA: 2 actividades prácticas — roles del dato y autodiagnóstico de madurez.' },
           { hora: '10:00', dur: '15 min', icono: '☕', titulo: 'Coffee break', desc: 'Pausa activa.' },
           { hora: '10:15', dur: '45 min', icono: '🧠🧪', titulo: 'Taller de IA + Laboratorio', desc: 'Qué es (y qué no es) la IA, demos en vivo, riesgos clave y ejercicios guiados: prompts, alucinaciones, privacidad y cómo funciona un LLM.' },
           { hora: '11:00', dur: '50 min', icono: '🗣️', titulo: 'Fricciones y oportunidades', desc: 'Las fricciones reales del área: qué procesos duelen y dónde los datos o la IA podrían ayudar. La lista se anota en vivo.' },
@@ -83,7 +105,7 @@ export const secciones = [
         icono: '💡',
         titulo: 'Para quien facilita',
         texto:
-          'La sección de gobernanza usa las 3 actividades del bloque "Gobernanza de datos" de ' +
+          'La sección de gobernanza usa las 2 actividades del bloque "Gobernanza de datos" de ' +
           'este sitio; el taller y el laboratorio usan las secciones siguientes en orden. La ' +
           'sección "Fricciones y oportunidades" tiene su propia pantalla para proyectar y anotar ' +
           'en vivo, además de una guía en PDF con 7 preguntas.',
@@ -210,25 +232,7 @@ export const secciones = [
         texto:
           'Métricas SMART: Específicas · Medibles · Alcanzables · Relevantes · con Tiempo definido. ' +
           'Organismos candidatos para alianzas: SAG, MMA, SENAPRED, INE, MOP. Ahora, a practicar: ' +
-          'las tres actividades que siguen muestran en carne propia por qué esto importa.',
-      },
-    ],
-  },
-
-  {
-    id: 'detective-datos',
-    grupo: 'gobernanza',
-    icono: '🔍',
-    titulo: 'Detective de datos',
-    subtitulo: 'Actividad 1 · ~7 min · el mismo predio, tres versiones',
-    interactivo: 'detectiveDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'El mismo predio aparece registrado en tres sistemas distintos de CONAF. Algunas ' +
-          'diferencias son solo de formato; otras son conflictos reales que impiden decidir. ' +
-          'Marca las filas donde los datos de verdad se contradicen.',
+          'las dos actividades que siguen muestran en carne propia por qué esto importa.',
       },
     ],
   },
@@ -238,7 +242,7 @@ export const secciones = [
     grupo: 'gobernanza',
     icono: '🧑‍⚖️',
     titulo: '¿Quién responde por este dato?',
-    subtitulo: 'Actividad 2 · ~5 min · los roles de la gobernanza',
+    subtitulo: 'Actividad 1 · ~5 min · los roles de la gobernanza',
     interactivo: 'rolesDatos',
     bloques: [
       {
@@ -256,7 +260,7 @@ export const secciones = [
     grupo: 'gobernanza',
     icono: '📏',
     titulo: '¿Qué tan maduros son tus datos?',
-    subtitulo: 'Actividad 3 · ~5 min · autodiagnóstico exprés',
+    subtitulo: 'Actividad 2 · ~5 min · autodiagnóstico exprés',
     interactivo: 'madurezDatos',
     bloques: [
       {
@@ -710,9 +714,9 @@ export const secciones = [
         titulo: 'La IA dejó de ser una caja negra',
         texto:
           'Recorriste la gobernanza de datos, qué es la IA, sus riesgos y las actividades ' +
-          'prácticas. Ahora tienes cinco herramientas que antes no usabas: detectar datos ' +
-          'inconsistentes, escribir prompts con estructura, cazar alucinaciones, proteger datos ' +
-          'sensibles y entender qué hay bajo el capó.',
+          'prácticas. Ahora tienes cuatro herramientas que antes no usabas: escribir prompts ' +
+          'con estructura, cazar alucinaciones, proteger datos sensibles y entender qué hay ' +
+          'bajo el capó.',
       },
       {
         tipo: 'destacado',
@@ -729,7 +733,6 @@ export const secciones = [
         tipo: 'autoevaluacion',
         titulo: '¿Te lo llevas claro? Marca lo que ya sabrías hacer hoy',
         items: [
-          'Detectar un dato inconsistente antes de usarlo (o de dárselo a una IA).',
           'Escribir un prompt con rol + cantidad + foco + formato.',
           'Detectar una alucinación antes de que llegue a un documento oficial.',
           'Saber qué datos NO pegar nunca en una IA pública.',
@@ -1143,54 +1146,6 @@ export const alucina = {
 
 // ===================== Actividades de GOBERNANZA DE DATOS =====================
 
-// ACTIVIDAD G1 — "Detective de datos": el mismo predio en 3 sistemas.
-// El usuario marca las filas con conflicto REAL (no solo diferencias de formato).
-export const detectiveDatos = {
-  pregunta: 'Marca las filas donde los datos DE VERDAD se contradicen (no solo cambian de formato):',
-  sistemas: ['Sistema de Planes de Manejo', 'Planilla regional (Excel)', 'Registro SAG'],
-  campos: [
-    {
-      campo: 'Propietario',
-      valores: ['Juan Pérez Soto', 'J. Pérez', 'Diego González'],
-      conflicto: true,
-      explica:
-        'El Registro SAG tiene registrado un propietario completamente distinto. Esto es un conflicto ' +
-        'real: no se sabe quién es el titular legal del predio. Nadie puede tramitar ni fiscalizar ' +
-        'hasta que alguien defina cuál sistema tiene la razón.',
-    },
-    {
-      campo: 'RUT',
-      valores: ['12.345.678-9', '12345678-9', '12.345.678-9'],
-      conflicto: false,
-      explica:
-        'Mismo RUT, formato distinto. Otra vez: no es contradicción, es falta de estandarización — ' +
-        'y basta para que un cruce automático falle.',
-    },
-    {
-      campo: 'Superficie',
-      valores: ['45,2 ha', '45.2 ha', '45,20 ha'],
-      conflicto: false,
-      explica:
-        'La misma superficie escrita de tres formas: coma o punto decimal, con o sin cero final. ' +
-        'No es contradicción, es falta de estándar — pero basta para que un cruce automático ' +
-        'cuente dos predios donde hay uno.',
-    },
-    {
-      campo: 'Comuna',
-      valores: ['Curacautín', 'Curacautín', 'Lonquimay'],
-      conflicto: true,
-      explica:
-        '¿Curacautín o Lonquimay? Cambia la oficina provincial responsable de fiscalizar. ' +
-        'Conflicto real, y de los caros.',
-    },
-  ],
-  leccion:
-    'Esto es exactamente la brecha "datos inconsistentes para decidir" del diagnóstico UIA. La ' +
-    'gobernanza la resuelve con dos herramientas: una FUENTE OFICIAL única por dato y ESTÁNDARES ' +
-    'de registro. Y ojo con lo que viene en esta jornada: si le das estas tres tablas a una IA, ' +
-    'aprenderá la basura con total confianza. La calidad de los datos viene ANTES que la IA.',
-}
-
 // ACTIVIDAD G2 — "¿Quién responde por este dato?": asignar el rol correcto.
 export const rolesDatos = {
   roles: [
@@ -1264,6 +1219,7 @@ export const dolencias = {
     { id: 'otra', etiqueta: 'Otra', icono: '💬' },
   ],
   placeholder: 'Escribe la fricción…',
+  encabezadoCopia: 'Fricciones levantadas en la jornada UIA:',
   leccion:
     'Esta lista es el insumo más valioso de la jornada: con ella la UIA prioriza qué resolver ' +
     'primero. Copia la lista al portapapeles y envíala a la UIA antes de cerrar la sesión.',

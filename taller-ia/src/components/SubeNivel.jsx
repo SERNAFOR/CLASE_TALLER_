@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { subeNivel } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "sube el nivel del prompt": un deslizador entre 3 niveles de detalle.
 export default function SubeNivel() {
+  const { subeNivel } = useTaller()
   const [nivel, setNivel] = useState(0)
   const n = subeNivel.niveles[nivel]
 

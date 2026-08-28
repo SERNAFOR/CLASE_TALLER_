@@ -39,39 +39,64 @@ export default function Perceptron() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
     const S = SIZE
+    // El lienzo se dibuja a la resolucion real del dispositivo: proyectado o con
+    // zoom, un backing store de 360x360 se ve como una mancha.
+    const dpr = Math.min(window.devicePixelRatio || 1, 3)
+    canvas.width = S * dpr
+    canvas.height = S * dpr
+    const ctx = canvas.getContext('2d')
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
     const px = (x) => ((x + 1) / 2) * S
     const py = (y) => S - ((y + 1) / 2) * S
+    const yAt = (x) => -w * x - b
+    const esPos = (x, y) => w * x + y + b >= 0
 
     ctx.clearRect(0, 0, S, S)
 
-    // Fondo: dos semiplanos
-    const img = ctx.createImageData(S, S)
-    for (let i = 0; i < S; i++) {
-      for (let j = 0; j < S; j++) {
-        const x = (i / S) * 2 - 1
-        const y = (1 - j / S) * 2 - 1
-        const lado = w * x + y + b >= 0
-        const idx = (j * S + i) * 4
-        img.data[idx]     = lado ? 254 : 235
-        img.data[idx + 1] = lado ? 226 : 240
-        img.data[idx + 2] = lado ? 226 : 252
-        img.data[idx + 3] = 255
-      }
-    }
-    ctx.putImageData(img, 0, 0)
-
-    // Recta: w·x + y + b = 0  →  y = -w·x - b
-    ctx.strokeStyle = '#1b5e20'
-    ctx.lineWidth = 3
+    // Los dos semiplanos, como poligonos. Antes era un bucle por pixel con dos
+    // tintes casi identicos (contraste 1,07:1): proyectados eran el mismo blanco.
+    ctx.fillStyle = '#d6e4f5'
+    ctx.fillRect(0, 0, S, S)
+    const BIG = S * 3
+    ctx.fillStyle = '#ffffff'
     ctx.beginPath()
-    const yAt = (x) => -w * x - b
+    ctx.moveTo(px(-3), py(yAt(-3)))
+    ctx.lineTo(px(3), py(yAt(3)))
+    ctx.lineTo(px(3), py(yAt(3)) - BIG)
+    ctx.lineTo(px(-3), py(yAt(-3)) - BIG)
+    ctx.closePath()
+    ctx.fill()
+
+    // Etiqueta dentro de cada region: el color solo no basta en un proyector,
+    // ni para quien no distingue rojo de azul.
+    ctx.font = '600 15px Inter, system-ui, sans-serif'
+    ctx.fillStyle = '#37474f'
+    const esquinas = [
+      [-0.88, 0.88, 'left', 'top'],
+      [0.88, 0.88, 'right', 'top'],
+      [-0.88, -0.88, 'left', 'bottom'],
+      [0.88, -0.88, 'right', 'bottom'],
+    ]
+    for (const lado of [true, false]) {
+      const e = esquinas.find(([x, y]) => esPos(x, y) === lado)
+      if (!e) continue
+      ctx.textAlign = e[2]
+      ctx.textBaseline = e[3]
+      ctx.fillText(lado ? 'lado rojo' : 'lado azul', px(e[0]), py(e[1]))
+    }
+
+    // La frontera, gruesa: un proyector se come los trazos finos.
+    ctx.strokeStyle = '#1b5e20'
+    ctx.lineWidth = 6
+    ctx.beginPath()
     ctx.moveTo(px(-1), py(yAt(-1)))
     ctx.lineTo(px(1), py(yAt(1)))
     ctx.stroke()
 
-    // Puntos
+    // Puntos: el anillo distingue acierto de fallo por FORMA (continuo vs
+    // discontinuo), no solo por color.
     for (const p of PUNTOS) {
       const ok = predecir(p, w, b) === p.label
       ctx.beginPath()
@@ -79,8 +104,10 @@ export default function Perceptron() {
       ctx.fillStyle = p.label === 1 ? '#e53935' : '#1e88e5'
       ctx.fill()
       ctx.lineWidth = 3
-      ctx.strokeStyle = ok ? '#2e7d32' : '#9e9e9e'
+      ctx.setLineDash(ok ? [] : [4, 3])
+      ctx.strokeStyle = ok ? '#1b5e20' : '#37474f'
       ctx.stroke()
+      ctx.setLineDash([])
     }
   }, [w, b])
 
@@ -141,13 +168,23 @@ export default function Perceptron() {
         <Slider label="Sesgo b (desplaza la frontera)" value={b} onChange={setB} />
 
         <div className="perceptron__eq">
-          <code>
-            z = ({w.toFixed(2)})·x + (1.00)·y + ({b.toFixed(2)})
-          </code>
           <span className="perceptron__eq-nota">
-            Si z ≥ 0 → <strong>clase roja</strong>. Si z &lt; 0 → <strong>clase azul</strong>.
-            La recta verde es donde z = 0.
+            Por encima de la recta, <strong>clase roja</strong>. Por debajo,{' '}
+            <strong>clase azul</strong>. La recta verde es la frontera: ahi la neurona duda.
           </span>
+          {/* Plegada a proposito: la regla del proyecto es "cero formulas a la
+              vista". Reutiliza las clases del bloque `formula`: sin CSS nuevo. */}
+          <details className="bloque-formula bloque-formula--plegable">
+            <summary className="bloque-formula__summary">
+              🔬 La cuenta que hay detras · para los mas tecnicos
+            </summary>
+            <code className="bloque-formula__eq">
+              z = ({w.toFixed(2)})·x + (1.00)·y + ({b.toFixed(2)})
+            </code>
+            <span className="perceptron__eq-nota">
+              Si z ≥ 0 → clase roja. Si z &lt; 0 → clase azul. La recta es donde z = 0.
+            </span>
+          </details>
         </div>
 
         <div className="perceptron__botones">

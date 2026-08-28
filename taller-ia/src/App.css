@@ -721,12 +721,6 @@
 .prompt-builder {
   margin-top: 8px;
 }
-.prompt-builder__chips {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
 .chip {
   background: var(--panel);
   border: 2px solid var(--borde);
@@ -743,56 +737,6 @@
 }
 .chip__icono {
   margin-right: 4px;
-}
-.prompt-builder__caja {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.prompt-builder__col {
-  background: var(--panel);
-  border: 1px solid var(--borde);
-  border-radius: 12px;
-  padding: 18px;
-  box-shadow: var(--sombra);
-}
-.prompt-builder__tag {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 3px 10px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-.prompt-builder__tag--malo {
-  background: #fdecea;
-  color: var(--rojo);
-}
-.prompt-builder__tag--bueno {
-  background: var(--verde-pastel);
-  color: var(--verde);
-}
-.prompt-builder__texto {
-  font-size: 16px;
-  min-height: 80px;
-}
-.prompt-builder__texto--malo {
-  color: var(--texto-suave);
-}
-.prompt-builder__texto--bueno {
-  color: var(--texto);
-  font-weight: 500;
-}
-.prompt-builder__res {
-  font-size: 14px;
-  color: var(--texto-suave);
-  margin: 8px 0 0;
-}
-.prompt-builder__res--ok {
-  color: var(--verde);
-  font-weight: 600;
 }
 .prompt-builder__nota {
   margin-top: 18px;
@@ -900,7 +844,7 @@
   gap: 10px;
   padding: 10px 12px;
   border-radius: 8px;
-  background: #f7faf7;
+  background: var(--surface-tint);
   font-size: 15px;
 }
 .analisis__punto--nuevo {
@@ -1047,7 +991,7 @@
 .comparar__rasgos li {
   position: relative;
   padding: 8px 12px 8px 32px;
-  background: #f7faf7;
+  background: var(--surface-tint);
   border-radius: 8px;
   font-size: 15px;
 }
@@ -1356,7 +1300,7 @@
 }
 .detective__frase--ok {
   border-color: var(--verde-claro);
-  background: #f1f8f2;
+  background: var(--surface-tint);
 }
 .detective__check {
   font-size: 16px;
@@ -1519,7 +1463,7 @@
 .docaccion__check li {
   position: relative;
   padding: 8px 10px 8px 30px;
-  background: #f1f8f2;
+  background: var(--surface-tint);
   border-radius: 8px;
   font-size: 14px;
   animation: entra 0.4s ease both;
@@ -1757,8 +1701,8 @@
   padding: 16px;
   box-shadow: var(--sombra);
 }
-.aluc__col--antes { background: #fffaf7; border-top: 4px solid #ef6c00; }
-.aluc__col--despues { background: #f7faf7; border-top: 4px solid var(--verde-claro); }
+.aluc__col--antes { background: var(--warning-soft); border-top: 4px solid var(--warning); }
+.aluc__col--despues { background: var(--surface-tint); border-top: 4px solid var(--verde-claro); }
 .aluc__respuesta {
   font-size: 15px;
   line-height: 1.6;
@@ -1863,7 +1807,7 @@
   align-items: flex-start;
   padding: 10px 12px;
   border-radius: 8px;
-  background: #f7faf7;
+  background: var(--surface-tint);
   border: 1px solid var(--borde);
   font-size: 13px;
 }
@@ -1956,6 +1900,22 @@
   padding: 8px 12px;
   border-radius: 8px;
 }
+/* Daltonismo: acierto y fallo no pueden distinguirse solo por color. */
+.privacidad__dato--ok::after {
+  content: ' ¹3';
+  font-weight: 700;
+}
+.privacidad__dato--fallo {
+  text-decoration: underline wavy;
+  text-underline-offset: 3px;
+}
+.privacidad__dato--fallo::after {
+  content: ' ¹7';
+  font-weight: 700;
+}
+.privacidad__dato--demas::after {
+  content: ' ¸2';
+}
 .privacidad__fila--mal { background: #fdecea; color: #b71c1c; }
 .privacidad__fila--demas { background: #fff3e0; color: #8d6e00; }
 .privacidad__fila--ok { background: var(--verde-pastel); color: var(--verde); }
@@ -2020,7 +1980,7 @@
 }
 .programa__item--pausa {
   border-left-color: #ffca28;
-  background: #fffdf5;
+  background: var(--warning-soft);
 }
 .programa__hora {
   display: flex;
@@ -2064,98 +2024,6 @@
   color: var(--texto-suave);
 }
 
-/* ===== Detective de datos (gobernanza G1) ===== */
-.ddatos__pregunta {
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.ddatos__scroll {
-  overflow-x: auto;
-  border-radius: 12px;
-  border: 1px solid var(--borde);
-  margin-bottom: 14px;
-}
-.ddatos__tabla {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 14px;
-  background: var(--panel);
-}
-.ddatos__tabla thead th {
-  background: var(--verde);
-  color: #fff;
-  padding: 10px 12px;
-  text-align: left;
-  font-size: 13px;
-  white-space: nowrap;
-}
-.ddatos__corner {
-  width: 130px;
-}
-.ddatos__fila {
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.ddatos__fila td,
-.ddatos__campo {
-  padding: 10px 12px;
-  border-top: 1px solid var(--borde);
-  text-align: left;
-}
-.ddatos__campo {
-  font-weight: 600;
-  white-space: nowrap;
-}
-.ddatos__fila:hover {
-  background: #f1f8f2;
-}
-.ddatos__fila--marcada {
-  background: #fff3e0;
-}
-.ddatos__fila--marcada:hover {
-  background: #ffe9c7;
-}
-.ddatos__fila--conflicto {
-  background: #fdecea;
-  cursor: default;
-}
-.ddatos__fila--formato {
-  background: #f6f8f6;
-  cursor: default;
-}
-.ddatos__fila--discrepa td,
-.ddatos__fila--discrepa .ddatos__campo {
-  box-shadow: inset 0 -2px 0 #fb8c00;
-}
-.ddatos__explicaciones {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-.ddatos__explica {
-  margin: 0;
-  font-size: 14px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: #f6f8f6;
-  color: var(--texto-suave);
-}
-.ddatos__explica--conflicto {
-  background: #fdecea;
-  color: #b71c1c;
-}
-.ddatos__resultado {
-  background: var(--verde-pastel);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-bottom: 4px;
-}
-.ddatos__score {
-  margin: 0 0 10px;
-  font-size: 15px;
-}
-.ddatos__leccion,
 .rdatos__leccion,
 .mdatos__leccion,
 .dolencias__leccion {
@@ -2721,7 +2589,6 @@
   .perceptron {
     grid-template-columns: 1fr;
   }
-  .prompt-builder__caja,
   .bloque-dos__grid {
     grid-template-columns: 1fr;
   }

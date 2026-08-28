@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ingredientesPrompt, promptVago, promptEjemplo } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Detecta heurísticamente si un prompt contiene cada ingrediente.
 // Busca ESTRUCTURA (un patrón de instrucción), no solo una palabra mágica suelta,
@@ -14,11 +14,15 @@ function detectar(texto) {
     // Foco: acota el tema ("centrado/enfocado en…", "sobre…", "solo…").
     foco: /\b(centrad[oa] en|enfocad[oa] en|sobre (el|la|los|las|las?)|respecto a|solo |únicamente|destacando|que destaque)\b/.test(t),
     // Formato: pide una forma de salida concreta.
-    formato: /\b(en una tabla|como (tabla|lista|checklist|viñetas)|tono \w+|formato|en formato|estructurad[oa]|en columnas)\b/.test(t),
+    formato:
+      /\b(en una tabla|como (tabla|lista|checklist|viñetas)|tono \w+|formato|en formato|estructurad[oa]|en columnas|correo|oficio|memor[áa]ndum|minuta|acta|resoluci[óo]n|providencia|informe)\b/.test(
+        t,
+      ),
   }
 }
 
 export default function PromptBuilder() {
+  const { ingredientesPrompt, promptVago, promptEjemplo } = useTaller()
   const [texto, setTexto] = useState(promptVago)
   const [verEjemplo, setVerEjemplo] = useState(false)
 

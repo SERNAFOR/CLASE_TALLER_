@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { publicos } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "misma ley, distintos públicos": el usuario elige audiencia y ve
 // cómo la IA reescribe la misma explicación con otro registro.
 export default function Publicos() {
+  const { publicos } = useTaller()
   const [activa, setActiva] = useState(publicos.audiencias[0].id)
   const a = publicos.audiencias.find((x) => x.id === activa)
 

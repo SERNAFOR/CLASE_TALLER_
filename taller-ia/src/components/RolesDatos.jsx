@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { rolesDatos } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Actividad de gobernanza G2: en cada situación, el usuario decide qué rol
 // (dueño / custodio / usuario) debe actuar. Feedback inmediato por situación.
 export default function RolesDatos() {
+  const { rolesDatos } = useTaller()
   const [respuestas, setRespuestas] = useState({}) // idx situación → id rol elegido
 
   const responder = (i, rolId) => {
@@ -46,6 +47,10 @@ export default function RolesDatos() {
                   }
                   return (
                     <button key={r.id} className={clase} onClick={() => responder(i, r.id)} disabled={lista}>
+                      {/* Glifo ademas del color: entre 50 adultos hay 3 o 4 que no
+                          distinguen el verde del rojo, y proyectado no lo distingue nadie. */}
+                      {lista && r.id === s.correcto && '✓ '}
+                      {lista && r.id === elegida && r.id !== s.correcto && '✗ '}
                       {r.icono} {r.nombre}
                     </button>
                   )
@@ -62,9 +67,15 @@ export default function RolesDatos() {
         })}
       </div>
 
-      {respondidas === rolesDatos.situaciones.length && (
+      {respondidas > 0 && (
         <div className="rdatos__resultado">
-          <strong>Acertaste {aciertos} de {rolesDatos.situaciones.length}.</strong>{' '}
+          {respondidas === rolesDatos.situaciones.length ? (
+            <strong>Acertaste {aciertos} de {rolesDatos.situaciones.length}.</strong>
+          ) : (
+            <span>
+              {respondidas} de {rolesDatos.situaciones.length} respondidas.
+            </span>
+          )}{' '}
           <button className="btn" onClick={() => setRespuestas({})}>↺ Reintentar</button>
         </div>
       )}

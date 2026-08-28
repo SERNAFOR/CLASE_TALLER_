@@ -13,10 +13,10 @@ export default function Bloque({ bloque, ir }) {
             {bloque.kicker && <span className="hero__kicker">{bloque.kicker}</span>}
             <h2 className="hero__titulo">{bloque.titulo}</h2>
             <p className="hero__texto">{bloque.texto}</p>
-            {ir && (
+            {bloque.irA && ir && (
               <div className="hero__acciones">
-                <button className="btn btn--accent btn--lg" onClick={() => ir('programa')}>
-                  Empezar el recorrido →
+                <button className="btn btn--accent btn--lg" onClick={() => ir(bloque.irA)}>
+                  {bloque.irTexto || 'Empezar el recorrido'} →
                 </button>
               </div>
             )}

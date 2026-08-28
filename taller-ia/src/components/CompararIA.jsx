@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { compararIA } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "distintos modelos, distintas respuestas": pestañas para comparar
 // cómo ChatGPT, Claude y Gemini responden al mismo prompt sobre la Ley 20.283.
 export default function CompararIA() {
+  const { compararIA } = useTaller()
   const [activo, setActivo] = useState(compararIA.modelos[0].id)
   const modelo = compararIA.modelos.find((m) => m.id === activo)
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { attention } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Attention simplificado: el usuario elige una palabra → ve qué otras palabras
 // "mira". Menos texto, más interacción directa.
@@ -7,6 +7,7 @@ const TOKENS_CORTO = [1, 3, 4, 5, 6, 8] // índices: corta, bosque, nativo, requ
 const ETIQUETAS = ['corta', 'bosque', 'nativo', 'requiere', 'plan', 'manejo']
 
 export default function Attention() {
+  const { attention } = useTaller()
   const { cabezas, prediccion } = attention
   const [selToken, setSelToken] = useState(0) // índice en ETIQUETAS / TOKENS_CORTO
   const [predicho, setPredicho] = useState(false)

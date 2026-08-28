@@ -102,6 +102,7 @@
   --text:      #1a211c;
   --text-muted:#586159;
   --border:    #e2e8e1;
+  --surface-tint: #f7faf7;
   --border-strong: #cdd6cc;
 
   /* ---- Tokens semánticos de alto nivel ---- */
@@ -194,6 +195,11 @@
     --ring:      color-mix(in srgb, var(--accent-400) 75%, #ffffff);
 
     --success-soft: #16281d;  --warning-soft: #2c2310;  --danger-soft: #2e1714;  --info-soft: #11243a;
+  --success-ink: #7fd6a3;
+  --warning-ink: #e0b45c;
+  --danger-ink: #f09a8c;
+  --info-ink: #8ac0f0;
+  --surface-tint: #1d2620;
 
     /* alias que cambian en oscuro */
     --verde: var(--brand-400);
@@ -220,6 +226,11 @@
   --ring:      color-mix(in srgb, var(--accent-400) 75%, #ffffff);
 
   --success-soft: #16281d;  --warning-soft: #2c2310;  --danger-soft: #2e1714;  --info-soft: #11243a;
+  --success-ink: #7fd6a3;
+  --warning-ink: #e0b45c;
+  --danger-ink: #f09a8c;
+  --info-ink: #8ac0f0;
+  --surface-tint: #1d2620;
 
   --verde: var(--brand-400);
   --verde-claro: var(--brand-300);
@@ -290,3 +301,65 @@ button { font-family: inherit; cursor: pointer; }
     scroll-behavior: auto !important;
   }
 }
+
+
+/* ============================================================================
+   MODO PROYECCION  ·  se activa con ?proyeccion en la URL
+   Sin boton a proposito: un parametro no se pulsa por accidente delante de la
+   sala. `zoom` sobre .contenido escala TAMBIEN los 153 font-size en px del
+   App.css (reescalar los tokens --fs-* solo alcanzaria a 9 de 165), y deja el
+   menu lateral a tamano nativo, asi que no hace falta abrir el cajon movil.
+   ========================================================================= */
+:root[data-proyeccion] .contenido {
+  zoom: 2;
+}
+:root[data-proyeccion] .seccion {
+  max-width: 560px; /* a 2x son ~66 caracteres de medida */
+  animation: none;
+}
+/* Lo que el publico no puede leer ni accionar, estorba. */
+:root[data-proyeccion] .progreso,
+:root[data-proyeccion] .red__leyenda,
+:root[data-proyeccion] .bloque-video,
+:root[data-proyeccion] .bloque-descarga,
+:root[data-proyeccion] .programa__detalle p {
+  display: none;
+}
+/* La leccion es lo unico que deberian llevarse, y hoy es el texto mas pequeno
+   y mas apagado de la pantalla. */
+:root[data-proyeccion] .sube__leccion,
+:root[data-proyeccion] .detective__leccion,
+:root[data-proyeccion] .publicos__leccion,
+:root[data-proyeccion] .privacidad__leccion,
+:root[data-proyeccion] .docaccion__leccion,
+:root[data-proyeccion] .red__leccion,
+:root[data-proyeccion] .attn__leccion,
+:root[data-proyeccion] .aluc__leccion,
+:root[data-proyeccion] .comparar__leccion,
+:root[data-proyeccion] .analisis__leccion,
+:root[data-proyeccion] .rdatos__leccion,
+:root[data-proyeccion] .mdatos__leccion,
+:root[data-proyeccion] .dolencias__leccion {
+  font-size: 19px;
+  color: var(--text);
+  font-weight: 500;
+}
+:root[data-proyeccion] .tarjeta p,
+:root[data-proyeccion] .seccion__sub {
+  font-size: 17px;
+  color: var(--text);
+}
+:root[data-proyeccion] .grid-tarjetas {
+  grid-template-columns: repeat(2, 1fr);
+}
+/* Un proyector se come los trazos finos y el tracking negativo. */
+:root[data-proyeccion] body {
+  font-weight: 500;
+}
+:root[data-proyeccion] h1,
+:root[data-proyeccion] h2,
+:root[data-proyeccion] h3,
+:root[data-proyeccion] h4 {
+  letter-spacing: 0;
+}
+

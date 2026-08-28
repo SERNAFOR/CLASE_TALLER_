@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Tarjeta del taller · Gerencia de Desarrollo de las Personas</title>
+<style>
+  @page { size: letter portrait; margin: 12mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", system-ui, Roboto, Arial, sans-serif;
+    color: #1f2421; margin: 0; font-size: 13px;
+  }
+  .cabecera {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: #fff; border-radius: 12px; padding: 16px 22px; margin-bottom: 14px;
+  }
+  h1 { margin: 0 0 4px; font-size: 24px; }
+  .sub { margin: 0; opacity: .95; font-size: 12.5px; }
+  h2 {
+    font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    color: #55605a; margin: 18px 0 8px;
+  }
+  .regla {
+    border: 1px solid #e1e8e2; border-left: 6px solid #2e7d32;
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 9px; background: #fbfdfb;
+  }
+  .regla h3 { margin: 0 0 4px; font-size: 16px; color: #1b5e20; }
+  .regla p { margin: 0; font-size: 12.5px; line-height: 1.45; }
+  .regla--rojo { border-left-color: #c62828; background: #fff8f7; }
+  .regla--rojo h3 { color: #c62828; }
+  .prompt {
+    background: #1e2a22; color: #e8f3e9; border-radius: 10px;
+    padding: 12px 14px; font-size: 11.8px; line-height: 1.5; margin-bottom: 8px;
+  }
+  .prompt b { color: #ffca28; font-weight: 600; }
+  .prompt .etq {
+    display: inline-block; background: #2e7d32; color: #fff; border-radius: 20px;
+    padding: 1px 10px; font-size: 10px; letter-spacing: .06em; margin-bottom: 6px;
+  }
+  .compromiso {
+    border: 2px dashed #ef6c00; border-radius: 10px; padding: 14px 16px;
+    background: #fffaf4; margin-top: 14px;
+  }
+  .compromiso h3 { margin: 0 0 6px; font-size: 15px; color: #ef6c00; }
+  .lineas { border-bottom: 1px dotted #c9a06a; height: 19px; }
+  .pie { margin-top: 14px; font-size: 10.5px; color: #55605a; text-align: center; }
+</style>
+</head>
+<body>
+  <div class="cabecera">
+    <h1>Las tres reglas del día</h1>
+    <p class="sub">Taller de IA · UIA · Gerencia de Desarrollo de las Personas · CONAF</p>
+  </div>
+
+  <div class="regla regla--rojo">
+    <h3>1 · No pego nada que no publicaría</h3>
+    <p>
+      Nombre, RUT, <b>diagnóstico</b>, folio de licencia, correo personal, domicilio, remuneración,
+      evaluación. El diagnóstico, nunca: es información que la institución ni siquiera debería
+      tener a la vista. Lo que se pega en una IA pública, se fue.
+    </p>
+  </div>
+
+  <div class="regla">
+    <h3>2 · Todo número se verifica en la fuente</h3>
+    <p>
+      Plazo, artículo, monto o norma: se comprueba antes de que salga de tu escritorio. La IA no
+      duda nunca, y tú no te puedes dar el lujo de no dudar.<br />
+      <b>Ley Chile:</b> bcn.cl/leychile &nbsp;·&nbsp; y la normativa interna, donde corresponda.
+    </p>
+  </div>
+
+  <div class="regla">
+    <h3>3 · Le pido como a un practicante nuevo</h3>
+    <p>
+      <b>Rol</b> (quién debe ser) + <b>cantidad</b> (cuánto) + <b>foco</b> (sobre qué) +
+      <b>formato</b> (en qué forma). Cuatro cosas, siempre. Si falta una, la respuesta va a llegar
+      genérica y vas a reescribirla igual.
+    </p>
+  </div>
+
+  <h2>Dos prompts listos para copiar</h2>
+
+  <div class="prompt">
+    <span class="etq">RESPONDER UNA CONSULTA</span><br />
+    <b>Actúa como</b> analista de la Gerencia de Desarrollo de las Personas de CONAF. Redacta
+    <b>en 5 viñetas, máximo media plana</b>, la respuesta a una trabajadora que pregunta cómo
+    tramitar su licencia médica, <b>centrado en</b> los plazos y en quién hace cada paso,
+    <b>en tono formal y cercano, como correo</b>.
+  </div>
+
+  <div class="prompt">
+    <span class="etq">CONVERTIR NORMA EN CHECKLIST</span><br />
+    <b>Actúa como</b> analista de personal. Convierte <b>el texto que te pego abajo</b> en una
+    <b>checklist de 5 puntos</b> con los pasos concretos que me tocan a mí, <b>centrado en</b>
+    los plazos y en qué debe quedar registrado, <b>como lista para marcar</b>.
+    <br /><br />
+    ⚠️ Pégale <b>el texto</b> de la norma. Nunca le pidas que la recuerde de memoria, y nunca le
+    pegues el expediente.
+  </div>
+
+  <div class="compromiso">
+    <h3>✍️ Mi compromiso para esta semana</h3>
+    <p style="margin:0 0 8px; font-size:12px; color:#8a5a1c;">
+      Una frase. Qué voy a probar y con qué. Nadie la recoge: es tuya.
+    </p>
+    <div class="lineas"></div>
+    <div class="lineas"></div>
+  </div>
+
+  <p class="pie">
+    UIA · Unidad de Información y Análisis Institucional · CONAF · 2026 —
+    si en seis meses tu fricción no se movió, tienes derecho a venir a reclamarnos.
+  </p>
+</body>
+</html>

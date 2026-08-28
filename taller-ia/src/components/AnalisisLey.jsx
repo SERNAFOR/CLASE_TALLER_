@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { analisisLey } from '../data/contenido'
+import { useTaller } from '../taller/contexto'
 
 // Ejercicio "una palabra lo cambia todo": el usuario añade/quita la palabra
 // "crítico" en el prompt y ve cómo el análisis de la Ley 20.283 se transforma.
 export default function AnalisisLey() {
+  const { analisisLey } = useTaller()
   const [critico, setCritico] = useState(false)
   const datos = critico ? analisisLey.critico : analisisLey.neutral
 
