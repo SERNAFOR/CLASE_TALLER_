@@ -363,3 +363,77 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: 0;
 }
 
+
+/* ============================================================================
+   MODO PRESENTACION  ·  lo activa el taller (marca.presentacion), no la URL
+   El menu lateral se convierte en cajon: la pantalla queda limpia y `Esc` lo
+   abre cuando hace falta saltar a una seccion concreta. Son las mismas reglas
+   que ya usa el breakpoint movil, aplicadas por atributo en vez de por ancho.
+   ========================================================================= */
+:root[data-presentacion] .layout {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "topbar"
+    "contenido";
+}
+:root[data-presentacion] .topbar {
+  display: flex;
+}
+:root[data-presentacion] .nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 270px;
+  height: 100vh;
+  z-index: 40;
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+:root[data-presentacion] .nav--abierto {
+  transform: translateX(0);
+}
+:root[data-presentacion] .overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 35;
+}
+
+/* El contador de diapositiva no es una barra de progreso divulgativa: es una
+   referencia para quien conduce. Discreto, arriba a la derecha. */
+:root[data-presentacion] .progreso {
+  /* El modo proyeccion esconde .progreso porque alli es la barra divulgativa
+     del Laboratorio, que la sala no puede leer. En presentacion ese mismo
+     elemento es el contador de diapositiva, que SI necesita quien conduce:
+     hay que devolverlo. Sin esto queda oculto justo en la configuracion real. */
+  display: flex;
+  justify-content: flex-end;
+}
+:root[data-presentacion] .progreso__barra {
+  max-width: 140px;
+}
+:root[data-presentacion] .progreso__txt {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cada bloque que aparece lo hace con una entrada corta: la sala nota que ha
+   pasado algo sin que el movimiento distraiga. */
+:root[data-presentacion] .seccion > * {
+  animation: aparecer 0.28s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-presentacion] .seccion > * {
+    animation: none;
+  }
+}
+
+/* Proyectores de 1024x768 y similares: con zoom 2 cada bloque desborda la
+   pantalla y habria que hacer scroll DENTRO de una diapositiva, que es
+   justo lo que el avance por pasos venia a evitar. A esa resolucion el
+   texto ya es grande de sobra con 1.5. Comprobado capturando a 1024. */
+@media (max-width: 1280px) {
+  :root[data-proyeccion] .contenido {
+    zoom: 1.5;
+  }
+}

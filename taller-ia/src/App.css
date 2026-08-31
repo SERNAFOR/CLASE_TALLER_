@@ -2601,6 +2601,9 @@
   .aluc__cols {
     grid-template-columns: 1fr;
   }
+  .crono__cols {
+    grid-template-columns: 1fr;
+  }
   .pb__ingredientes {
     grid-template-columns: 1fr;
   }
@@ -2617,4 +2620,215 @@
   .dolencias__entrada {
     flex-direction: column;
   }
+}
+
+/* ===== Cadena de consecuencia (bola de nieve / fuga de un dato) ===== */
+.cadena__pregunta {
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.cadena__lista {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cadena__paso {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--warning);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--surface-tint);
+}
+.cadena__paso--nuevo {
+  animation: entra 0.3s ease;
+  border-left-color: var(--danger);
+  box-shadow: var(--e2);
+}
+.cadena__n {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--verde);
+  color: var(--brand-ink);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.cadena__cuerpo {
+  flex: 1;
+}
+.cadena__que {
+  margin: 0 0 6px;
+  line-height: 1.55;
+}
+.cadena__coste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 14px;
+  color: var(--texto-suave);
+}
+.cadena__dato strong {
+  color: var(--danger);
+}
+.cadena__barra {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.cadena__barra-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--warning), var(--danger));
+  transition: width 0.3s ease;
+}
+.cadena__acciones {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cadena__contador {
+  font-size: 14px;
+  color: var(--texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+.cadena__remate {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--danger-soft);
+  color: var(--danger-ink);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* ===== Cronómetro: la misma tarea, a mano y con IA ===== */
+.crono__tarea {
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+.crono__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.crono__col {
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+}
+.crono__col--mano {
+  border-top: 4px solid var(--warning);
+}
+.crono__col--ia {
+  border-top: 4px solid var(--success);
+}
+.crono__cab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.crono__icono {
+  font-size: 24px;
+}
+.crono__reloj {
+  margin: 0 0 10px;
+  font-family: var(--font-mono);
+  font-size: 34px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--heading);
+}
+.crono__listo {
+  color: var(--success);
+}
+.crono__tramos {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.crono__tramo-txt {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+.crono__tramo-txt em {
+  color: var(--texto-suave);
+  font-style: normal;
+}
+.crono__tramo--hecho .crono__tramo-txt {
+  color: var(--texto-suave);
+}
+.crono__tramo-barra {
+  display: block;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.crono__tramo-fill {
+  display: block;
+  height: 100%;
+  background: var(--verde);
+}
+/* El tramo de "revisar y firmar" es de otro color a propósito: es el que no
+   desaparece por mucho que mejore la herramienta. */
+.crono__tramo--revision .crono__tramo-fill {
+  background: var(--warning);
+}
+.crono__total {
+  height: 12px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.crono__total-fill {
+  height: 100%;
+  background: var(--brand);
+}
+.crono__remate {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--success-soft);
+  color: var(--success-ink);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* La caja de lección, compartida con el resto de actividades. */
+.cadena__leccion,
+.crono__leccion {
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--texto-suave);
+  background: var(--amarillo);
+  border-radius: 10px;
+  padding: 14px 16px;
+  line-height: 1.6;
+}
+
+/* Solo para lectores de pantalla. */
+.u-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

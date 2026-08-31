@@ -61,6 +61,45 @@ Que alguien de la gerencia lea las 8 frases y firme esta casilla:
 
 - [ ] Las 8 frases de `detective` revisadas por _______________________ el ___/___/______
 
+## Las actividades nuevas de la presentación
+
+### "A otros ya les pasó" — los casos públicos
+
+Es la única parte del material que cita hechos externos. Si un caso está mal contado, se cae
+justo el argumento que sostiene la línea roja del termómetro.
+
+- [ ] **El caso de la herramienta de reclutamiento (2018).** El taller dice: una empresa
+      tecnológica grande construyó un sistema para puntuar currículums, lo entrenó con diez años
+      de contrataciones propias, el sistema aprendió a penalizar los currículums que mencionaban
+      la palabra "mujeres", y lo descartaron. **Verificar contra la nota de prensa original antes
+      de contarlo**, y decidir si se nombra a la empresa o se deja como "una empresa tecnológica
+      grande" (el material la deja sin nombrar a propósito: el argumento no depende de quién fue).
+- [ ] **Los sistemas de puntuación de riesgo en administraciones europeas.** El taller lo cuenta
+      en genérico y sin nombres ni fechas, a propósito. Si se decide nombrar un caso concreto,
+      hay que verificarlo entero: qué organismo, qué decisión judicial o administrativa, qué año.
+      **Si no se puede verificar, se deja en genérico como está.**
+
+### "Verde, ámbar, rojo" — el criterio, no los hechos
+
+Las seis tareas no citan normas, así que no hay datos que verificar. Pero sí hay un juicio que
+conviene contrastar con el área:
+
+- [ ] ¿Está de acuerdo la gerencia con que **redactar bases de concurso** sea ámbar y no rojo?
+- [ ] ¿Y con que **comparar dos versiones de un reglamento** sea ámbar y no verde?
+      Las respuestas "correctas" del ejercicio son una postura institucional, no un hecho.
+
+### "Lo que cuesta hacerlo a mano" — los minutos
+
+- [ ] Los tiempos (12 + 8 + 18 + 6 a mano, 3 + 2 + 6 con IA) son estimaciones conservadoras de
+      una tarea real. **Contrastarlos con alguien que la haga todas las semanas.** Si son
+      exagerados, se nota, y el resto de la charla pierde credibilidad. Mejor quedarse corto.
+
+### "La bola de nieve" y "El dato que se escapó"
+
+- [ ] Ninguna cita normas ni cifras oficiales: describen un encadenamiento plausible. El único
+      dato a confirmar es que **el diagnóstico va en la sección confidencial de la licencia y el
+      empleador no debe conocerlo** — que ya está en la lista de arriba y es el eje de las dos.
+
 ## Qué hacer si algo no se puede confirmar
 
 No lo dejes "más o menos". Dos salidas, ambas mejores que un dato dudoso:

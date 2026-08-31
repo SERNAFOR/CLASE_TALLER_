@@ -10,9 +10,18 @@ export const TALLER_POR_DEFECTO = 'conaf'
 // El contrato es "ambos módulos exportan los mismos nombres". Sin esto, un
 // typo (promptEjmplo) da undefined en silencio y revienta delante de la sala.
 if (import.meta.env.DEV) {
+  // Solo los que FALTAN son un problema: una sección de Personal apuntando a un
+  // dato que no existe revienta en pantalla. Que Personal exporte de más es
+  // esperado — tiene actividades propias que el taller general no tiene.
   const faltan = Object.keys(conaf).filter((k) => !(k in personal))
-  const sobran = Object.keys(personal).filter((k) => !(k in conaf))
-  if (faltan.length || sobran.length) {
-    console.error('[talleres] desajuste de exports →', { faltan, sobran })
+  if (faltan.length) {
+    console.error('[talleres] a contenidoPersonal.js le faltan exports →', faltan)
+  }
+  // Y que una sección apunte a un interactivo sin datos, también.
+  const sinDatos = personal.secciones
+    .filter((s) => s.interactivo && !(s.interactivo in personal))
+    .map((s) => `${s.id} → ${s.interactivo}`)
+  if (sinDatos.length) {
+    console.error('[talleres] secciones cuyo interactivo no tiene datos →', sinDatos)
   }
 }

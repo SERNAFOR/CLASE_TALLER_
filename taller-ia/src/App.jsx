@@ -18,6 +18,10 @@ import Alucina from './components/Alucina'
 import RolesDatos from './components/RolesDatos'
 import MadurezDatos from './components/MadurezDatos'
 import Dolencias from './components/Dolencias'
+import Termometro from './components/Termometro'
+import Cronometro from './components/Cronometro'
+import BolaDeNieve from './components/BolaDeNieve'
+import Fuga from './components/Fuga'
 
 // Mapa de id de interactivo → componente.
 const INTERACTIVOS = {
@@ -36,6 +40,10 @@ const INTERACTIVOS = {
   rolesDatos: RolesDatos,
   madurezDatos: MadurezDatos,
   dolencias: Dolencias,
+  termometro: Termometro,
+  cronometro: Cronometro,
+  cadena: BolaDeNieve,
+  fuga: Fuga,
 }
 
 // Badge mostrado bajo la cabecera según el grupo de la sección.
@@ -43,6 +51,19 @@ const BADGES = {
   gobernanza: '🗂️ Actividad de gobernanza',
   taller: '📖 El Taller de IA',
   lab: '🧪 Laboratorio',
+}
+
+// Reparte los bloques de una seccion en pasos de diapositiva. Un bloque con
+// `conAnterior: true` aparece en el mismo paso que el de arriba, para pares que
+// no tienen sentido separados.
+function repartirPasos(bloques) {
+  const de = []
+  let n = -1
+  bloques.forEach((b, i) => {
+    if (i === 0 || !b.conAnterior) n++
+    de[i] = n
+  })
+  return { de, total: n + 1 }
 }
 
 function App({ seccionInicial, proyeccion }) {
@@ -53,6 +74,13 @@ function App({ seccionInicial, proyeccion }) {
       : secciones[0].id,
   )
   const [menuAbierto, setMenuAbierto] = useState(false)
+  // Modo presentacion: lo pide el taller, no la URL. El taller general no lo
+  // activa nunca, asi que su comportamiento no cambia en absoluto.
+  const presentacion = marca.presentacion === true
+  // El recorrido es la secuencia de diapositivas. Las secciones con `fuera`
+  // siguen existiendo y son accesibles desde el menu, pero no estan en ella.
+  const recorrido = presentacion ? secciones.filter((s) => !s.fuera) : secciones
+  const [paso, setPaso] = useState(0)
   // Claro por defecto, a propósito: un proyector no produce negro, produce gris,
   // y en una sala con luz el modo oscuro se lava. El toggle sigue disponible
   // para quien lo quiera en su escritorio.
@@ -76,15 +104,21 @@ function App({ seccionInicial, proyeccion }) {
   useEffect(() => {
     document.title = marca.docTitle
     document.documentElement.dataset.taller = marca.id
-  }, [marca.docTitle, marca.id])
+    document.documentElement.toggleAttribute('data-presentacion', presentacion)
+  }, [marca.docTitle, marca.id, presentacion])
 
   const alternarTema = () => setTema((t) => (t === 'dark' ? 'light' : 'dark'))
 
-  function ir(id) {
+  function ir(id, pasoInicial = 0) {
     setActiva(id)
+    setPaso(pasoInicial)
     setMenuAbierto(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+
+  // Cuantas diapositivas tiene una seccion: un paso por bloque (salvo los
+  // agrupados) mas uno para el interactivo, si lo hay.
+  const pasosDe = (s) => repartirPasos(s.bloques).total + (s.interactivo ? 1 : 0)
 
   // PageUp/PageDown y flechas recorren las secciones en orden. Es lo que manda
   // un presentador inalámbrico, y despega al facilitador del notebook.
@@ -97,15 +131,41 @@ function App({ seccionInicial, proyeccion }) {
       const t = e.target
       if (t instanceof Element && t.closest('input, textarea, select')) return
       if (e.altKey || e.ctrlKey || e.metaKey) return
-      const i = secciones.findIndex((s) => s.id === activa)
+      // Esc muestra u oculta el menu sin salir de la diapositiva.
+      if (e.key === 'Escape' && presentacion) {
+        e.preventDefault()
+        setMenuAbierto((v) => !v)
+        return
+      }
+      const i = recorrido.findIndex((s) => s.id === activa)
       const adelante = e.key === 'ArrowRight' || e.key === 'PageDown'
       const atras = e.key === 'ArrowLeft' || e.key === 'PageUp'
-      if (adelante && secciones[i + 1]) {
+      if (!adelante && !atras) return
+
+      // Fuera del modo presentacion se navega seccion a seccion, como siempre.
+      if (!presentacion) {
+        if (adelante && recorrido[i + 1]) {
+          e.preventDefault()
+          ir(recorrido[i + 1].id)
+        } else if (atras && recorrido[i - 1]) {
+          e.preventDefault()
+          ir(recorrido[i - 1].id)
+        }
+        return
+      }
+
+      // En presentacion se avanza paso a paso; solo al agotarlos se cambia de
+      // seccion. Hacia atras se entra a la anterior por su ULTIMO paso, que es
+      // donde estabas cuando la dejaste.
+      const ultimo = pasosDe(seccion) - 1
+      if (adelante) {
         e.preventDefault()
-        ir(secciones[i + 1].id)
-      } else if (atras && secciones[i - 1]) {
+        if (paso < ultimo) setPaso((v) => v + 1)
+        else if (recorrido[i + 1]) ir(recorrido[i + 1].id)
+      } else {
         e.preventDefault()
-        ir(secciones[i - 1].id)
+        if (paso > 0) setPaso((v) => v - 1)
+        else if (recorrido[i - 1]) ir(recorrido[i - 1].id, pasosDe(recorrido[i - 1]) - 1)
       }
     }
     window.addEventListener('keydown', onKey)
@@ -115,6 +175,8 @@ function App({ seccionInicial, proyeccion }) {
   const Interactivo = seccion.interactivo ? INTERACTIVOS[seccion.interactivo] : null
 
   // Progreso dentro del Laboratorio (para la barra divulgativa).
+  const reparto = repartirPasos(seccion.bloques)
+  const idxRecorrido = recorrido.findIndex((s) => s.id === activa)
   const lab = secciones.filter((s) => s.grupo === 'lab')
   const labIdx = lab.findIndex((s) => s.id === activa)
   const enLab = labIdx >= 0
@@ -161,7 +223,9 @@ function App({ seccionInicial, proyeccion }) {
         </div>
         <nav>
           {grupos.map((g) => {
-            const items = secciones.filter((s) => (s.grupo ?? 'taller') === g.id)
+            const items = secciones.filter(
+              (s) => (s.grupo ?? 'taller') === g.id && !(presentacion && s.fuera),
+            )
             if (!items.length) return null
             return (
               <div className="nav__grupo" key={g.id}>
@@ -181,6 +245,25 @@ function App({ seccionInicial, proyeccion }) {
               </div>
             )
           })}
+          {presentacion && secciones.some((s) => s.fuera) && (
+            <div className="nav__grupo nav__grupo--fuera">
+              <p className="nav__grupo-tit">
+                <span>📦</span> Fuera del recorrido
+              </p>
+              {secciones
+                .filter((s) => s.fuera)
+                .map((s) => (
+                  <button
+                    key={s.id}
+                    className={'nav__item' + (s.id === activa ? ' nav__item--activa' : '')}
+                    onClick={() => ir(s.id)}
+                  >
+                    <span className="nav__icono">{s.icono}</span>
+                    <span className="nav__txt">{s.titulo}</span>
+                  </button>
+                ))}
+            </div>
+          )}
         </nav>
         <button
           className="tema-toggle"
@@ -208,27 +291,45 @@ function App({ seccionInicial, proyeccion }) {
             </div>
           </header>
 
-          {enLab && (
-            <div className="progreso">
-              <div className="progreso__barra">
-                <div
-                  className="progreso__relleno"
-                  style={{ width: `${((labIdx + 1) / lab.length) * 100}%` }}
-                />
+          {presentacion ? (
+            idxRecorrido >= 0 && (
+              <div className="progreso">
+                <div className="progreso__barra">
+                  <div
+                    className="progreso__relleno"
+                    style={{ width: `${((idxRecorrido + 1) / recorrido.length) * 100}%` }}
+                  />
+                </div>
+                <span className="progreso__txt">
+                  {idxRecorrido + 1} / {recorrido.length}
+                </span>
               </div>
-              <span className="progreso__txt">
-                Laboratorio · {labIdx + 1} de {lab.length}
-              </span>
-            </div>
+            )
+          ) : (
+            enLab && (
+              <div className="progreso">
+                <div className="progreso__barra">
+                  <div
+                    className="progreso__relleno"
+                    style={{ width: `${((labIdx + 1) / lab.length) * 100}%` }}
+                  />
+                </div>
+                <span className="progreso__txt">
+                  Laboratorio · {labIdx + 1} de {lab.length}
+                </span>
+              </div>
+            )
           )}
 
-          {seccion.bloques.map((b, i) => (
-            <Bloque key={i} bloque={b} ir={ir} />
-          ))}
+          {seccion.bloques.map((b, i) =>
+            presentacion && reparto.de[i] > paso ? null : (
+              <Bloque key={i} bloque={b} ir={ir} />
+            ),
+          )}
 
-          {Interactivo && <Interactivo />}
+          {Interactivo && (!presentacion || paso >= reparto.total) && <Interactivo />}
 
-          <Navegacion activa={activa} ir={ir} />
+          <Navegacion activa={activa} ir={ir} recorrido={recorrido} />
         </div>
       </main>
     </div>
@@ -236,11 +337,12 @@ function App({ seccionInicial, proyeccion }) {
 }
 
 // Botones anterior / siguiente al pie de cada sección.
-function Navegacion({ activa, ir }) {
-  const { secciones } = useTaller()
-  const idx = secciones.findIndex((s) => s.id === activa)
-  const prev = secciones[idx - 1]
-  const next = secciones[idx + 1]
+function Navegacion({ activa, ir, recorrido }) {
+  const idx = recorrido.findIndex((s) => s.id === activa)
+  // Una seccion fuera del recorrido no tiene anterior ni siguiente: se llega a
+  // ella por el menu y se vuelve por el menu.
+  const prev = idx >= 0 ? recorrido[idx - 1] : null
+  const next = idx >= 0 ? recorrido[idx + 1] : null
   return (
     <div className="seccion__nav">
       {prev ? (

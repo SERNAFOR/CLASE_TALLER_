@@ -23,6 +23,9 @@
 
 export const marca = {
   id: 'personal',
+  // Esto no es un taller con ejercicios: es una charla proyectada. Activa el
+  // motor de diapositivas y el tamano de sala. El taller general no lo pone.
+  presentacion: true,
   titulo: 'Taller de IA',
   sub: 'UIA · Gerencia de Desarrollo de las Personas',
   // La barra lateral son 270px: ahi va la forma corta.
@@ -45,6 +48,8 @@ export const grupos = [
 // núcleo, de segundo nivel u opcional, para poder recortar sin improvisar.
 
 export const secciones = [
+  // ======= EL RECORRIDO (16 pantallas, ~90 min) =======
+
   {
     id: 'inicio',
     grupo: 'inicio',
@@ -88,220 +93,6 @@ export const secciones = [
     ],
   },
 
-  {
-    id: 'programa',
-    grupo: 'inicio',
-    icono: '🗓️',
-    titulo: 'Programa del día',
-    subtitulo: '09:00 – 12:00 · horario referencial',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Así se organiza la sesión. Los horarios son referenciales; lo importante es el orden: ' +
-          'primero los datos, después la IA, y la última hora es de ustedes.',
-      },
-      {
-        tipo: 'programa',
-        items: [
-          { hora: '09:00', dur: '10 min', icono: '👋', titulo: 'Bienvenida y la pregunta incómoda', desc: 'Apertura, contexto, y respondemos de frente lo que la sala vino pensando.' },
-          { hora: '09:10', dur: '30 min', icono: '🎤', titulo: 'Charla: datos y transformación digital en el Estado', desc: 'Por qué el Estado —y CONAF— se está moviendo hacia la gestión de datos, y qué significa eso para el dato de personas.' },
-          { hora: '09:40', dur: '20 min', icono: '🗂️', titulo: 'Datos de personas', desc: 'Los cimientos antes de la IA: 2 actividades prácticas — roles del dato y diagnóstico de madurez de la gerencia.' },
-          { hora: '10:00', dur: '15 min', icono: '☕', titulo: 'Coffee break', desc: 'Vuelvan con una pega suya que odien. Una. La vamos a usar a las once.' },
-          { hora: '10:15', dur: '45 min', icono: '🧠🧪', titulo: 'Taller de IA + Laboratorio', desc: 'Qué es (y qué no es) la IA, riesgos clave, y los ejercicios del núcleo: pedirle bien, cazar alucinaciones y proteger datos sensibles.' },
-          { hora: '11:00', dur: '50 min', icono: '🗣️', titulo: 'La parte donde hablan ustedes', desc: 'Las fricciones reales de la gerencia. Primero cada uno en papel, después en mesas, y al final la lista completa en pantalla.' },
-          { hora: '11:50', dur: '10 min', icono: '🏁', titulo: 'Cierre y compromiso', desc: 'Las tres reglas del día, el compromiso escrito y la fecha en que la UIA vuelve.' },
-        ],
-      },
-      {
-        tipo: 'descarga',
-        archivo: 'programa-jornada.pdf',
-        titulo: 'Programa en PDF',
-        texto: 'Descarga el programa de la jornada para imprimir o compartir.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '💡',
-        titulo: 'Para quien facilita',
-        texto:
-          'El Laboratorio está ordenado con el núcleo primero: recorriendo el menú de arriba abajo ' +
-          'se dicta la versión corta. Cada sección dice en su subtítulo si es núcleo, de segundo ' +
-          'nivel u opcional. Si la jornada empieza tarde se recorta desde abajo — nunca desde ' +
-          '"La parte donde hablan ustedes".',
-      },
-    ],
-  },
-
-  {
-    id: 'unidad',
-    grupo: 'inicio',
-    icono: '🤝',
-    titulo: 'La UIA',
-    subtitulo: '¿Para qué sirve nuestra Unidad?',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Somos la Unidad de Información y Análisis Institucional. No venimos a decirles cómo ' +
-          'hacer su trabajo: ustedes saben de personas, contratos y licencias mucho más que ' +
-          'nosotros. Venimos a que los datos y las herramientas dejen de estorbarles.',
-      },
-      {
-        tipo: 'dosColumnas',
-        titulo: 'El modelo de colaboración',
-        columnas: [
-          {
-            titulo: 'Ustedes aportan',
-            texto:
-              'El conocimiento del negocio: selección y concursos, contratos, remuneraciones, ' +
-              'bienestar, relaciones laborales, capacitación, y la normativa que rige todo eso.',
-          },
-          {
-            titulo: 'Nosotros aportamos',
-            texto:
-              'Datos, sistemas y herramientas de IA — y el tiempo de sentarnos a entender el ' +
-              'proceso antes de proponer nada.',
-          },
-        ],
-      },
-      {
-        tipo: 'frase',
-        texto: 'Que se note que la UIA está.',
-      },
-    ],
-  },
-
-  {
-    id: 'plan',
-    grupo: 'inicio',
-    icono: '🗺️',
-    titulo: 'Plan UIA 2026–2030',
-    subtitulo: 'Datos, sistemas e IA al servicio de CONAF',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'El plan de la Unidad para los próximos años tiene tres frentes: ordenar los datos, ' +
-          'modernizar los sistemas y poner la IA a trabajar donde de verdad ahorra tiempo.',
-      },
-      {
-        tipo: 'tarjetas',
-        titulo: 'Dónde toca a esta gerencia',
-        items: [
-          {
-            icono: '📚',
-            titulo: 'Normativa de personas',
-            texto:
-              'Un asistente que responde con citas verificables sobre el corpus que ustedes ' +
-              'consultan: reglamento interno, circulares, dictámenes. Es una oportunidad, no un ' +
-              'producto entregado.',
-          },
-          {
-            icono: '🔁',
-            titulo: 'Procesos repetitivos',
-            texto: 'Certificados, informes de dotación, respuestas que se escriben veinte veces al mes.',
-          },
-          {
-            icono: '🔒',
-            titulo: 'Datos sensibles bien tratados',
-            texto: 'La Ley 21.719 llega en diciembre de 2026 y esta gerencia es la más expuesta.',
-          },
-        ],
-      },
-      {
-        tipo: 'timeline',
-        titulo: 'Horizonte 2026 — 2030',
-        items: [
-          { año: '2026', texto: 'Instalación: gobernanza de datos, primeros pilotos y el plazo de la Ley 21.719.' },
-          { año: '2027–2028', texto: 'Sistemas y automatización de lo repetitivo.' },
-          { año: '2029–2030', texto: 'Analítica para decidir, no solo para reportar.' },
-        ],
-      },
-    ],
-  },
-
-  // ===================== DATOS DE PERSONAS =====================
-  {
-    id: 'gobernanza',
-    grupo: 'gobernanza',
-    icono: '📊',
-    titulo: 'Por qué gobernanza, por qué ahora',
-    subtitulo: 'PMG-MEI y Ley 21.719 · dos plazos, el mismo mes',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Antes de hablar de inteligencia artificial, hablemos de su alimento: los datos. Una IA ' +
-          'alimentada con datos inconsistentes produce resultados inconsistentes, con más ' +
-          'confianza y a más velocidad. Y en esta gerencia el dato no es una superficie ni un ' +
-          'presupuesto: es una persona con nombre.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '📅',
-        titulo: 'Diciembre de 2026, dos veces',
-        texto:
-          'CONAF debe alcanzar el nivel "básico" de madurez en gestión de datos como parte del ' +
-          'PMG-MEI. Y en el mismo mes entra en vigencia la Ley 21.719 sobre protección de datos ' +
-          'personales. Para esta gerencia esas dos fechas son la misma conversación: quién ' +
-          'responde por cada dato, quién puede verlo y qué pasa cuando está malo.',
-      },
-      {
-        tipo: 'lista',
-        titulo: 'Por qué el dato de personas es el caso difícil',
-        items: [
-          'Es el más sensible del servicio: salud, remuneraciones, evaluaciones, denuncias.',
-          'Vive repartido entre el sistema de personal, planillas y correos.',
-          'Tiene titular: la persona puede pedir acceder a sus datos y corregirlos.',
-          'Y cuando está malo, el error no sale en un informe: sale en la vida de alguien.',
-        ],
-      },
-      {
-        tipo: 'parrafo',
-        texto:
-          'Ahora, a practicar: las dos actividades que siguen muestran en carne propia por qué ' +
-          'esto importa. Se hacen entre todos, a mano alzada.',
-      },
-    ],
-  },
-
-  {
-    id: 'roles-datos',
-    grupo: 'gobernanza',
-    icono: '🧑‍⚖️',
-    titulo: '¿Quién responde por este dato?',
-    subtitulo: 'NÚCLEO · Actividad 1 · ~6 min · los roles de la gobernanza',
-    interactivo: 'rolesDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'La gobernanza de datos se sostiene en roles claros, y el PMG-MEI exige a CONAF ' +
-          'formalizar al menos dos. Primero conocemos los tres. Después voy a leer cinco ' +
-          'situaciones y, antes de que yo toque nada, la sala vota: ¿a quién le toca actuar?',
-      },
-    ],
-  },
-
-  {
-    id: 'madurez-datos',
-    grupo: 'gobernanza',
-    icono: '📏',
-    titulo: '¿Qué tan maduros son tus datos?',
-    subtitulo: 'Opcional · Actividad 2 · ~5 min · censo de la gerencia',
-    interactivo: 'madurezDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Cinco preguntas de sí o no sobre esta gerencia. No es un test individual: lo vamos a ' +
-          'responder entre todos, a mano alzada, y marco lo que diga la mayoría. El resultado que ' +
-          'salga en pantalla es el diagnóstico de la Gerencia de Desarrollo de las Personas, no ' +
-          'el de nadie en particular.',
-      },
-    ],
-  },
-
   // ===================== TALLER DE IA =====================
   {
     id: 'que-es-ia',
@@ -339,6 +130,191 @@ export const secciones = [
       {
         tipo: 'frase',
         texto: 'No firma. Y aquí, el que firma es el que responde.',
+      },
+    ],
+  },
+
+  {
+    id: 'cronometro',
+    grupo: 'lab',
+    icono: '⏱️',
+    titulo: 'Lo que cuesta hacerlo a mano',
+    subtitulo: 'La misma tarea, con y sin IA, con los relojes a la vista',
+    interactivo: 'cronometro',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Una tarea real de esta gerencia, de las que se hacen varias veces al mes. A la ' +
+          'izquierda, cómo se hace hoy. A la derecha, con IA. Voy a poner los dos relojes en ' +
+          'marcha y los miramos correr.',
+      },
+      {
+        tipo: 'destacado',
+        icono: '👀',
+        titulo: 'Miren el reloj de la derecha cuando termine de redactar',
+        texto:
+          'No se para. Sigue corriendo un rato más. Ese tramo tiene nombre y es el que importa.',
+      },
+    ],
+  },
+
+  // ===================== LABORATORIO · NÚCLEO =====================
+  {
+    id: 'prompt',
+    grupo: 'lab',
+    icono: '✍️',
+    titulo: 'Pídelo bien',
+    subtitulo: 'NÚCLEO · ~6 min · la única habilidad que importa hoy',
+    interactivo: 'prompt',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Esto lo armamos entre todos. Parto con una instrucción floja y el medidor va a marcar ' +
+          'lo que le falta. Ustedes me gritan qué agregar —quién debe ser, cuánto, sobre qué y en ' +
+          'qué formato— y yo escribo. Cuando lleguemos a cuatro de cuatro, ese prompt sirve tal ' +
+          'cual el lunes.',
+      },
+    ],
+  },
+
+  {
+    id: 'detective',
+    grupo: 'lab',
+    icono: '🕵️',
+    titulo: 'Detective de alucinaciones',
+    subtitulo: 'NÚCLEO · ~6 min · caza los datos que la IA inventó',
+    interactivo: 'detective',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Abajo hay un resumen sobre licencias médicas generado por IA. La mayoría es correcto, ' +
+          'pero tres frases traen datos inventados. Voy a leerlas una por una: pulgar arriba si ' +
+          'creen que es verdad, pulgar abajo si creen que la IA la inventó. Marco lo que diga la ' +
+          'sala y después comprobamos.',
+      },
+    ],
+  },
+
+  {
+    id: 'cadena',
+    grupo: 'lab',
+    icono: '❄️',
+    titulo: 'La bola de nieve',
+    subtitulo: 'Un plazo inventado, cinco pasos después',
+    interactivo: 'cadena',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Acabamos de ver que la IA inventa datos con total seguridad. La pregunta no es si se ' +
+          'equivoca: es qué pasa después. Vamos a seguir un plazo inventado, paso a paso, y a ' +
+          'mirar cuánta gente va quedando dentro.',
+      },
+    ],
+  },
+
+  {
+    id: 'privacidad',
+    grupo: 'lab',
+    icono: '🔒',
+    titulo: 'Qué NO contarle a la IA',
+    subtitulo: 'NÚCLEO · ~7 min · el ejercicio más importante del día',
+    interactivo: 'privacidad',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Voy a leer en voz alta un prompt que alguien podría escribir un martes cualquiera. ' +
+          'Cuando pase por un dato que NO debería ir ahí, ustedes gritan "tacha". Ojo: no todo lo ' +
+          'que parece dato es sensible, y tachar de más deja el texto inservible.',
+      },
+    ],
+  },
+
+  {
+    id: 'fuga',
+    grupo: 'lab',
+    icono: '💧',
+    titulo: 'El dato que se escapó',
+    subtitulo: 'Un diagnóstico pegado en un chat, paso a paso',
+    interactivo: 'fuga',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Alguien, con toda la buena intencion del mundo y a las seis de la tarde, pega un ' +
+          'párrafo en un chat de IA para que se lo redacte mejor. Dentro del párrafo va un ' +
+          'diagnóstico. Vamos a ver dónde termina eso.',
+      },
+    ],
+  },
+
+  {
+    id: 'termometro',
+    grupo: 'lab',
+    icono: '🌡️',
+    titulo: 'Verde, ámbar, rojo',
+    subtitulo: 'Dónde sí, dónde con cuidado, y dónde no',
+    interactivo: 'termometro',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Seis tareas de esta gerencia. Para cada una, ustedes levantan la tarjeta del color ' +
+          'que crean: verde si la IA puede hacerla, ámbar si puede pero hay que revisarla, rojo ' +
+          'si no debería tocarla. Voy marcando lo que diga la mayoría.',
+      },
+    ],
+  },
+
+  {
+    id: 'casos-reales',
+    grupo: 'lab',
+    icono: '📰',
+    titulo: 'A otros ya les pasó',
+    subtitulo: 'Casos públicos de IA decidiendo sobre personas',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Esto no es una advertencia teórica. Son casos documentados, de organizaciones grandes ' +
+          'y con equipos técnicos buenos. Ninguna de ellas quiso hacer nada malo.',
+      },
+      {
+        tipo: 'destacado',
+        icono: '📄',
+        titulo: 'La herramienta de reclutamiento que hubo que apagar',
+        texto:
+          'Una empresa tecnológica muy grande construyó un sistema para puntuar currículums. Lo ' +
+          'entrenó con diez años de contrataciones propias. El sistema aprendió a penalizar los ' +
+          'currículums que mencionaban la palabra "mujeres". No falló el código: funcionó ' +
+          'perfecto y reprodujo exactamente el patrón que se le dio. La descartaron en 2018.',
+      },
+      {
+        tipo: 'destacado',
+        icono: '⚖️',
+        titulo: 'Y el patrón se repite',
+        texto:
+          'Sistemas de puntuación de riesgo en administraciones públicas europeas que acabaron ' +
+          'señalando desproporcionadamente a personas por su origen o su barrio, y que hubo que ' +
+          'retirar por decisión judicial o administrativa. El problema nunca fue el algoritmo: ' +
+          'fue que los datos con los que aprendió ya traían la desigualdad dentro.',
+      },
+      {
+        tipo: 'frase',
+        texto: 'Un modelo no inventa el sesgo. Lo hereda, lo aplica más rápido y a más gente.',
+      },
+      {
+        tipo: 'destacado',
+        icono: '🛡️',
+        titulo: 'Por eso la línea roja de hace un minuto',
+        texto:
+          'La IA puede leer, resumir, ordenar y redactar. Lo que no puede es decidir sobre una ' +
+          'persona, porque no puede explicar por qué decidió eso — y ustedes sí tienen que ' +
+          'poder explicarlo, por escrito y con su firma.',
       },
     ],
   },
@@ -393,99 +369,6 @@ export const secciones = [
     ],
   },
 
-  // ===================== LABORATORIO · NÚCLEO =====================
-  {
-    id: 'prompt',
-    grupo: 'lab',
-    icono: '✍️',
-    titulo: 'Pídelo bien',
-    subtitulo: 'NÚCLEO · ~6 min · la única habilidad que importa hoy',
-    interactivo: 'prompt',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Esto lo armamos entre todos. Parto con una instrucción floja y el medidor va a marcar ' +
-          'lo que le falta. Ustedes me gritan qué agregar —quién debe ser, cuánto, sobre qué y en ' +
-          'qué formato— y yo escribo. Cuando lleguemos a cuatro de cuatro, ese prompt sirve tal ' +
-          'cual el lunes.',
-      },
-    ],
-  },
-
-  {
-    id: 'detective',
-    grupo: 'lab',
-    icono: '🕵️',
-    titulo: 'Detective de alucinaciones',
-    subtitulo: 'NÚCLEO · ~6 min · caza los datos que la IA inventó',
-    interactivo: 'detective',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Abajo hay un resumen sobre licencias médicas generado por IA. La mayoría es correcto, ' +
-          'pero tres frases traen datos inventados. Voy a leerlas una por una: pulgar arriba si ' +
-          'creen que es verdad, pulgar abajo si creen que la IA la inventó. Marco lo que diga la ' +
-          'sala y después comprobamos.',
-      },
-    ],
-  },
-
-  {
-    id: 'privacidad',
-    grupo: 'lab',
-    icono: '🔒',
-    titulo: 'Qué NO contarle a la IA',
-    subtitulo: 'NÚCLEO · ~7 min · el ejercicio más importante del día',
-    interactivo: 'privacidad',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Voy a leer en voz alta un prompt que alguien podría escribir un martes cualquiera. ' +
-          'Cuando pase por un dato que NO debería ir ahí, ustedes gritan "tacha". Ojo: no todo lo ' +
-          'que parece dato es sensible, y tachar de más deja el texto inservible.',
-      },
-    ],
-  },
-
-  {
-    id: 'doc-accion',
-    grupo: 'lab',
-    icono: '⚙️',
-    titulo: 'Del artículo a la lista de pendientes',
-    subtitulo: 'NÚCLEO · ~4 min · de texto normativo a checklist',
-    interactivo: 'docAccion',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Un párrafo normativo denso, y un botón. Miren lo que devuelve — y fíjense sobre todo ' +
-          'en una cosa: para hacer esto no le pegamos ni un dato del caso. Le pegamos el texto de ' +
-          'la norma, no el expediente.',
-      },
-    ],
-  },
-
-  // ===================== LABORATORIO · SEGUNDO NIVEL =====================
-  {
-    id: 'analisis-ley',
-    grupo: 'lab',
-    icono: '⚖️',
-    titulo: 'Una palabra lo cambia todo',
-    subtitulo: 'Segundo nivel · ~4 min · caso: el proceso de licencias',
-    interactivo: 'analisisLey',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Mismo documento, misma IA, casi el mismo prompt. Voy a añadir una sola palabra y el ' +
-          'análisis entero cambia de naturaleza. Antes de que la pulse: ¿qué creen que va a pasar?',
-      },
-    ],
-  },
-
   {
     id: 'perceptron',
     grupo: 'lab',
@@ -518,58 +401,6 @@ export const secciones = [
           'Cada vez que arman una terna están poniendo una raya: de aquí para allá pasa, de aquí ' +
           'para acá no. La diferencia es que ustedes pueden explicar por qué la pusieron ahí, y ' +
           'la máquina no. Por eso la decisión sobre personas es humana y fundada.',
-      },
-    ],
-  },
-
-  // ===================== LABORATORIO · OPCIONALES =====================
-  {
-    id: 'sube-nivel',
-    grupo: 'lab',
-    icono: '📈',
-    titulo: 'De "necesito unos datos" a un dato que sirve',
-    subtitulo: 'Opcional · ~3 min · el mismo encargo, tres niveles',
-    interactivo: 'subeNivel',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Tres versiones del mismo encargo. Voy moviendo el control y ustedes me dicen en cuál ' +
-          'empezarían a confiar.',
-      },
-    ],
-  },
-
-  {
-    id: 'comparar-ia',
-    grupo: 'lab',
-    icono: '🤖',
-    titulo: 'Le preguntamos a las tres',
-    subtitulo: 'Opcional · ~3 min · misma pregunta, ChatGPT, Claude y Gemini',
-    interactivo: 'compararIA',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'La misma pregunta a las tres herramientas más usadas. No hay una correcta: hay tres ' +
-          'formas válidas, y sirven para cosas distintas.',
-      },
-    ],
-  },
-
-  {
-    id: 'publicos',
-    grupo: 'lab',
-    icono: '🗣️',
-    titulo: '¿Y ahora cómo se lo explico a…?',
-    subtitulo: 'Opcional · ~4 min · al trabajador, a la jefatura, al gremio, a la Dirección del Trabajo',
-    interactivo: 'publicos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Los hechos no se mueven; cambia a quién se le habla. Elijan ustedes a quién le ' +
-          'explicamos primero.',
       },
     ],
   },
@@ -637,41 +468,6 @@ export const secciones = [
     ],
   },
 
-  // ===================== PARA CERRAR =====================
-  {
-    id: 'dolencias',
-    grupo: 'final',
-    icono: '🗣️',
-    titulo: 'La parte donde hablan ustedes',
-    subtitulo: 'NÚCLEO · ~50 min · el motivo por el que la UIA vino',
-    interactivo: 'dolencias',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Esto no lo trajimos nosotros. Primero cada uno escribe en silencio, en la guía de ' +
-          'papel, ocho minutos. Después lo comparten en su mesa y eligen las tres que más duelen. ' +
-          'Y solo entonces las anotamos aquí, por mesas. Nadie tiene que exponerse solo: habla la ' +
-          'mesa, no la persona.',
-      },
-      {
-        tipo: 'descarga',
-        archivo: 'guia-fricciones-personas.pdf',
-        titulo: 'Guía de fricciones en PDF',
-        texto: '7 preguntas para hacer el levantamiento en papel. Imprimir una por participante.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '💾',
-        titulo: 'La lista no se pierde',
-        texto:
-          'Se guarda sola en este navegador: pueden navegar a otra sección y volver, o recargar, ' +
-          'sin perder nada. Aun así, descárguenla como archivo antes de cerrar la sesión — el ' +
-          'portapapeles se pierde con el siguiente Ctrl+C.',
-      },
-    ],
-  },
-
   {
     id: 'cierre',
     grupo: 'final',
@@ -733,6 +529,188 @@ export const secciones = [
           'Somos la Unidad de Información y Análisis. No hay que pedir hora ni mandar un memo: ' +
           'escríbannos y vemos. Y si en seis meses ninguna de las fricciones de esa lista se ' +
           'movió, tienen todo el derecho a venir a decírnoslo. Gracias por la mañana.',
+      },
+    ],
+  },
+
+  // ======= FUERA DEL RECORRIDO =======
+  // No entran en la secuencia de diapositivas. Siguen en el menu (Esc) y
+  // son accesibles por URL, por si sobra tiempo o alguien pregunta.
+
+  // ===================== DATOS DE PERSONAS =====================
+  {
+    id: 'gobernanza',
+    fuera: true,
+    grupo: 'gobernanza',
+    icono: '📊',
+    titulo: 'Por qué gobernanza, por qué ahora',
+    subtitulo: 'PMG-MEI y Ley 21.719 · dos plazos, el mismo mes',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Antes de hablar de inteligencia artificial, hablemos de su alimento: los datos. Una IA ' +
+          'alimentada con datos inconsistentes produce resultados inconsistentes, con más ' +
+          'confianza y a más velocidad. Y en esta gerencia el dato no es una superficie ni un ' +
+          'presupuesto: es una persona con nombre.',
+      },
+      {
+        tipo: 'destacado',
+        icono: '📅',
+        titulo: 'Diciembre de 2026, dos veces',
+        texto:
+          'CONAF debe alcanzar el nivel "básico" de madurez en gestión de datos como parte del ' +
+          'PMG-MEI. Y en el mismo mes entra en vigencia la Ley 21.719 sobre protección de datos ' +
+          'personales. Para esta gerencia esas dos fechas son la misma conversación: quién ' +
+          'responde por cada dato, quién puede verlo y qué pasa cuando está malo.',
+      },
+      {
+        tipo: 'lista',
+        titulo: 'Por qué el dato de personas es el caso difícil',
+        items: [
+          'Es el más sensible del servicio: salud, remuneraciones, evaluaciones, denuncias.',
+          'Vive repartido entre el sistema de personal, planillas y correos.',
+          'Tiene titular: la persona puede pedir acceder a sus datos y corregirlos.',
+          'Y cuando está malo, el error no sale en un informe: sale en la vida de alguien.',
+        ],
+      },
+      {
+        tipo: 'parrafo',
+        texto:
+          'Ahora, a practicar: las dos actividades que siguen muestran en carne propia por qué ' +
+          'esto importa. Se hacen entre todos, a mano alzada.',
+      },
+    ],
+  },
+
+  {
+    id: 'roles-datos',
+    fuera: true,
+    grupo: 'gobernanza',
+    icono: '🧑‍⚖️',
+    titulo: '¿Quién responde por este dato?',
+    subtitulo: 'NÚCLEO · Actividad 1 · ~6 min · los roles de la gobernanza',
+    interactivo: 'rolesDatos',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'La gobernanza de datos se sostiene en roles claros, y el PMG-MEI exige a CONAF ' +
+          'formalizar al menos dos. Primero conocemos los tres. Después voy a leer cinco ' +
+          'situaciones y, antes de que yo toque nada, la sala vota: ¿a quién le toca actuar?',
+      },
+    ],
+  },
+
+  {
+    id: 'madurez-datos',
+    fuera: true,
+    grupo: 'gobernanza',
+    icono: '📏',
+    titulo: '¿Qué tan maduros son tus datos?',
+    subtitulo: 'Opcional · Actividad 2 · ~5 min · censo de la gerencia',
+    interactivo: 'madurezDatos',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Cinco preguntas de sí o no sobre esta gerencia. No es un test individual: lo vamos a ' +
+          'responder entre todos, a mano alzada, y marco lo que diga la mayoría. El resultado que ' +
+          'salga en pantalla es el diagnóstico de la Gerencia de Desarrollo de las Personas, no ' +
+          'el de nadie en particular.',
+      },
+    ],
+  },
+
+  {
+    id: 'doc-accion',
+    fuera: true,
+    grupo: 'lab',
+    icono: '⚙️',
+    titulo: 'Del artículo a la lista de pendientes',
+    subtitulo: 'NÚCLEO · ~4 min · de texto normativo a checklist',
+    interactivo: 'docAccion',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Un párrafo normativo denso, y un botón. Miren lo que devuelve — y fíjense sobre todo ' +
+          'en una cosa: para hacer esto no le pegamos ni un dato del caso. Le pegamos el texto de ' +
+          'la norma, no el expediente.',
+      },
+    ],
+  },
+
+  // ===================== LABORATORIO · SEGUNDO NIVEL =====================
+  {
+    id: 'analisis-ley',
+    fuera: true,
+    grupo: 'lab',
+    icono: '⚖️',
+    titulo: 'Una palabra lo cambia todo',
+    subtitulo: 'Segundo nivel · ~4 min · caso: el proceso de licencias',
+    interactivo: 'analisisLey',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Mismo documento, misma IA, casi el mismo prompt. Voy a añadir una sola palabra y el ' +
+          'análisis entero cambia de naturaleza. Antes de que la pulse: ¿qué creen que va a pasar?',
+      },
+    ],
+  },
+
+  // ===================== LABORATORIO · OPCIONALES =====================
+  {
+    id: 'sube-nivel',
+    fuera: true,
+    grupo: 'lab',
+    icono: '📈',
+    titulo: 'De "necesito unos datos" a un dato que sirve',
+    subtitulo: 'Opcional · ~3 min · el mismo encargo, tres niveles',
+    interactivo: 'subeNivel',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Tres versiones del mismo encargo. Voy moviendo el control y ustedes me dicen en cuál ' +
+          'empezarían a confiar.',
+      },
+    ],
+  },
+
+  {
+    id: 'comparar-ia',
+    fuera: true,
+    grupo: 'lab',
+    icono: '🤖',
+    titulo: 'Le preguntamos a las tres',
+    subtitulo: 'Opcional · ~3 min · misma pregunta, ChatGPT, Claude y Gemini',
+    interactivo: 'compararIA',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'La misma pregunta a las tres herramientas más usadas. No hay una correcta: hay tres ' +
+          'formas válidas, y sirven para cosas distintas.',
+      },
+    ],
+  },
+
+  {
+    id: 'publicos',
+    fuera: true,
+    grupo: 'lab',
+    icono: '🗣️',
+    titulo: '¿Y ahora cómo se lo explico a…?',
+    subtitulo: 'Opcional · ~4 min · al trabajador, a la jefatura, al gremio, a la Dirección del Trabajo',
+    interactivo: 'publicos',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Los hechos no se mueven; cambia a quién se le habla. Elijan ustedes a quién le ' +
+          'explicamos primero.',
       },
     ],
   },
@@ -1217,6 +1195,217 @@ export const alucina = {
     'Por eso hasta la respuesta ordenada y bien redactada puede traer un dato falso, y por eso la ' +
     'IA propone y usted confirma. Es el mismo modelo que hace un rato les inventó un artículo con ' +
     'toda seguridad.',
+}
+
+// ===================== Actividades nuevas de la presentación =====================
+
+// "Lo que cuesta hacerlo a mano": la misma tarea, con y sin IA, con dos relojes
+// corriendo. Los minutos son los de una tarea real y conservadora — es mejor
+// quedarse corto que exagerar delante de quien la hace todas las semanas.
+export const cronometro = {
+  tarea:
+    'responder por escrito la consulta de una trabajadora que pregunta cómo tramitar su licencia ' +
+    'médica y qué plazos la afectan.',
+  vias: [
+    {
+      id: 'mano',
+      icono: '✍️',
+      etiqueta: 'Cómo se hace hoy',
+      tramos: [
+        { texto: 'Buscar la norma y confirmar los plazos', min: 12 },
+        { texto: 'Buscar un correo anterior parecido para no partir de cero', min: 8 },
+        { texto: 'Redactar la respuesta', min: 18 },
+        { texto: 'Revisar y firmar', min: 6, revision: true },
+      ],
+    },
+    {
+      id: 'ia',
+      icono: '🤖',
+      etiqueta: 'Con IA',
+      tramos: [
+        { texto: 'Escribir el prompt (rol + cantidad + foco + formato)', min: 3 },
+        { texto: 'Leer el borrador que devuelve', min: 2 },
+        { texto: 'Revisar contra la fuente y firmar', min: 6, revision: true },
+      ],
+    },
+  ],
+  remate:
+    'Once minutos contra cuarenta y cuatro. Pero fíjense en dónde NO hay diferencia: los seis ' +
+    'minutos de revisar y firmar son idénticos en las dos columnas. Eso es lo que no se delega.',
+  leccion:
+    'Lo que la IA se llevó fueron los treinta y tres minutos de buscar y teclear. Los seis de ' +
+    'criterio siguen siendo suyos, y son exactamente los mismos de antes. Por eso esto no ' +
+    'reemplaza a nadie: le quita a cada uno la parte de la pega que nadie echa de menos.',
+}
+
+// "La bola de nieve": una alucinación seguida hasta donde llega de verdad.
+export const cadena = {
+  pregunta: 'Una IA se inventa un plazo. ¿Hasta dónde llega?',
+  pasos: [
+    {
+      que:
+        'La IA responde una consulta interna y se inventa un plazo. Suena bien, tiene forma de ' +
+        'norma, y nadie lo comprueba.',
+      gente: 1,
+      arreglo: '30 segundos',
+    },
+    {
+      que:
+        'Quien preguntó copia la respuesta en un correo a su jefatura. El plazo ya salió del chat ' +
+        'y ahora tiene remitente.',
+      gente: 3,
+      arreglo: '5 minutos',
+    },
+    {
+      que:
+        'La jefatura decide con ese plazo y se lo comunica a la persona afectada, que organiza su ' +
+        'semana en función de lo que le dijeron.',
+      gente: 8,
+      arreglo: 'una conversación incómoda',
+    },
+    {
+      que:
+        'La decisión se formaliza por escrito y entra al expediente. El plazo inventado ya es un ' +
+        'documento de la institución.',
+      gente: 20,
+      arreglo: 'un documento que corregir',
+    },
+    {
+      que:
+        'La persona reclama. Hay que reconstruir de dónde salió ese plazo, y nadie se acuerda de ' +
+        'que empezó en un chat.',
+      gente: 40,
+      arreglo: 'semanas',
+    },
+  ],
+  remate:
+    'Los cinco pasos vienen del mismo error. Y en el primero, comprobarlo costaba treinta segundos.',
+  leccion:
+    'El dato inventado no se queda donde nació: viaja, se copia y se convierte en decisión. Y ' +
+    'cuanto más viaja, más caro sale sacarlo. Por eso la regla es verificar antes de que salga de ' +
+    'su escritorio, no después de que llegue el reclamo.',
+}
+
+// "El dato que se escapó": la misma mecánica, aplicada a un dato de salud.
+export const fuga = {
+  pregunta: 'Un diagnóstico pegado en un chat de IA. ¿Dónde termina?',
+  pasos: [
+    {
+      que:
+        'A las seis de la tarde, alguien pega el párrafo completo —con nombre y diagnóstico— en un ' +
+        'chat de IA para que se lo redacte mejor. Con toda la buena intención del mundo.',
+      gente: 1,
+      arreglo: 'no pegarlo',
+    },
+    {
+      que:
+        'El texto sale de la institución y queda almacenado en el servidor de un tercero, ' +
+        'probablemente fuera de Chile.',
+      gente: 1,
+      arreglo: 'nada que usted controle',
+    },
+    {
+      que:
+        'Según el servicio y la configuración de la cuenta, ese texto puede quedar disponible para ' +
+        'revisión humana o para mejorar el sistema.',
+      gente: 5,
+      arreglo: 'imposible saberlo',
+    },
+    {
+      que:
+        'La persona del diagnóstico nunca supo que su dato de salud salió, y por tanto no pudo ' +
+        'oponerse ni pedir que se borrara.',
+      gente: 6,
+      arreglo: 'ya no se le puede pedir permiso',
+    },
+    {
+      que:
+        'Si alguien pregunta —ella misma, o quien fiscalice—, la institución tiene que explicar ' +
+        'cómo salió ese dato y quién lo autorizó.',
+      gente: 40,
+      arreglo: 'no hay respuesta buena',
+    },
+  ],
+  remate:
+    'De los cinco pasos, solo el primero estaba en su mano. Los otros cuatro ya no.',
+  leccion:
+    'Un dato de salud que sale de la institución no vuelve. No hay botón de deshacer, no hay forma ' +
+    'de saber dónde quedó, y la persona afectada nunca eligió. Por eso la regla no es "ten ' +
+    'cuidado": es no lo pegues.',
+}
+
+// "Verde, ámbar, rojo": el termómetro de riesgo. Reutiliza el componente de
+// quiz de opciones, el mismo de "¿Quién responde por este dato?".
+export const termometro = {
+  roles: [
+    {
+      id: 'verde',
+      nombre: 'Verde',
+      icono: '🟢',
+      desc: 'La IA puede hacerlo. Usted revisa el resultado, igual que revisaría el de un practicante nuevo.',
+    },
+    {
+      id: 'ambar',
+      nombre: 'Ámbar',
+      icono: '🟡',
+      desc: 'Ayuda, pero el resultado hay que contrastarlo contra la fuente antes de usarlo para nada.',
+    },
+    {
+      id: 'rojo',
+      nombre: 'Rojo',
+      icono: '🔴',
+      desc: 'No. O decide sobre una persona, o saca de la institución datos que identifican a alguien.',
+    },
+  ],
+  situaciones: [
+    {
+      texto: 'Resumir en una plana un documento de sesenta páginas para el comité.',
+      correcto: 'verde',
+      explica:
+        'Leer mucho y comprimir es exactamente para lo que sirve. El documento es público o interno, ' +
+        'no identifica a nadie, y usted lee el resumen antes de pasarlo.',
+    },
+    {
+      texto: 'Redactar el borrador de una respuesta a una consulta sobre permisos.',
+      correcto: 'verde',
+      explica:
+        'Un borrador es un borrador. Lo escribe en segundos y usted lo corrige en dos minutos — ' +
+        'siempre que la consulta vaya sin los datos de quien pregunta.',
+    },
+    {
+      texto: 'Comparar dos versiones de un reglamento interno y listar las diferencias.',
+      correcto: 'ambar',
+      explica:
+        'Lo hace bien casi siempre, y "casi siempre" no basta con un reglamento. Sirve para no ' +
+        'partir de cero, pero cada diferencia se confirma mirando los dos textos.',
+    },
+    {
+      texto: 'Redactar las bases de un concurso a partir del perfil de cargo.',
+      correcto: 'ambar',
+      explica:
+        'Como borrador, muy útil. Pero las bases fijan requisitos y ponderaciones que después se ' +
+        'pueden impugnar: cada línea se revisa contra la normativa antes de publicar.',
+    },
+    {
+      texto: 'Preseleccionar los diez mejores currículums de una convocatoria.',
+      correcto: 'rojo',
+      explica:
+        'Aquí decide sobre personas. Reproducirá los patrones de sus datos de entrenamiento, y ' +
+        'sobre todo: no puede explicar por qué dejó fuera a alguien. Ustedes sí tienen que poder.',
+    },
+    {
+      texto: 'Pegar la planilla de dotación con nombres y RUT para que la ordene.',
+      correcto: 'rojo',
+      explica:
+        'No es un problema de criterio, es de datos: esa planilla identifica a cientos de personas ' +
+        'y saldría de la institución. Si necesita ordenarla, quítele los identificadores primero.',
+    },
+  ],
+  leccion:
+    'El criterio cabe en una frase: la IA lee, resume, ordena y redacta; no decide sobre personas ' +
+    'ni ve datos que identifiquen a nadie. Fíjense en lo que tienen en común el verde y el ámbar — ' +
+    'el resultado lo revisa y lo firma usted. Y lo que tiene en común todo el rojo: no hay forma de ' +
+    'explicar por qué decidió lo que decidió.',
 }
 
 // ===================== Sin cambios respecto al taller general =====================

@@ -10,13 +10,18 @@ import { resolverInicio } from './data/ruta'
 const { taller, seccion, proyeccion } = resolverInicio()
 const DATOS = TALLERES[taller] ?? TALLERES[TALLER_POR_DEFECTO]
 
-// Modo proyección: atributo en <html>, activado por ?proyeccion en la URL.
-if (proyeccion) document.documentElement.setAttribute('data-proyeccion', '')
+// Modo proyección: tamaño de sala. Se activa con ?proyeccion en la URL y,
+// además, siempre que el taller sea una presentación — no tiene sentido que
+// una charla para 50 personas arranque en tamaño de escritorio. Con ?web se
+// desactiva, para poder revisar el contenido cómodamente en el notebook.
+const enSala = (proyeccion || DATOS.marca?.presentacion === true) &&
+  !new URLSearchParams(window.location.search).has('web')
+if (enSala) document.documentElement.setAttribute('data-proyeccion', '')
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <TallerProvider valor={DATOS}>
-      <App seccionInicial={seccion} proyeccion={proyeccion} />
+      <App seccionInicial={seccion} proyeccion={enSala} />
     </TallerProvider>
   </StrictMode>,
 )

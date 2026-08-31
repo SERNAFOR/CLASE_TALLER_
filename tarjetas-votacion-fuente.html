@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<title>Tarjetas de votación · roles del dato</title>
+<title>Tarjetas de votación · Taller de IA · Gerencia de Desarrollo de las Personas</title>
 <style>
   @page { size: letter portrait; margin: 8mm; }
   * { box-sizing: border-box; }
@@ -11,18 +11,28 @@
     color: #1f2421; margin: 0;
   }
   .nota {
-    font-size: 11px; color: #55605a; margin: 0 0 6px; text-align: center;
+    font-size: 11px; color: #55605a; margin: 0 0 5px; text-align: center;
   }
-  .hoja { display: grid; grid-template-rows: repeat(3, 1fr); gap: 5mm; height: 243mm; }
+  .nota strong { color: #1b5e20; }
+  .hoja {
+    display: grid; grid-template-rows: repeat(3, 1fr); gap: 5mm; height: 240mm;
+  }
+  .hoja + .nota { margin-top: 6mm; page-break-before: always; }
   .tarjeta {
     border: 3px solid; border-radius: 14px; display: flex; align-items: center;
-    justify-content: center; gap: 22px; padding: 8mm;
+    justify-content: center; gap: 20px; padding: 8mm;
   }
-  .icono { font-size: 70px; line-height: 1; }
+  .icono { font-size: 66px; line-height: 1; }
   .txt h2 { margin: 0 0 6px; font-size: 40px; letter-spacing: -0.02em; }
   .txt p { margin: 0; font-size: 15px; max-width: 105mm; line-height: 1.4; }
   /* Cada tarjeta se distingue por COLOR, ICONO y TEXTO: quien no distingue
      colores la reconoce igual, y desde el escenario se ve a 15 metros. */
+  .t-verde   { border-color: #2e7d32; background: #f1f8f2; }
+  .t-verde h2   { color: #1b5e20; }
+  .t-ambar   { border-color: #ef6c00; background: #fff8ee; }
+  .t-ambar h2   { color: #b35400; }
+  .t-rojo    { border-color: #c62828; background: #fff5f4; }
+  .t-rojo h2    { color: #b71c1c; }
   .t-dueno   { border-color: #b8860b; background: #fff8e6; }
   .t-dueno h2   { color: #8a5a00; }
   .t-custodio{ border-color: #1565c0; background: #eef5fd; }
@@ -34,8 +44,39 @@
 </head>
 <body>
   <p class="nota">
-    Imprimir una hoja por participante (~50) y recortar por las líneas. Se reparten en la puerta.
-    En blanco y negro también funcionan: cada tarjeta lleva icono y texto propios.
+    <strong>HOJA 1 · para "Verde, ámbar, rojo"</strong> — la actividad que sí está en el recorrido.
+    Imprimir una por participante (~50) y recortar. Se reparten en la puerta.
+    En blanco y negro funcionan igual: cada tarjeta lleva icono y texto propios.
+  </p>
+  <div class="hoja">
+    <div class="tarjeta t-verde">
+      <span class="icono">🟢</span>
+      <div class="txt">
+        <h2>VERDE</h2>
+        <p>La IA puede hacerlo. Yo reviso el resultado, igual que revisaría el de un practicante nuevo.</p>
+      </div>
+    </div>
+    <div class="corte">— — — — — — — — — — — — — — — — — — — — — — — — — — — — — —</div>
+    <div class="tarjeta t-ambar">
+      <span class="icono">🟡</span>
+      <div class="txt">
+        <h2>ÁMBAR</h2>
+        <p>Ayuda, pero el resultado hay que contrastarlo contra la fuente antes de usarlo para nada.</p>
+      </div>
+    </div>
+    <div class="corte">— — — — — — — — — — — — — — — — — — — — — — — — — — — — — —</div>
+    <div class="tarjeta t-rojo">
+      <span class="icono">🔴</span>
+      <div class="txt">
+        <h2>ROJO</h2>
+        <p>No. O decide sobre una persona, o saca de la institución datos que identifican a alguien.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="nota">
+    <strong>HOJA 2 · para "¿Quién responde por este dato?"</strong> — esa sección quedó fuera del
+    recorrido de 90 minutos. Imprimir solo si piensas saltar a ella.
   </p>
   <div class="hoja">
     <div class="tarjeta t-dueno">
