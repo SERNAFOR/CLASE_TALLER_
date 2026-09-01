@@ -12,38 +12,47 @@
   }
   .cabecera {
     background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
-    color: #fff; border-radius: 12px; padding: 14px 20px; margin-bottom: 12px;
+    color: #fff; border-radius: 12px; padding: 14px 20px; margin-bottom: 11px;
   }
   h1 { margin: 0 0 3px; font-size: 21px; }
   .cabecera p { margin: 0; font-size: 11.5px; opacity: .95; }
-  .aviso {
-    border: 2px solid #c62828; background: #fff5f4; border-radius: 10px;
-    padding: 10px 14px; margin-bottom: 12px; font-size: 12px;
-  }
-  .aviso strong { color: #c62828; }
-  .aviso code { background: #ffe9e6; padding: 1px 5px; border-radius: 4px; }
   h2 {
     font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #55605a;
     margin: 15px 0 7px; border-bottom: 1px solid #dde5df; padding-bottom: 3px;
   }
+  .caja {
+    border: 2px dashed #90a094; border-radius: 10px; padding: 10px 14px;
+    margin-bottom: 11px; font-size: 11px; background: #f7f9f7;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .caja ol, .caja ul { margin: 5px 0 0; padding-left: 18px; }
+  .caja li { margin-bottom: 2px; }
+  .caja--rojo { border-color: #c62828; background: #fff5f4; }
+  .caja--rojo > strong { color: #c62828; }
+  .caja--naranja { border-color: #ef6c00; background: #fffaf4; }
+  .caja--naranja > strong { color: #ef6c00; }
+  .caja--azul { border-color: #1565c0; background: #f6faff; }
+  .caja--azul > strong { color: #1565c0; }
+  .caja--verde { border-color: #2e7d32; background: #f7fbf8; }
+  .caja--verde > strong { color: #1b5e20; }
   .ficha {
     border: 1px solid #e1e8e2; border-left: 5px solid #2e7d32; border-radius: 9px;
-    padding: 9px 13px; margin-bottom: 7px; background: #fbfdfb;
+    padding: 8px 13px; margin-bottom: 6px; background: #fbfdfb;
     break-inside: avoid; page-break-inside: avoid;
   }
   .ficha--clave { border-left-color: #ef6c00; background: #fffaf4; }
-  .ficha--nueva { border-left-color: #1565c0; background: #f6faff; }
-  .fh { display: flex; align-items: baseline; gap: 9px; margin-bottom: 4px; }
+  .ficha--corta { border-left-color: #b8c6bb; background: #fafbfa; }
+  .fh { display: flex; align-items: baseline; gap: 9px; margin-bottom: 3px; }
   .n {
     font-weight: 700; color: #fff; background: #2e7d32; border-radius: 50%;
     width: 20px; height: 20px; display: inline-grid; place-items: center;
     font-size: 11px; flex: none;
   }
   .ficha--clave .n { background: #ef6c00; }
-  .ficha--nueva .n { background: #1565c0; }
-  .tit { font-weight: 700; font-size: 13.5px; flex: 1; }
-  .min { font-size: 11px; color: #55605a; white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .ficha dl { margin: 0; display: grid; grid-template-columns: 70px 1fr; gap: 2px 8px; }
+  .ficha--corta .n { background: #90a094; }
+  .tit { font-weight: 700; font-size: 13px; flex: 1; }
+  .min { font-size: 10.5px; color: #55605a; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ficha dl { margin: 0; display: grid; grid-template-columns: 66px 1fr; gap: 2px 8px; }
   .ficha dt {
     font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase;
     color: #7b877f; padding-top: 1px;
@@ -51,325 +60,332 @@
   .ficha dd { margin: 0; }
   .dice { color: #1b5e20; font-style: italic; }
   .ojo { color: #c62828; font-weight: 600; }
-  .clics { font-family: ui-monospace, Consolas, monospace; font-size: 10.5px; color: #55605a; }
-  .caja {
-    border: 2px dashed #90a094; border-radius: 10px; padding: 10px 14px;
-    margin-top: 12px; font-size: 11px; background: #f7f9f7;
-  }
-  .caja ol, .caja ul { margin: 5px 0 0; padding-left: 18px; }
-  .caja li { margin-bottom: 2px; }
+  code { background: #eef3ef; padding: 1px 5px; border-radius: 4px; }
   .pie { margin-top: 12px; font-size: 10px; color: #55605a; text-align: center; }
 </style>
 </head>
 <body>
   <div class="cabecera">
     <h1>Guion · presentación de IA</h1>
-    <p>UIA · Gerencia de Desarrollo de las Personas · CONAF · 24 pantallas</p>
+    <p>UIA · Gerencia de Desarrollo de las Personas · CONAF · 23 pantallas · tú tienes 1 hora</p>
   </div>
 
-  <div class="aviso">
-    <strong>Cómo se conduce.</strong>
-    Cada pulsación muestra <strong>una sola cosa</strong>: un bloque, o una pregunta. Nada ocupa
-    más de una pantalla y <strong>no hay que hacer scroll en ningún momento</strong> — está medido
-    en las 91 diapositivas, a 1920×1080, 1366×768 y 1024×768. El clicker (AvPág / RePág) avanza paso a paso y salta de pantalla cuando se
-    acaban. La barra lateral está oculta; <code>Esc</code> la abre si necesitas saltar a algo.
-    <br /><br />
-    <strong>Antes de que entre nadie:</strong> llegar 40 minutos antes · abrir
-    <code>/CLASE_TALLER_/personal</code> y <strong>recorrerlo entero una vez</strong> con el
-    proyector conectado · <strong class="ojo">no pulsar F5 en toda la sesión</strong> ·
-    repartir las tarjetas 🟢🟡🔴 en la puerta.
-    <br />
-    Si necesitas verlo pequeño para revisarlo en el notebook, añade <code>?web</code> a la URL.
+  <div class="caja caja--verde">
+    <strong>El orden del día, y de dónde recoges</strong>
+    <p style="margin:5px 0 0;">
+      <strong>Primero expone tu jefe, 30 minutos:</strong> quiénes somos y la misión de la UIA, el
+      Plan 2026–2030, gobernanza de datos y PMG-MEI, y por qué el Estado se está moviendo hacia la
+      IA. <strong>Todo el marco institucional lo pone él.</strong>
+    </p>
+    <p style="margin:5px 0 0;">
+      Por eso tu presentación <strong>ya no tiene pantalla de bienvenida ni de gobernanza</strong>:
+      sería contar lo mismo dos veces, y la segunda vez siempre se nota. Tú entras directo a lo
+      concreto, y la primera pantalla ya le pregunta algo a la sala.
+    </p>
   </div>
 
-
-  <div class="caja" style="border-color:#2e7d32; background:#f7fbf8;">
-    <strong style="color:#1b5e20;">El recorrido, de un vistazo</strong>
-    <ol style="columns:2; margin-top:6px;">
-      <li>Bienvenida · la pregunta incómoda</li>
-      <li>Por qué gobernanza, por qué ahora</li>
-      <li>¿Quién responde por este dato?</li>
-      <li>¿Qué tan maduros son tus datos?</li>
-      <li>¿Qué es la IA?</li>
-      <li>Lo que cuesta hacerlo a mano</li>
-      <li>Pídelo bien</li>
-      <li>De "necesito unos datos" a un dato que sirve</li>
-      <li>Detective de alucinaciones</li>
-      <li>La bola de nieve</li>
-      <li>Le preguntamos a las tres</li>
-      <li>Una palabra lo cambia todo</li>
-      <li>¿Y ahora cómo se lo explico a…?</li>
-      <li>Qué NO contarle a la IA</li>
-      <li>El dato que se escapó</li>
-      <li>Del artículo a la lista de pendientes</li>
-      <li>Verde, ámbar, rojo</li>
-      <li>A otros ya les pasó</li>
-      <li>Riesgos</li>
-      <li>Dónde se pone la raya</li>
-      <li>Cuando una sola raya no alcanza</li>
-      <li>A qué le pone atención</li>
-      <li>Por qué sabe pero alucina</li>
-      <li>Y ahora, ¿qué?</li>
-    </ol>
+  <div class="caja caja--naranja">
+    <strong>El puente, hablado — 60 segundos, sin proyectar nada</strong>
+    <p style="margin:5px 0 0;">
+      Tu jefe acaba de contar quiénes somos y hacia dónde va esto. Ese es el momento de bajarlo al
+      suelo. Se dice de pie, con la pantalla todavía en la suya o en negro:
+    </p>
+    <p style="margin:6px 0 0;"><em>"Todo eso que acaban de escuchar es verdad y es importante. Pero
+      ustedes no se van a acordar mañana de ningún plan. Se van a acordar de si esto les sirve el
+      lunes o no. Así que la próxima hora va de eso — y de una pregunta que ustedes trajeron y que
+      nadie ha dicho en voz alta todavía."</em></p>
+    <p style="margin:5px 0 0;"><em>(pausa)</em> &nbsp; <em>"¿Esto me va a dejar sin pega?"</em></p>
+    <p style="margin:5px 0 0;"><em>"No. Y no se lo digo por cortesía: se lo digo porque la IA no
+      firma, y aquí el que firma es el que responde. Lo que sí hace es leer rápido y redactar
+      decente. Lo que pasa de verdad es otra cosa — no los reemplaza la IA, los pasa por arriba el
+      colega que sí la aprendió a usar. Por eso los mandaron. Y por eso, aunque los mandaron, les
+      conviene quedarse."</em></p>
+    <p style="margin:5px 0 0;" class="ojo">Ojo: este chiste se hace UNA vez. Volver a él a mitad de
+      charla le devuelve el poder al miedo.</p>
+    <p style="margin:5px 0 0;">Y ahí enciendes la pantalla 1.</p>
   </div>
 
-  <h2>El recorrido, pantalla a pantalla</h2>
+  <div class="caja caja--rojo">
+    <strong>Cómo se conduce</strong>
+    <p style="margin:5px 0 0;">
+      Cada pulsación muestra <strong>una sola cosa</strong>: un bloque, o una pregunta. Nada ocupa
+      más de una pantalla y <strong>no hay que hacer scroll en ningún momento</strong> — está medido
+      en las 267 diapositivas, a 1920×1080, 1366×768 y 1024×768. El clicker (AvPág/RePág) avanza;
+      las flechas ← → hacen lo mismo si falla.
+    </p>
+    <p style="margin:5px 0 0;">
+      La barra lateral está oculta: <code>Esc</code> la abre si necesitas saltar. El contador de
+      arriba a la derecha dice siempre en qué pantalla de 23 vas.
+    </p>
+    <p style="margin:5px 0 0;">
+      <strong>Antes de que entre nadie:</strong> llegar 40 minutos antes · recorrerlo entero una vez
+      con el proyector conectado · <strong class="ojo">no pulsar F5 en toda la sesión</strong> ·
+      repartir las tarjetas 🟢🟡🔴 en la puerta. Para revisarlo en el notebook, <code>?web</code>.
+    </p>
+  </div>
+
+  <div class="caja caja--azul">
+    <strong>Cuándo habla la sala</strong>
+    <p style="margin:5px 0 0;">
+      Hay <strong>25 momentos</strong> en que la sala responde, repartidos en 9 pantallas. En las
+      actividades va <strong>una pregunta por pantalla</strong>: lees, votan, marcas lo que diga la
+      mayoría, y el puntero pasa a la siguiente.
+    </p>
+    <ul>
+      <li><strong>1 · Antes de empezar</strong> — tres preguntas a mano alzada, y cuentas en voz alta.</li>
+      <li><strong>2 · ¿Quién responde por este dato?</strong> — 5 situaciones, tarjetas 👑🛠️🙋 (hoja 2).</li>
+      <li><strong>3 · ¿Qué tan maduros son tus datos?</strong> — 5 preguntas, mano alzada, marcas por mayoría.</li>
+      <li><strong>4 · ¿Qué es la IA?</strong>, <strong>17 · A otros ya les pasó</strong> y <strong>18 · Riesgos</strong> — abren preguntando, antes de contar nada.</li>
+      <li><strong>6 · Pídelo bien</strong> — el prompt lo dictan ellos, ingrediente a ingrediente.</li>
+      <li><strong>8 · Detective</strong> — 8 frases, pulgar arriba o abajo. Dos clics por frase: el primero marca, el segundo revela.</li>
+      <li><strong>16 · Verde, ámbar, rojo</strong> — 6 tareas, tarjetas 🟢🟡🔴 (hoja 1).</li>
+      <li><strong>22 · Por qué sabe pero alucina</strong> — votan cuál respuesta es mejor.</li>
+    </ul>
+    <p style="margin:6px 0 0;" class="ojo">
+      Regla de oro: no clicar antes de que la sala se comprometa. Todos los clics son revelaciones;
+      gastarlas antes de que voten es perder la actividad.
+    </p>
+  </div>
+
+  <h2>El recorrido · 23 pantallas</h2>
 
   <div class="ficha ficha--clave">
-    <div class="fh"><span class="n">1</span><span class="tit">Bienvenida · la pregunta incómoda</span><span class="min">5 min</span></div>
+    <div class="fh"><span class="n">1</span><span class="tit">Antes de empezar</span><span class="min">4 min</span></div>
     <dl>
-      <dt>Entrada</dt><dd class="dice">"Antes de partir. La pregunta que ustedes trajeron. No la que van a hacer al final: la que trajeron." <em>(pausa)</em> "¿Esto me va a dejar sin pega?"</dd>
-      <dt>Y sigues</dt><dd class="dice">"Se las contesto ahora, porque si no van a estar hora y media pensando en eso y yo voy a estar hablando solo. No. La IA hace lo que hace un practicante brillante que llegó el lunes: lee rapidísimo, escribe decente, y no tiene idea de nada de acá. Y sobre todo, no firma."</dd>
-      <dt>El giro</dt><dd class="dice">"Lo que sí pasa: no los reemplaza la IA, los pasa por arriba el colega que sí la aprendió a usar. Por eso los mandaron. Y por eso, aunque los mandaron, les conviene quedarse."</dd>
-      <dt>Censo</dt><dd>Tres manos alzadas, contando en voz alta: quién NO ha usado nunca una · de los que sí, quién en el trabajo · a quién le han dicho que no la use. La tercera siempre da risa.</dd>
-      <dt>Ojo</dt><dd class="ojo">El chiste del reemplazo se hace UNA vez. Volver a él a mitad de charla le devuelve el poder al miedo.</dd>
+      <dt>Mecánica</dt><dd>Tres preguntas, una por pantalla. <strong>Cuentas en voz alta</strong> — el conteo hablado es lo que hace que valga la pena levantar la mano.</dd>
+      <dt>Por qué así</dt><dd>La primera se pregunta al revés ("quién NO ha usado") porque admitir eso es más fácil que lo contrario. Así se levantan manos de verdad.</dd>
+      <dt>La tercera</dt><dd>"¿A quién le han dicho que no la use?" siempre da risa, y es la que abre la conversación.</dd>
+      <dt>Cierre</dt><dd class="dice">"Eso que acaban de levantar la mano es el punto de partida real. Vamos desde ahí."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--clave">
+    <div class="fh"><span class="n">2</span><span class="tit">¿Quién responde por este dato?</span><span class="min">6 min</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd><strong>Tarjetas 👑🛠️🙋, hoja 2.</strong> Cinco situaciones, una por pantalla. Lees → "tarjetas arriba" → <strong>dices en voz alta el reparto que ves</strong> → recién ahí clicas.</dd>
+      <dt>Si se equivocan</dt><dd class="dice">"La mitad de la sala cree que esto lo decide informática. Ahí está el problema completo."</dd>
+      <dt>Cierre</dt><dd class="dice">"Si nadie es dueño, nadie corrige. Y el que termina dando la explicación es el que iba pasando."</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">3</span><span class="tit">¿Qué tan maduros son tus datos?</span><span class="min">4 min</span></div>
+    <dl>
+      <dt>Mecánica</dt><dd>Censo a mano alzada, una pregunta por pantalla. Marcas lo que diga la mayoría. El nivel que sale es el de la gerencia, no el de nadie.</dd>
+      <dt>Cierre</dt><dd class="dice">"Cada 'no' que marcamos es algo que hay que ordenar antes de diciembre — y ahí es donde entramos nosotros."</dd>
     </dl>
   </div>
 
   <div class="ficha">
-    <div class="fh"><span class="n">2</span><span class="tit">Por qué gobernanza, por qué ahora</span><span class="min">4 min</span></div>
+    <div class="fh"><span class="n">4</span><span class="tit">¿Qué es la IA?</span><span class="min">5 min</span></div>
     <dl>
-      <dt>Idea</dt><dd>Diciembre de 2026, dos veces: el plazo del PMG-MEI y la entrada en vigencia de la Ley 21.719, el mismo mes.</dd>
-      <dt>Entrada</dt><dd><span class="dice">"Aquí el dato no es una superficie ni un presupuesto. Es una persona con nombre. Y cuando está malo, el error no sale en un informe: sale en la vida de alguien."</span></dd>
-      <dt>Clics</dt><dd><span class="clics">párrafo → los dos plazos → las cinco razones → "ahora, a practicar"</span></dd>
-    </dl>
-  </div>
-
-  <div class="ficha">
-    <div class="fh"><span class="n">3</span><span class="tit">¿Quién responde por este dato?</span><span class="min">6 min</span></div>
-    <dl>
-      <dt>Mecánica</dt><dd><strong>Tarjetas de color, hoja 2.</strong> Cinco situaciones, <strong>una por pantalla</strong>. Lees → "tarjetas arriba" → dices en voz alta lo que ves → recién ahí clicas.</dd>
-      <dt>Ojo</dt><dd><span class="ojo">No clicar antes de que la sala se comprometa. El clic es la revelación: gastarla antes es perder la actividad.</span></dd>
-      <dt>Si se equivocan</dt><dd><span class="dice">"La mitad de la sala cree que esto lo decide informática. Ahí está el problema completo."</span> Que se equivoquen es el mejor momento pedagógico.</dd>
-    </dl>
-  </div>
-
-  <div class="ficha">
-    <div class="fh"><span class="n">4</span><span class="tit">¿Qué tan maduros son tus datos?</span><span class="min">5 min</span></div>
-    <dl>
-      <dt>Mecánica</dt><dd>Censo a mano alzada. Cinco preguntas, <strong>una por pantalla</strong>; marcas Sí/No por mayoría. El nivel que sale es el de la gerencia, no el de nadie.</dd>
-      <dt>Cierre</dt><dd><span class="dice">"Cada 'no' que marcamos es un punto de la lista de lo que hay que ordenar antes de diciembre."</span></dd>
-    </dl>
-  </div>
-
-  <div class="ficha">
-    <div class="fh"><span class="n">5</span><span class="tit">¿Qué es la IA?</span><span class="min">6 min</span></div>
-    <dl>
-      <dt>Clics</dt><dd class="clics">párrafo → practicante → dónde ahorra → la frase</dd>
+      <dt>Abre preguntando</dt><dd>"Si tuvieran que explicárselo a un colega, ¿qué le dirían?" Deja que hablen dos. Cualquier respuesta sirve, y después la tuya encaja mejor.</dd>
       <dt>Anclaje</dt><dd>"El practicante que llegó el lunes." Ellos tramitan practicantes: la metáfora deja de ser metáfora.</dd>
       <dt>Añade</dt><dd class="dice">"…y con todo respeto a los practicantes de verdad, que trabajan más que nadie."</dd>
       <dt>Cierre</dt><dd class="dice">"No firma. Y aquí, el que firma es el que responde."</dd>
     </dl>
   </div>
 
-  <div class="ficha ficha--nueva">
-    <div class="fh"><span class="n">6</span><span class="tit">Lo que cuesta hacerlo a mano</span><span class="min">5 min</span></div>
+  <div class="ficha">
+    <div class="fh"><span class="n">5</span><span class="tit">Lo que cuesta hacerlo a mano</span><span class="min">4 min</span></div>
     <dl>
-      <dt>Clics</dt><dd class="clics">párrafo → "miren el reloj de la derecha" → el cronómetro</dd>
       <dt>Antes de pulsar</dt><dd class="dice">"Cuarenta y cuatro minutos contra once. Pero no miren ese número. Miren el reloj de la derecha cuando termine de redactar."</dd>
-      <dt>Mecánica</dt><dd>Pulsas "poner los dos relojes en marcha" y <strong>te callas nueve segundos</strong>. Que lo vean correr.</dd>
+      <dt>Mecánica</dt><dd>Pulsas y <strong>te callas nueve segundos</strong>. Que lo vean correr.</dd>
       <dt>El remate</dt><dd class="dice">"Los seis minutos de revisar y firmar son idénticos en las dos columnas. Eso es lo que no se delega — y es lo que ustedes hacen."</dd>
     </dl>
   </div>
 
   <div class="ficha ficha--clave">
-    <div class="fh"><span class="n">7</span><span class="tit">Pídelo bien</span><span class="min">7 min</span></div>
+    <div class="fh"><span class="n">6</span><span class="tit">Pídelo bien</span><span class="min">6 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd><strong>Dictado colectivo.</strong> Empiezas con el prompt flojo, el medidor marca poco. "Falta el rol. Grítenme un rol." Escribes lo que digan y se enciende el ✅. Ingrediente a ingrediente hasta 4 de 4.</dd>
-      <dt>Por qué</dt><dd>Es lo único de la charla donde la sala construye algo. Vale los siete minutos.</dd>
+      <dt>Mecánica</dt><dd><strong>Dictado colectivo.</strong> Empiezas con el prompt flojo. "Falta el rol. Grítenme un rol." Escribes lo que digan y se enciende el ✅. Ingrediente a ingrediente hasta 4 de 4.</dd>
+      <dt>Por qué</dt><dd>Es lo único de la hora donde la sala construye algo. Vale los seis minutos.</dd>
       <dt>Cierre</dt><dd class="dice">"Es la misma diferencia que entre el correo que dice 'necesito unos datos' y el que dice 'necesito la dotación por estamento al 31 de agosto, en Excel'."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">8</span><span class="tit">De "necesito unos datos" a un dato que sirve</span><span class="min">3 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">7</span><span class="tit">De "necesito unos datos" a un dato que sirve</span><span class="min">2 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd>Mueves el control tú, de nivel 1 a 3, y preguntas: <span class="dice">"¿en cuál empezarían a confiar?"</span></dd>
-      <dt>Si vas tarde</dt><dd>Es de las primeras que se cae: se solapa con Pídelo bien.</dd>
+      <dt>Mecánica</dt><dd>Mueves el control de nivel 1 a 3 y preguntas: <span class="dice">"¿en cuál empezarían a confiar?"</span></dd>
+      <dt>Nota</dt><dd>De las primeras que se cae si vas tarde: se solapa con la anterior.</dd>
     </dl>
   </div>
 
   <div class="ficha ficha--clave">
-    <div class="fh"><span class="n">9</span><span class="tit">Detective de alucinaciones</span><span class="min">7 min</span></div>
+    <div class="fh"><span class="n">8</span><span class="tit">Detective de alucinaciones</span><span class="min">7 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd><strong>Pulgares.</strong> Lees cada frase: arriba si es verdad, abajo si la IA la inventó. Marcas lo que diga la sala. Si vas tarde, reparte por filas.</dd>
-      <dt>Ojo</dt><dd class="ojo">Las 8 frases validadas antes (ver VALIDAR-CONTENIDO-LEGAL.md). Esta es la única sala que sabe la respuesta.</dd>
-      <dt>El remate</dt><dd class="dice">"Las tres mentiras eran números: un plazo, un artículo y un organismo. No es casualidad."</dd>
+      <dt>Mecánica</dt><dd><strong>Pulgares.</strong> Una frase por pantalla: la lees, votan, y <strong>dos clics</strong> — el primero la marca, el segundo revela si era verdad o mentira.</dd>
+      <dt>Ojo</dt><dd class="ojo">Las 8 frases validadas antes con el área jurídica (ver VALIDAR-CONTENIDO-LEGAL.md). Esta es la única sala que sabe la respuesta correcta.</dd>
+      <dt>El remate</dt><dd class="dice">"Las tres mentiras eran números: un plazo, un artículo y un organismo. No es casualidad — el modelo fue premiado por sonar bien, nunca por tener razón."</dd>
     </dl>
   </div>
 
-  <div class="ficha ficha--nueva">
-    <div class="fh"><span class="n">10</span><span class="tit">La bola de nieve</span><span class="min">5 min</span></div>
+  <div class="ficha">
+    <div class="fh"><span class="n">9</span><span class="tit">La bola de nieve</span><span class="min">4 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd>Cinco pasos, uno por clic. <strong>Entre paso y paso, pregunta:</strong> <span class="dice">"¿y después?"</span> Que lo digan ellos antes de que aparezca.</dd>
-      <dt>Lo que miran</dt><dd>Los dos números de cada paso: cuánta gente queda dentro (1 → 3 → 8 → 20 → 40) y cuánto cuesta deshacerlo (30 segundos → semanas).</dd>
+      <dt>Mecánica</dt><dd>Cinco pasos, uno por clic. <strong>Entre paso y paso pregunta</strong> <span class="dice">"¿y después?"</span> — que lo digan ellos antes de que aparezca.</dd>
+      <dt>Lo que miran</dt><dd>Los dos números: cuánta gente queda dentro (1 → 3 → 8 → 20 → 40) y cuánto cuesta deshacerlo (30 segundos → semanas).</dd>
       <dt>El remate</dt><dd class="dice">"Los cinco pasos vienen del mismo error. Y en el primero, comprobarlo costaba treinta segundos."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">11</span><span class="tit">Le preguntamos a las tres</span><span class="min">3 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">10</span><span class="tit">Le preguntamos a las tres</span><span class="min">2 min</span></div>
     <dl>
       <dt>Mecánica</dt><dd>No la leas. Proyéctala veinte segundos y di solo la conclusión.</dd>
-      <dt>La frase</dt><dd><span class="dice">"CONAF ya paga licencia de Gemini Pro. Esa la tienen disponible desde hoy."</span></dd>
+      <dt>La frase</dt><dd class="dice">"CONAF ya paga licencia de Gemini Pro. Esa la tienen disponible desde hoy."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">12</span><span class="tit">Una palabra lo cambia todo</span><span class="min">4 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">11</span><span class="tit">Una palabra lo cambia todo</span><span class="min">3 min</span></div>
     <dl>
-      <dt>Antes de pulsar</dt><dd><span class="dice">"Voy a añadir una sola palabra al prompt. ¿Qué creen que va a pasar?"</span></dd>
-      <dt>Mecánica</dt><dd>Un clic en el interruptor y el análisis entero cambia de naturaleza. Se ve solo.</dd>
-      <dt>El puente</dt><dd><span class="dice">"Entre 'hábiles' y 'corridos' hay un plazo vencido. Con la IA es igual: la palabra que ustedes ponen decide la respuesta."</span></dd>
+      <dt>Antes de pulsar</dt><dd class="dice">"Voy a añadir una sola palabra al prompt. ¿Qué creen que va a pasar?"</dd>
+      <dt>El puente</dt><dd class="dice">"Entre 'hábiles' y 'corridos' hay un plazo vencido. Con la IA es igual: la palabra que ustedes ponen decide la respuesta."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">13</span><span class="tit">¿Y ahora cómo se lo explico a…?</span><span class="min">4 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">12</span><span class="tit">¿Y ahora cómo se lo explico a…?</span><span class="min">3 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd>Que elija la sala a quién le explicamos primero. Lee <strong>dos</strong> audiencias en voz alta, con voz distinta; las otras dos no se abren.</dd>
-      <dt>Cierre</dt><dd><span class="dice">"Si no le dicen para quién es, la IA le escribe a nadie."</span></dd>
+      <dt>Mecánica</dt><dd>Que elija la sala a quién le explicamos primero. Lee <strong>dos</strong> audiencias en voz alta, con voz distinta. Las otras dos no se abren.</dd>
+      <dt>Cierre</dt><dd class="dice">"Si no le dicen para quién es, la IA le escribe a nadie."</dd>
     </dl>
   </div>
 
   <div class="ficha ficha--clave">
-    <div class="fh"><span class="n">14</span><span class="tit">Qué NO contarle a la IA</span><span class="min">8 min</span></div>
+    <div class="fh"><span class="n">13</span><span class="tit">Qué NO contarle a la IA</span><span class="min">7 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd>Lees el prompt <strong>despacio</strong> y la sala grita <strong>"¡tacha!"</strong>. Variante mejor: alguien pasa adelante y clica (elígelo antes, nunca en frío).</dd>
+      <dt>Mecánica</dt><dd>Lees el prompt <strong>despacio</strong> y la sala grita <strong>"¡tacha!"</strong>. Mejor aún: alguien pasa adelante y clica — elígelo antes, nunca en frío.</dd>
       <dt>El momento</dt><dd>Cuando alguien tache "Departamento de Gestión de Personas": <span class="dice">"Ese está publicado. Ustedes lo publicaron."</span></dd>
       <dt>Y el fondo</dt><dd class="dice">"El diagnóstico va en la sección confidencial. Es información que la institución ni siquiera debería tener a la vista — y alguien la estaba pegando en un chat."</dd>
       <dt>Sin humor</dt><dd class="ojo">Registro literal. Varios en la sala tramitan esas licencias.</dd>
     </dl>
   </div>
 
-  <div class="ficha ficha--nueva">
-    <div class="fh"><span class="n">15</span><span class="tit">El dato que se escapó</span><span class="min">5 min</span></div>
+  <div class="ficha">
+    <div class="fh"><span class="n">14</span><span class="tit">El dato que se escapó</span><span class="min">4 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd>Cinco pasos, uno por clic, igual que la bola de nieve. Aquí la columna de "cuánto cuesta deshacerlo" es la que duele: <em>nada que usted controle</em>, <em>imposible saberlo</em>, <em>no hay respuesta buena</em>.</dd>
+      <dt>Mecánica</dt><dd>Cinco pasos, uno por clic. Aquí la columna que duele es "cuánto cuesta deshacerlo": <em>nada que usted controle</em>, <em>imposible saberlo</em>, <em>no hay respuesta buena</em>.</dd>
       <dt>El remate</dt><dd class="dice">"De los cinco pasos, solo el primero estaba en su mano. Los otros cuatro ya no."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">16</span><span class="tit">Del artículo a la lista de pendientes</span><span class="min">4 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">15</span><span class="tit">Del artículo a la lista de pendientes</span><span class="min">3 min</span></div>
     <dl>
       <dt>Un botón</dt><dd>Párrafo denso → checklist. Se ve solo.</dd>
-      <dt>El remate</dt><dd><span class="dice">"La checklist salió del texto que USTED le pegó. Si le pide que recuerde la norma, ahí empieza a inventar. Dale el texto; no le pidas la ley."</span></dd>
+      <dt>El remate</dt><dd class="dice">"La checklist salió del texto que USTED le pegó. Si le pide que recuerde la norma, ahí empieza a inventar. Dale el texto; no le pidas la ley."</dd>
     </dl>
   </div>
 
   <div class="ficha ficha--clave">
-    <div class="fh"><span class="n">17</span><span class="tit">Verde, ámbar, rojo</span><span class="min">6 min</span></div>
+    <div class="fh"><span class="n">16</span><span class="tit">Verde, ámbar, rojo</span><span class="min">6 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd><strong>Tarjetas de color.</strong> Lees la tarea → "tarjetas arriba, ya" → miras el reparto → <strong>dices en voz alta lo que ves</strong> → recién ahí clicas la mayoritaria.</dd>
-      <dt>Ojo</dt><dd class="ojo">No clicar antes de que la sala se comprometa. Todos los clics son revelaciones: gastarlas antes es perder la actividad.</dd>
+      <dt>Mecánica</dt><dd><strong>Tarjetas 🟢🟡🔴, hoja 1.</strong> Seis tareas, una por pantalla. Lees → "tarjetas arriba" → dices lo que ves → clicas.</dd>
       <dt>Si se equivocan</dt><dd>Que se equivoquen en la 5 o la 6 es lo mejor que puede pasar. <span class="dice">"Media sala cree que preseleccionar currículums es ámbar. Hablemos de eso."</span></dd>
       <dt>Cierre</dt><dd class="dice">"Lo que tiene en común todo el rojo: no hay forma de explicar por qué decidió lo que decidió. Y ustedes sí tienen que poder."</dd>
     </dl>
   </div>
 
-  <div class="ficha ficha--nueva">
-    <div class="fh"><span class="n">18</span><span class="tit">A otros ya les pasó</span><span class="min">5 min</span></div>
+  <div class="ficha">
+    <div class="fh"><span class="n">17</span><span class="tit">A otros ya les pasó</span><span class="min">4 min</span></div>
     <dl>
-      <dt>Clics</dt><dd class="clics">intro → caso del reclutamiento → el patrón se repite → la frase → la línea roja</dd>
-      <dt>Tono</dt><dd>Sin dramatismo. Son hechos, y el argumento se sostiene solo. <span class="dice">"Ninguna de esas organizaciones quiso hacer nada malo, y todas tenían mejores equipos técnicos que nosotros."</span></dd>
-      <dt>Silencio</dt><dd>Después de "un modelo no inventa el sesgo, lo hereda": <strong>aguanta cinco segundos.</strong> No rescates la sala.</dd>
+      <dt>Abre preguntando</dt><dd>"¿Creen que una IA entrenada con diez años de contrataciones contrataría de forma justa?" <strong>Deja que voten antes de pasar</strong>: la respuesta está en la pantalla siguiente.</dd>
+      <dt>Tono</dt><dd>Sin dramatismo. <span class="dice">"Ninguna de esas organizaciones quiso hacer nada malo, y todas tenían mejores equipos técnicos que nosotros."</span></dd>
+      <dt>Silencio</dt><dd>Tras "un modelo no inventa el sesgo, lo hereda": <strong>aguanta cinco segundos.</strong> No rescates la sala.</dd>
+    </dl>
+  </div>
+
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">18</span><span class="tit">Riesgos</span><span class="min">3 min</span></div>
+    <dl>
+      <dt>Abre preguntando</dt><dd>"¿Qué es lo que más les preocuparía si mañana la usa toda la gerencia?" Casi siempre sale alguno de los cuatro que vienen — cuando pase, se lo dices.</dd>
+      <dt>Función</dt><dd>Recoge y ordena lo que ya vieron. Si vas tarde, se dice hablado en un minuto.</dd>
     </dl>
   </div>
 
   <div class="ficha">
-    <div class="fh"><span class="n">19</span><span class="tit">Riesgos</span><span class="min">4 min</span></div>
-    <dl>
-      <dt>Clics</dt><dd class="clics">las cuatro tarjetas → la frase</dd>
-      <dt>Función</dt><dd>Recoge y ordena lo que ya vieron. No introduce nada nuevo: si vas tarde, se dice hablado en un minuto.</dd>
-    </dl>
-  </div>
-
-  <div class="ficha">
-    <div class="fh"><span class="n">20</span><span class="tit">Dónde se pone la raya</span><span class="min">6 min</span></div>
+    <div class="fh"><span class="n">19</span><span class="tit">Dónde se pone la raya</span><span class="min">5 min</span></div>
     <dl>
       <dt>Desdramatiza</dt><dd class="dice">"Se llama perceptrón y suena a nave espacial. Es una raya que separa dos grupos. Eso es todo."</dd>
-      <dt>Mecánica</dt><dd>Mueve los dos controles tú, en vivo, hasta separarlos. Luego "que aprenda solo". La fórmula queda plegada: no la abras.</dd>
+      <dt>Mecánica</dt><dd>Mueves los dos controles en vivo hasta separarlos. Luego "que aprenda solo". La fórmula queda plegada: no la abras.</dd>
       <dt>El puente</dt><dd class="dice">"Esto que muevo con el dedo es lo que ustedes hacen cada vez que arman una terna. La diferencia es que ustedes pueden explicar por qué pusieron la raya ahí."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">21</span><span class="tit">Cuando una sola raya no alcanza</span><span class="min">4 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">20</span><span class="tit">Cuando una sola raya no alcanza</span><span class="min">3 min</span></div>
     <dl>
       <dt>Mecánica</dt><dd>Un botón y la animación corre sola. Se mira, no se explica.</dd>
-      <dt>Ojo</dt><dd>El ejemplo es de riesgo de incendio, no de personas. <strong>Dilo en voz alta:</strong> <span class="dice">"podríamos haber puesto una red que prediga quién va a renunciar. No lo hicimos a propósito."</span></dd>
+      <dt>Ojo</dt><dd>El ejemplo es de riesgo de incendio. <strong>Dilo en voz alta:</strong> <span class="dice">"podríamos haber puesto una red que prediga quién va a renunciar. No lo hicimos a propósito."</span></dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">22</span><span class="tit">A qué le pone atención</span><span class="min">5 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">21</span><span class="tit">A qué le pone atención</span><span class="min">3 min</span></div>
     <dl>
       <dt>Traduce</dt><dd class="dice">"En inglés se llama attention, y es el mecanismo que hizo posible ChatGPT. Salen de aquí con una palabra nueva que pueden usar en una reunión."</dd>
       <dt>El puente</dt><dd class="dice">"Es lo mismo que hace usted revisando una carpeta: mira el certificado de título, no el color de la carátula."</dd>
     </dl>
   </div>
 
-  <div class="ficha">
-    <div class="fh"><span class="n">23</span><span class="tit">Por qué sabe pero alucina</span><span class="min">5 min</span></div>
+  <div class="ficha ficha--corta">
+    <div class="fh"><span class="n">22</span><span class="tit">Por qué sabe pero alucina</span><span class="min">3 min</span></div>
     <dl>
-      <dt>Mecánica</dt><dd>Dos respuestas lado a lado y la sala vota cuál es mejor. Al votar están haciendo exactamente lo que hacen quienes entrenan estos modelos.</dd>
+      <dt>Mecánica</dt><dd>Dos respuestas lado a lado y la sala vota cuál es mejor. Al votar hacen exactamente lo que hace quien entrena estos modelos.</dd>
       <dt>Cierra la cadena</dt><dd class="dice">"Ni el ajuste fino ni el entrenamiento con humanos le enseñan la verdad. Le enseñan modales."</dd>
     </dl>
   </div>
 
   <div class="ficha ficha--clave">
-    <div class="fh"><span class="n">24</span><span class="tit">Y ahora, ¿qué?</span><span class="min">5 min</span></div>
+    <div class="fh"><span class="n">23</span><span class="tit">Y ahora, ¿qué?</span><span class="min">5 min</span></div>
     <dl>
-      <dt>Clics</dt><dd class="clics">hero → las tres reglas → autoevaluación → la frase → dónde encontrarnos</dd>
       <dt>Las tres reglas</dt><dd><strong>Que las diga la sala, no tú.</strong> "¿Cuál era la primera?" Se acuerdan. Repetirlas en voz alta es lo que hace que sobrevivan a mañana.</dd>
       <dt>El compromiso</dt><dd>Al dorso de la tarjeta de bolsillo: <span class="dice">"Una frase. Qué van a probar la próxima semana. No la recojo, es suya."</span> Dos minutos en silencio.</dd>
       <dt>Tu parte</dt><dd class="dice">"Mi correo está en pantalla. Si en seis meses no les servimos de nada, tienen derecho a venir a decírmelo."</dd>
-      <dt>Y afuera</dt><dd class="dice">"Terminamos antes de la hora. Ese es mi primer aporte a su productividad." — <strong>Sin "¿preguntas?"</strong>: di "me quedo cinco minutos acá adelante" y llegan las buenas.</dd>
+      <dt>Y afuera</dt><dd><strong>Sin "¿preguntas?"</strong>: genera silencio. Di <span class="dice">"me quedo cinco minutos acá adelante"</span> y llegan las buenas.</dd>
     </dl>
   </div>
 
-  <div class="caja" style="border-color:#1565c0; background:#f6faff;">
-    <strong style="color:#1565c0;">Las actividades con preguntas van de una en una</strong>
-    <p style="margin:4px 0 0;">
-      <em>¿Quién responde por este dato?</em> (5), <em>¿Qué tan maduros son tus datos?</em> (5),
-      <em>Detective de alucinaciones</em> (8) y <em>Verde, ámbar, rojo</em> (6) ya no muestran la
-      lista entera: <strong>cada pregunta ocupa su propia pantalla</strong>. Lees, la sala vota,
-      marcas, y el puntero pasa a la siguiente. La última de cada una es el marcador y la lección.
-    </p>
-    <p style="margin:5px 0 0;">
-      <strong>En el Detective son dos clics por frase:</strong> el primero la marca como sospechosa
-      (lo que diga la sala), el segundo revela si era verdad o mentira. Así el veredicto lo das tú,
-      cuando quieras.
-    </p>
-  </div>
-
   <div class="caja">
-    <strong>Si vas tarde — orden de sacrificio, decidido ahora y no en el minuto 70</strong>
+    <strong>La cuenta: las 23 pantallas son ~86 minutos y tú tienes 60</strong>
+    <p style="margin:5px 0 0;">
+      Sumando los minutos de las fichas salen 86. <strong>Hay que recortar unos 26.</strong> Esta es
+      la lista, en orden, y está decidida ahora — no en el minuto 40:
+    </p>
     <ol>
-      <li><strong>19 · Riesgos</strong> — recoge lo ya visto, se dice hablado en un minuto</li>
-      <li><strong>11 · Le preguntamos a las tres</strong> — la conclusión es una frase</li>
-      <li><strong>13 · ¿Y ahora cómo se lo explico a…?</strong> — leer dos audiencias basta</li>
-      <li><strong>8 · De "necesito unos datos"</strong> — se solapa con Pídelo bien</li>
-      <li><strong>22 · A qué le pone atención</strong> y <strong>21 · Cuando una sola raya no alcanza</strong></li>
-      <li><strong>4 · ¿Qué tan maduros son tus datos?</strong> — 5 pantallas de censo</li>
-      <li><strong>12 · Una palabra lo cambia todo</strong> y <strong>16 · Del artículo a la lista</strong></li>
+      <li><strong>10 · Le preguntamos a las tres</strong> — la conclusión es una frase &nbsp;→ −2</li>
+      <li><strong>7 · De "necesito unos datos"</strong> — se solapa con Pídelo bien &nbsp;→ −2</li>
+      <li><strong>12 · ¿Y ahora cómo se lo explico a…?</strong> &nbsp;→ −3</li>
+      <li><strong>21 · A qué le pone atención</strong> &nbsp;→ −3</li>
+      <li><strong>20 · Cuando una sola raya no alcanza</strong> &nbsp;→ −3</li>
+      <li><strong>15 · Del artículo a la lista de pendientes</strong> &nbsp;→ −3</li>
+      <li><strong>11 · Una palabra lo cambia todo</strong> &nbsp;→ −3</li>
+      <li><strong>18 · Riesgos</strong> — hablado en un minuto &nbsp;→ −2</li>
+      <li><strong>3 · ¿Qué tan maduros son tus datos?</strong> — son 6 pantallas &nbsp;→ −4</li>
+      <li><strong>22 · Por qué sabe pero alucina</strong> &nbsp;→ −3</li>
     </ol>
     <p style="margin:6px 0 0;">
-      <strong>Nunca se recorta:</strong> 1 Bienvenida · 7 Pídelo bien · 9 Detective ·
-      14 Qué NO contarle a la IA · 17 Verde, ámbar, rojo · 24 Cierre.
+      Cortando los siete primeros llegas a 66 minutos; los diez, a 58.
+      <strong>Nunca se recorta:</strong> 1 Antes de empezar · 2 ¿Quién responde por este dato? ·
+      6 Pídelo bien · 8 Detective · 13 Qué NO contarle a la IA · 16 Verde, ámbar, rojo · 23 Cierre.
       Y la hora de término no se mueve.
+    </p>
+    <p style="margin:5px 0 0;">
+      Saltar una pantalla en vivo: <code>Esc</code>, la eliges en el menú, y <code>Esc</code> otra vez.
     </p>
   </div>
 
-  <div class="caja" style="border-color:#c62828; background:#fff5f4;">
-    <strong style="color:#c62828;">Planes B</strong>
+  <div class="caja caja--rojo">
+    <strong>Planes B</strong>
     <ol>
       <li><strong>Se cae el wifi:</strong> si la página ya está cargada, sigue funcionando entera. <strong>No pulses F5.</strong></li>
-      <li><strong>Sin red desde el inicio:</strong> lleva la carpeta <code>dist/</code> en un pendrive, dentro de una carpeta llamada <code>CLASE_TALLER_</code>, y sirve la carpeta padre con <code>python -m http.server 8000</code>. Abre <code>http://localhost:8000/CLASE_TALLER_/personal/</code>. <strong>Abrir el index.html con doble clic NO funciona.</strong> Ensáyalo antes.</li>
-      <li><strong>No toma el HDMI:</strong> bolsa con HDMI→VGA, USB-C→HDMI y cable propio de 3 m. Llegar 40 minutos antes.</li>
-      <li><strong>El clicker no responde:</strong> las flechas ← → del teclado hacen lo mismo.</li>
-      <li><strong>Te pierdes:</strong> <code>Esc</code> abre el menú. Y el contador de arriba a la derecha dice siempre en qué pantalla de 16 estás.</li>
+      <li><strong>Sin red desde el inicio:</strong> lleva <code>dist/</code> en un pendrive, dentro de una carpeta llamada <code>CLASE_TALLER_</code>, y sirve la carpeta padre con <code>python -m http.server 8000</code>. Abre <code>http://localhost:8000/CLASE_TALLER_/personal/</code>. <strong>Abrir el index.html con doble clic NO funciona.</strong> Ensáyalo antes.</li>
+      <li><strong>No toma el HDMI:</strong> bolsa con HDMI→VGA, USB-C→HDMI y cable propio de 3 m.</li>
+      <li><strong>El clicker no responde:</strong> las flechas ← → hacen lo mismo.</li>
+      <li><strong>Tu jefe se alarga:</strong> empiezas por el corte número 7 de la lista de arriba, no improvisando desde el final.</li>
     </ol>
   </div>
 

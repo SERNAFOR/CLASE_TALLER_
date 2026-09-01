@@ -27,6 +27,27 @@ export default function Bloque({ bloque, ir }) {
         </section>
       )
 
+    // Una pregunta a la sala, no contenido. Se distingue a proposito del resto:
+    // proyectada tiene que leerse como "aqui ustedes hacen algo", no como texto
+    // que el facilitador va a leer en voz alta.
+    case 'pregunta':
+      return (
+        <div className="bloque-pregunta">
+          <p className="bloque-pregunta__consigna">
+            <span aria-hidden="true">{bloque.icono ?? '✋'}</span> {bloque.consigna}
+          </p>
+          <p className="bloque-pregunta__q">{bloque.texto}</p>
+          {bloque.opciones && (
+            <ul className="bloque-pregunta__ops">
+              {bloque.opciones.map((o, i) => (
+                <li key={i}>{o}</li>
+              ))}
+            </ul>
+          )}
+          {bloque.nota && <p className="bloque-pregunta__nota">{bloque.nota}</p>}
+        </div>
+      )
+
     case 'parrafo':
       return <p className="bloque-parrafo">{bloque.texto}</p>
 

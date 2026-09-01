@@ -2845,3 +2845,50 @@
   -webkit-text-fill-color: var(--text);
   opacity: 1;
 }
+
+/* ===== Pregunta a la sala =====
+   Tiene que distinguirse del contenido de un vistazo: si parece un parrafo,
+   nadie levanta la mano. Borde ambar, consigna arriba en mayusculas y la
+   pregunta en grande. */
+.bloque-pregunta {
+  border: 3px solid var(--warning);
+  border-radius: 16px;
+  padding: 22px 26px;
+  background: var(--warning-soft);
+  margin: 8px 0 20px;
+}
+.bloque-pregunta__consigna {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--warning-ink);
+}
+.bloque-pregunta__q {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1.28;
+  color: var(--heading);
+}
+.bloque-pregunta__ops {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.bloque-pregunta__ops li {
+  border: 2px solid var(--warning);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 600;
+  background: var(--surface);
+}
+.bloque-pregunta__nota {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--warning-ink);
+}

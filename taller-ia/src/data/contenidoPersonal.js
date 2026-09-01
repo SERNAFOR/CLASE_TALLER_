@@ -35,7 +35,6 @@ export const marca = {
 }
 
 export const grupos = [
-  { id: 'inicio', etiqueta: 'Inicio', icono: '👥' },
   { id: 'gobernanza', etiqueta: 'Datos de personas', icono: '🗂️' },
   { id: 'taller', etiqueta: 'El Taller de IA', icono: '📖' },
   { id: 'lab', etiqueta: 'El Laboratorio', icono: '🧪' },
@@ -48,106 +47,34 @@ export const grupos = [
 // núcleo, de segundo nivel u opcional, para poder recortar sin improvisar.
 
 export const secciones = [
-  // ======= EL RECORRIDO (16 pantallas, ~90 min) =======
-
   {
-    id: 'inicio',
-    grupo: 'inicio',
-    icono: '👥',
-    titulo: 'Bienvenida',
-    subtitulo: 'Unidad de Información y Análisis · Gerencia de Desarrollo de las Personas',
+    id: 'apertura',
+    grupo: 'gobernanza',
+    icono: '✋',
+    titulo: 'Antes de empezar',
+    subtitulo: 'Tres preguntas, y las contestan ustedes',
     bloques: [
       {
-        tipo: 'hero',
-        irA: 'programa',
-        irTexto: 'Empecemos',
-        kicker: 'JORNADA DE DATOS E IA · GERENCIA DE DESARROLLO DE LAS PERSONAS',
-        titulo: 'A ustedes los mandaron. Empecemos por ahí.',
-        texto:
-          'Nadie viene voluntariamente a un taller de IA a las nueve de la mañana. Así que ' +
-          'partamos por lo que están pensando.',
+        tipo: 'pregunta',
+        icono: '✋',
+        consigna: 'A mano alzada — cuento en voz alta',
+        texto: '¿Quién NO ha usado nunca ChatGPT, Copilot o Gemini?',
+      },
+      {
+        tipo: 'pregunta',
+        icono: '✋',
+        consigna: 'A mano alzada',
+        texto: 'De los que sí: ¿quién la ha usado para algo del trabajo?',
+      },
+      {
+        tipo: 'pregunta',
+        icono: '✋',
+        consigna: 'A mano alzada',
+        texto: '¿Y a quién le han dicho que no la use?',
       },
       {
         tipo: 'frase',
-        texto: '¿Esto me va a dejar sin pega?',
-      },
-      {
-        tipo: 'destacado',
-        icono: '✍️',
-        titulo: 'No. Y no se lo digo por cortesía',
-        texto:
-          'Se lo digo porque la IA no firma — y aquí el que firma es el que responde. Lo que sí ' +
-          'hace es leer rápido y redactar decente. Hoy vamos a meterle contratos, licencias, ' +
-          'dotación y concursos, que es de lo que ustedes saben más que nosotros.',
-      },
-      {
-        tipo: 'tarjetas',
-        titulo: 'Cómo van a ser estas tres horas',
-        items: [
-          { icono: '🗂️', titulo: '1 · Los datos primero', texto: 'Dos actividades cortas. Una IA con datos malos se equivoca más rápido, no menos.' },
-          { icono: '📖', titulo: '2 · Qué es esto realmente', texto: 'Sin ciencia ficción y sin vender nada. Qué hace, qué no, y dónde se cae.' },
-          { icono: '🧪', titulo: '3 · El laboratorio', texto: 'Ejercicios con casos de personal. Ninguno dura más de siete minutos.' },
-          { icono: '🗣️', titulo: '4 · Hablan ustedes', texto: 'Las fricciones reales de la gerencia. Es el bloque más largo y no es casualidad.' },
-        ],
-      },
-      {
-        tipo: 'tarjetas',
-        titulo: 'Cuatro cosas que se van a llevar sabiendo hacer',
-        items: [
-          { icono: '✍️', titulo: 'Pedirle bien', texto: 'La diferencia entre "necesito unos datos" y un dato que sirve.' },
-          { icono: '🕵️', titulo: 'Pillarla mintiendo', texto: 'Inventa plazos y normas con total seguridad. Se aprende a detectarlo.' },
-          { icono: '🔒', titulo: 'Saber qué no pegar', texto: 'Un diagnóstico o un RUT en un chat público no se despega nunca más.' },
-          { icono: '👑', titulo: 'Saber quién responde', texto: 'Cuando el dato de dotación no cuadra, la pregunta no es cuál. Es quién.' },
-        ],
-      },
-    ],
-  },
-
-  // ======= FUERA DEL RECORRIDO =======
-  // No entran en la secuencia de diapositivas. Siguen en el menu (Esc) y
-  // son accesibles por URL, por si sobra tiempo o alguien pregunta.
-
-  // ===================== DATOS DE PERSONAS =====================
-  {
-    id: 'gobernanza',
-    grupo: 'gobernanza',
-    icono: '📊',
-    titulo: 'Por qué gobernanza, por qué ahora',
-    subtitulo: 'PMG-MEI y Ley 21.719 · dos plazos, el mismo mes',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Antes de hablar de inteligencia artificial, hablemos de su alimento: los datos. Una IA ' +
-          'alimentada con datos inconsistentes produce resultados inconsistentes, con más ' +
-          'confianza y a más velocidad. Y en esta gerencia el dato no es una superficie ni un ' +
-          'presupuesto: es una persona con nombre.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '📅',
-        titulo: 'Diciembre de 2026, dos veces',
-        texto:
-          'CONAF debe alcanzar el nivel "básico" de madurez en gestión de datos como parte del ' +
-          'PMG-MEI. Y en el mismo mes entra en vigencia la Ley 21.719 sobre protección de datos ' +
-          'personales. Para esta gerencia esas dos fechas son la misma conversación: quién ' +
-          'responde por cada dato, quién puede verlo y qué pasa cuando está malo.',
-      },
-      {
-        tipo: 'lista',
-        titulo: 'Por qué el dato de personas es el caso difícil',
-        items: [
-          'Es el más sensible del servicio: salud, remuneraciones, evaluaciones, denuncias.',
-          'Vive repartido entre el sistema de personal, planillas y correos.',
-          'Tiene titular: la persona puede pedir acceder a sus datos y corregirlos.',
-          'Y cuando está malo, el error no sale en un informe: sale en la vida de alguien.',
-        ],
-      },
-      {
-        tipo: 'parrafo',
-        texto:
-          'Ahora, a practicar: las dos actividades que siguen muestran en carne propia por qué ' +
-          'esto importa. Se hacen entre todos, a mano alzada.',
+        texto: 'Eso que acaban de levantar la mano es el punto de partida real. Vamos desde ahí.',
       },
     ],
   },
@@ -189,7 +116,6 @@ export const secciones = [
     ],
   },
 
-  // ===================== TALLER DE IA =====================
   {
     id: 'que-es-ia',
     grupo: 'taller',
@@ -197,6 +123,13 @@ export const secciones = [
     titulo: '¿Qué es la IA?',
     subtitulo: 'Olviden la ciencia ficción',
     bloques: [
+      {
+        tipo: 'pregunta',
+        icono: '🗣️',
+        consigna: 'Que lo diga alguien en voz alta',
+        texto: 'Si tuvieran que explicarle a un colega qué es la inteligencia artificial, ¿qué le dirían?',
+        nota: 'No hay respuesta mala. Sirve cualquier cosa que se les ocurra.',
+      },
       {
         tipo: 'parrafo',
         texto:
@@ -462,6 +395,12 @@ export const secciones = [
     subtitulo: 'Casos públicos de IA decidiendo sobre personas',
     bloques: [
       {
+        tipo: 'pregunta',
+        icono: '🤔',
+        consigna: 'Levanten la mano si creen que sí',
+        texto: '¿Creen que una IA entrenada con diez años de contrataciones de una empresa contrataría de forma justa?',
+      },
+      {
         tipo: 'parrafo',
         texto:
           'Esto no es una advertencia teórica. Son casos documentados, de organizaciones grandes ' +
@@ -510,6 +449,12 @@ export const secciones = [
     titulo: 'Riesgos',
     subtitulo: 'Y con datos de personas, el doble',
     bloques: [
+      {
+        tipo: 'pregunta',
+        icono: '🗣️',
+        consigna: 'Digan uno, en voz alta',
+        texto: 'Ya vieron lo que hace bien. ¿Qué es lo que más les preocuparía si mañana la usa toda la gerencia?',
+      },
       {
         tipo: 'tarjetas',
         items: [
