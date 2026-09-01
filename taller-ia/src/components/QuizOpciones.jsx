@@ -6,7 +6,10 @@ import { useState } from 'react'
 // Lo comparten "¿Quién responde por este dato?" (dueño / custodio / usuario) y
 // "Verde, ámbar, rojo" (el termómetro de riesgo). Misma pantalla, distintos
 // datos: por eso el componente los recibe por prop en vez de leerlos él.
-export default function QuizOpciones({ datos }) {
+export default function QuizOpciones({ datos, paso }) {
+  // En presentacion llega un `paso`: se muestra UNA situacion por diapositiva,
+  // y la ultima es el marcador. Sin `paso` (taller general) se muestran todas.
+  const enSala = paso != null
   const [respuestas, setRespuestas] = useState({}) // idx situación → id rol elegido
 
   const responder = (i, rolId) => {
@@ -19,6 +22,10 @@ export default function QuizOpciones({ datos }) {
 
   return (
     <div className="rdatos">
+      {/* La leyenda de opciones se muestra una sola vez: repetirla en cada
+          pregunta roba la mitad de la pantalla y encoge lo que hay que leer.
+          Los botones de cada situacion ya llevan el nombre y el icono. */}
+      {(!enSala || paso === 0) && (
       <div className="rdatos__roles">
         {datos.roles.map((r) => (
           <div className="rdatos__rol" key={r.id}>
@@ -30,9 +37,11 @@ export default function QuizOpciones({ datos }) {
           </div>
         ))}
       </div>
+      )}
 
       <div className="rdatos__situaciones">
         {datos.situaciones.map((s, i) => {
+          if (enSala && i !== paso) return null
           const elegida = respuestas[i]
           const lista = elegida !== undefined
           return (
@@ -69,7 +78,7 @@ export default function QuizOpciones({ datos }) {
         })}
       </div>
 
-      {respondidas > 0 && (
+      {(enSala ? paso >= datos.situaciones.length : respondidas > 0) && (
         <div className="rdatos__resultado">
           {respondidas === datos.situaciones.length ? (
             <strong>Acertaste {aciertos} de {datos.situaciones.length}.</strong>
@@ -82,7 +91,10 @@ export default function QuizOpciones({ datos }) {
         </div>
       )}
 
-      <p className="rdatos__leccion">💡 {datos.leccion}</p>
+      {/* La leccion es el remate: en sala se guarda para la ultima diapositiva. */}
+      {(!enSala || paso >= datos.situaciones.length) && (
+        <p className="rdatos__leccion">💡 {datos.leccion}</p>
+      )}
     </div>
   )
 }

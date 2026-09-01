@@ -64,11 +64,21 @@ export const secciones = [
         kicker: 'JORNADA DE DATOS E IA · GERENCIA DE DESARROLLO DE LAS PERSONAS',
         titulo: 'A ustedes los mandaron. Empecemos por ahí.',
         texto:
-          'Nadie viene voluntariamente a un taller de inteligencia artificial a las nueve de la ' +
-          'mañana. Así que partamos por lo que están pensando: no, esto no viene a reemplazarlos. ' +
-          'Entre otras cosas porque la IA no firma, y aquí el que firma es el que responde. Lo que ' +
-          'sí hace es leer rápido y redactar decente. En tres horas vamos a meterle contratos, ' +
-          'licencias, dotación y concursos, que es de lo que ustedes saben más que nosotros.',
+          'Nadie viene voluntariamente a un taller de IA a las nueve de la mañana. Así que ' +
+          'partamos por lo que están pensando.',
+      },
+      {
+        tipo: 'frase',
+        texto: '¿Esto me va a dejar sin pega?',
+      },
+      {
+        tipo: 'destacado',
+        icono: '✍️',
+        titulo: 'No. Y no se lo digo por cortesía',
+        texto:
+          'Se lo digo porque la IA no firma — y aquí el que firma es el que responde. Lo que sí ' +
+          'hace es leer rápido y redactar decente. Hoy vamos a meterle contratos, licencias, ' +
+          'dotación y concursos, que es de lo que ustedes saben más que nosotros.',
       },
       {
         tipo: 'tarjetas',
@@ -89,6 +99,92 @@ export const secciones = [
           { icono: '🔒', titulo: 'Saber qué no pegar', texto: 'Un diagnóstico o un RUT en un chat público no se despega nunca más.' },
           { icono: '👑', titulo: 'Saber quién responde', texto: 'Cuando el dato de dotación no cuadra, la pregunta no es cuál. Es quién.' },
         ],
+      },
+    ],
+  },
+
+  // ======= FUERA DEL RECORRIDO =======
+  // No entran en la secuencia de diapositivas. Siguen en el menu (Esc) y
+  // son accesibles por URL, por si sobra tiempo o alguien pregunta.
+
+  // ===================== DATOS DE PERSONAS =====================
+  {
+    id: 'gobernanza',
+    grupo: 'gobernanza',
+    icono: '📊',
+    titulo: 'Por qué gobernanza, por qué ahora',
+    subtitulo: 'PMG-MEI y Ley 21.719 · dos plazos, el mismo mes',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Antes de hablar de inteligencia artificial, hablemos de su alimento: los datos. Una IA ' +
+          'alimentada con datos inconsistentes produce resultados inconsistentes, con más ' +
+          'confianza y a más velocidad. Y en esta gerencia el dato no es una superficie ni un ' +
+          'presupuesto: es una persona con nombre.',
+      },
+      {
+        tipo: 'destacado',
+        icono: '📅',
+        titulo: 'Diciembre de 2026, dos veces',
+        texto:
+          'CONAF debe alcanzar el nivel "básico" de madurez en gestión de datos como parte del ' +
+          'PMG-MEI. Y en el mismo mes entra en vigencia la Ley 21.719 sobre protección de datos ' +
+          'personales. Para esta gerencia esas dos fechas son la misma conversación: quién ' +
+          'responde por cada dato, quién puede verlo y qué pasa cuando está malo.',
+      },
+      {
+        tipo: 'lista',
+        titulo: 'Por qué el dato de personas es el caso difícil',
+        items: [
+          'Es el más sensible del servicio: salud, remuneraciones, evaluaciones, denuncias.',
+          'Vive repartido entre el sistema de personal, planillas y correos.',
+          'Tiene titular: la persona puede pedir acceder a sus datos y corregirlos.',
+          'Y cuando está malo, el error no sale en un informe: sale en la vida de alguien.',
+        ],
+      },
+      {
+        tipo: 'parrafo',
+        texto:
+          'Ahora, a practicar: las dos actividades que siguen muestran en carne propia por qué ' +
+          'esto importa. Se hacen entre todos, a mano alzada.',
+      },
+    ],
+  },
+
+  {
+    id: 'roles-datos',
+    grupo: 'gobernanza',
+    icono: '🧑‍⚖️',
+    titulo: '¿Quién responde por este dato?',
+    subtitulo: 'los roles de la gobernanza',
+    interactivo: 'rolesDatos',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'La gobernanza de datos se sostiene en roles claros, y el PMG-MEI exige a CONAF ' +
+          'formalizar al menos dos. Primero conocemos los tres. Después voy a leer cinco ' +
+          'situaciones y, antes de que yo toque nada, la sala vota: ¿a quién le toca actuar?',
+      },
+    ],
+  },
+
+  {
+    id: 'madurez-datos',
+    grupo: 'gobernanza',
+    icono: '📏',
+    titulo: '¿Qué tan maduros son tus datos?',
+    subtitulo: 'censo de la gerencia',
+    interactivo: 'madurezDatos',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Cinco preguntas de sí o no sobre esta gerencia. No es un test individual: lo vamos a ' +
+          'responder entre todos, a mano alzada, y marco lo que diga la mayoría. El resultado que ' +
+          'salga en pantalla es el diagnóstico de la Gerencia de Desarrollo de las Personas, no ' +
+          'el de nadie en particular.',
       },
     ],
   },
@@ -165,7 +261,7 @@ export const secciones = [
     grupo: 'lab',
     icono: '✍️',
     titulo: 'Pídelo bien',
-    subtitulo: 'NÚCLEO · ~6 min · la única habilidad que importa hoy',
+    subtitulo: 'la única habilidad que importa hoy',
     interactivo: 'prompt',
     bloques: [
       {
@@ -179,12 +275,30 @@ export const secciones = [
     ],
   },
 
+  // ===================== LABORATORIO · OPCIONALES =====================
+  {
+    id: 'sube-nivel',
+    grupo: 'lab',
+    icono: '📈',
+    titulo: 'De "necesito unos datos" a un dato que sirve',
+    subtitulo: 'el mismo encargo, tres niveles',
+    interactivo: 'subeNivel',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Tres versiones del mismo encargo. Voy moviendo el control y ustedes me dicen en cuál ' +
+          'empezarían a confiar.',
+      },
+    ],
+  },
+
   {
     id: 'detective',
     grupo: 'lab',
     icono: '🕵️',
     titulo: 'Detective de alucinaciones',
-    subtitulo: 'NÚCLEO · ~6 min · caza los datos que la IA inventó',
+    subtitulo: 'caza los datos que la IA inventó',
     interactivo: 'detective',
     bloques: [
       {
@@ -217,11 +331,63 @@ export const secciones = [
   },
 
   {
+    id: 'comparar-ia',
+    grupo: 'lab',
+    icono: '🤖',
+    titulo: 'Le preguntamos a las tres',
+    subtitulo: 'misma pregunta, ChatGPT, Claude y Gemini',
+    interactivo: 'compararIA',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'La misma pregunta a las tres herramientas más usadas. No hay una correcta: hay tres ' +
+          'formas válidas, y sirven para cosas distintas.',
+      },
+    ],
+  },
+
+  // ===================== LABORATORIO · SEGUNDO NIVEL =====================
+  {
+    id: 'analisis-ley',
+    grupo: 'lab',
+    icono: '⚖️',
+    titulo: 'Una palabra lo cambia todo',
+    subtitulo: 'caso: el proceso de licencias',
+    interactivo: 'analisisLey',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Mismo documento, misma IA, casi el mismo prompt. Voy a añadir una sola palabra y el ' +
+          'análisis entero cambia de naturaleza. Antes de que la pulse: ¿qué creen que va a pasar?',
+      },
+    ],
+  },
+
+  {
+    id: 'publicos',
+    grupo: 'lab',
+    icono: '🗣️',
+    titulo: '¿Y ahora cómo se lo explico a…?',
+    subtitulo: 'al trabajador, a la jefatura, al gremio, a la Dirección del Trabajo',
+    interactivo: 'publicos',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Los hechos no se mueven; cambia a quién se le habla. Elijan ustedes a quién le ' +
+          'explicamos primero.',
+      },
+    ],
+  },
+
+  {
     id: 'privacidad',
     grupo: 'lab',
     icono: '🔒',
     titulo: 'Qué NO contarle a la IA',
-    subtitulo: 'NÚCLEO · ~7 min · el ejercicio más importante del día',
+    subtitulo: 'el ejercicio más importante del día',
     interactivo: 'privacidad',
     bloques: [
       {
@@ -248,6 +414,24 @@ export const secciones = [
           'Alguien, con toda la buena intencion del mundo y a las seis de la tarde, pega un ' +
           'párrafo en un chat de IA para que se lo redacte mejor. Dentro del párrafo va un ' +
           'diagnóstico. Vamos a ver dónde termina eso.',
+      },
+    ],
+  },
+
+  {
+    id: 'doc-accion',
+    grupo: 'lab',
+    icono: '⚙️',
+    titulo: 'Del artículo a la lista de pendientes',
+    subtitulo: 'de texto normativo a checklist',
+    interactivo: 'docAccion',
+    bloques: [
+      {
+        tipo: 'parrafo',
+        texto:
+          'Un párrafo normativo denso, y un botón. Miren lo que devuelve — y fíjense sobre todo ' +
+          'en una cosa: para hacer esto no le pegamos ni un dato del caso. Le pegamos el texto de ' +
+          'la norma, no el expediente.',
       },
     ],
   },
@@ -374,7 +558,7 @@ export const secciones = [
     grupo: 'lab',
     icono: '📏',
     titulo: 'Dónde se pone la raya',
-    subtitulo: 'Segundo nivel · ~5 min · esto es una neurona artificial',
+    subtitulo: 'esto es una neurona artificial',
     interactivo: 'perceptron',
     bloques: [
       {
@@ -410,7 +594,7 @@ export const secciones = [
     grupo: 'lab',
     icono: '🧠',
     titulo: 'Cuando una sola raya no alcanza',
-    subtitulo: 'Opcional · ~3 min · de una neurona a muchas, en capas',
+    subtitulo: 'de una neurona a muchas, en capas',
     interactivo: 'redNeuronal',
     bloques: [
       {
@@ -437,7 +621,7 @@ export const secciones = [
     grupo: 'lab',
     icono: '🎯',
     titulo: 'A qué le pone atención',
-    subtitulo: 'Opcional · ~4 min · el mecanismo detrás de ChatGPT. En inglés se llama "attention"',
+    subtitulo: 'el mecanismo detrás de ChatGPT. En inglés se llama "attention"',
     interactivo: 'attention',
     bloques: [
       {
@@ -455,7 +639,7 @@ export const secciones = [
     grupo: 'lab',
     icono: '🎲',
     titulo: 'Por qué sabe pero alucina',
-    subtitulo: 'Opcional · ~4 min · optimizado para sonar plausible, no para decir verdad',
+    subtitulo: 'optimizado para sonar plausible, no para decir verdad',
     interactivo: 'alucina',
     bloques: [
       {
@@ -481,9 +665,13 @@ export const secciones = [
         titulo: 'Ya no es magia. Es estadística con buenos modales.',
         texto:
           'Vieron cómo decide, por qué a veces inventa, qué no se le puede pegar y cómo pedirle ' +
-          'bien. No es poco para una mañana. Lo que sigue no lo hacemos nosotros: la próxima vez ' +
-          'que estén escribiendo el mismo párrafo por décima vez en el mes, ya saben que se puede ' +
-          'pedir de otra forma.',
+          'bien. No es poco para una mañana.',
+      },
+      {
+        tipo: 'parrafo',
+        texto:
+          'Lo que sigue no lo hacemos nosotros: la próxima vez que estén escribiendo el mismo ' +
+          'párrafo por décima vez en el mes, ya saben que se puede pedir de otra forma.',
       },
       {
         tipo: 'tarjetas',
@@ -529,188 +717,6 @@ export const secciones = [
           'Somos la Unidad de Información y Análisis. No hay que pedir hora ni mandar un memo: ' +
           'escríbannos y vemos. Y si en seis meses ninguna de las fricciones de esa lista se ' +
           'movió, tienen todo el derecho a venir a decírnoslo. Gracias por la mañana.',
-      },
-    ],
-  },
-
-  // ======= FUERA DEL RECORRIDO =======
-  // No entran en la secuencia de diapositivas. Siguen en el menu (Esc) y
-  // son accesibles por URL, por si sobra tiempo o alguien pregunta.
-
-  // ===================== DATOS DE PERSONAS =====================
-  {
-    id: 'gobernanza',
-    fuera: true,
-    grupo: 'gobernanza',
-    icono: '📊',
-    titulo: 'Por qué gobernanza, por qué ahora',
-    subtitulo: 'PMG-MEI y Ley 21.719 · dos plazos, el mismo mes',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Antes de hablar de inteligencia artificial, hablemos de su alimento: los datos. Una IA ' +
-          'alimentada con datos inconsistentes produce resultados inconsistentes, con más ' +
-          'confianza y a más velocidad. Y en esta gerencia el dato no es una superficie ni un ' +
-          'presupuesto: es una persona con nombre.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '📅',
-        titulo: 'Diciembre de 2026, dos veces',
-        texto:
-          'CONAF debe alcanzar el nivel "básico" de madurez en gestión de datos como parte del ' +
-          'PMG-MEI. Y en el mismo mes entra en vigencia la Ley 21.719 sobre protección de datos ' +
-          'personales. Para esta gerencia esas dos fechas son la misma conversación: quién ' +
-          'responde por cada dato, quién puede verlo y qué pasa cuando está malo.',
-      },
-      {
-        tipo: 'lista',
-        titulo: 'Por qué el dato de personas es el caso difícil',
-        items: [
-          'Es el más sensible del servicio: salud, remuneraciones, evaluaciones, denuncias.',
-          'Vive repartido entre el sistema de personal, planillas y correos.',
-          'Tiene titular: la persona puede pedir acceder a sus datos y corregirlos.',
-          'Y cuando está malo, el error no sale en un informe: sale en la vida de alguien.',
-        ],
-      },
-      {
-        tipo: 'parrafo',
-        texto:
-          'Ahora, a practicar: las dos actividades que siguen muestran en carne propia por qué ' +
-          'esto importa. Se hacen entre todos, a mano alzada.',
-      },
-    ],
-  },
-
-  {
-    id: 'roles-datos',
-    fuera: true,
-    grupo: 'gobernanza',
-    icono: '🧑‍⚖️',
-    titulo: '¿Quién responde por este dato?',
-    subtitulo: 'NÚCLEO · Actividad 1 · ~6 min · los roles de la gobernanza',
-    interactivo: 'rolesDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'La gobernanza de datos se sostiene en roles claros, y el PMG-MEI exige a CONAF ' +
-          'formalizar al menos dos. Primero conocemos los tres. Después voy a leer cinco ' +
-          'situaciones y, antes de que yo toque nada, la sala vota: ¿a quién le toca actuar?',
-      },
-    ],
-  },
-
-  {
-    id: 'madurez-datos',
-    fuera: true,
-    grupo: 'gobernanza',
-    icono: '📏',
-    titulo: '¿Qué tan maduros son tus datos?',
-    subtitulo: 'Opcional · Actividad 2 · ~5 min · censo de la gerencia',
-    interactivo: 'madurezDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Cinco preguntas de sí o no sobre esta gerencia. No es un test individual: lo vamos a ' +
-          'responder entre todos, a mano alzada, y marco lo que diga la mayoría. El resultado que ' +
-          'salga en pantalla es el diagnóstico de la Gerencia de Desarrollo de las Personas, no ' +
-          'el de nadie en particular.',
-      },
-    ],
-  },
-
-  {
-    id: 'doc-accion',
-    fuera: true,
-    grupo: 'lab',
-    icono: '⚙️',
-    titulo: 'Del artículo a la lista de pendientes',
-    subtitulo: 'NÚCLEO · ~4 min · de texto normativo a checklist',
-    interactivo: 'docAccion',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Un párrafo normativo denso, y un botón. Miren lo que devuelve — y fíjense sobre todo ' +
-          'en una cosa: para hacer esto no le pegamos ni un dato del caso. Le pegamos el texto de ' +
-          'la norma, no el expediente.',
-      },
-    ],
-  },
-
-  // ===================== LABORATORIO · SEGUNDO NIVEL =====================
-  {
-    id: 'analisis-ley',
-    fuera: true,
-    grupo: 'lab',
-    icono: '⚖️',
-    titulo: 'Una palabra lo cambia todo',
-    subtitulo: 'Segundo nivel · ~4 min · caso: el proceso de licencias',
-    interactivo: 'analisisLey',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Mismo documento, misma IA, casi el mismo prompt. Voy a añadir una sola palabra y el ' +
-          'análisis entero cambia de naturaleza. Antes de que la pulse: ¿qué creen que va a pasar?',
-      },
-    ],
-  },
-
-  // ===================== LABORATORIO · OPCIONALES =====================
-  {
-    id: 'sube-nivel',
-    fuera: true,
-    grupo: 'lab',
-    icono: '📈',
-    titulo: 'De "necesito unos datos" a un dato que sirve',
-    subtitulo: 'Opcional · ~3 min · el mismo encargo, tres niveles',
-    interactivo: 'subeNivel',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Tres versiones del mismo encargo. Voy moviendo el control y ustedes me dicen en cuál ' +
-          'empezarían a confiar.',
-      },
-    ],
-  },
-
-  {
-    id: 'comparar-ia',
-    fuera: true,
-    grupo: 'lab',
-    icono: '🤖',
-    titulo: 'Le preguntamos a las tres',
-    subtitulo: 'Opcional · ~3 min · misma pregunta, ChatGPT, Claude y Gemini',
-    interactivo: 'compararIA',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'La misma pregunta a las tres herramientas más usadas. No hay una correcta: hay tres ' +
-          'formas válidas, y sirven para cosas distintas.',
-      },
-    ],
-  },
-
-  {
-    id: 'publicos',
-    fuera: true,
-    grupo: 'lab',
-    icono: '🗣️',
-    titulo: '¿Y ahora cómo se lo explico a…?',
-    subtitulo: 'Opcional · ~4 min · al trabajador, a la jefatura, al gremio, a la Dirección del Trabajo',
-    interactivo: 'publicos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Los hechos no se mueven; cambia a quién se le habla. Elijan ustedes a quién le ' +
-          'explicamos primero.',
       },
     ],
   },

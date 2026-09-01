@@ -3,13 +3,24 @@ import { useTaller } from '../taller/contexto'
 
 // Ejercicio "detective de alucinaciones": el usuario marca las frases que cree
 // falsas; al comprobar, se revela cuáles eran inventadas y por qué.
-export default function Detective() {
+export default function Detective({ paso }) {
+  // En sala, una frase por diapositiva: se lee, la sala vota con el pulgar, se
+  // marca, y al avanzar se revela. La ultima diapositiva es el marcador.
+  const enSala = paso != null
   const { detective } = useTaller()
   const [marcadas, setMarcadas] = useState({})
-  const [revelado, setRevelado] = useState(false)
+  const [revelarTodo, setRevelarTodo] = useState(false)
+  const [revelados, setRevelados] = useState({})
 
   const toggle = (i) => {
-    if (revelado) return
+    if (enSala) {
+      // Primer clic marca, segundo revela: el ritmo lo lleva quien conduce.
+      if (revelados[i]) return
+      if (marcadas[i] === undefined) setMarcadas((m) => ({ ...m, [i]: true }))
+      else setRevelados((r) => ({ ...r, [i]: true }))
+      return
+    }
+    if (revelarTodo) return
     setMarcadas((m) => ({ ...m, [i]: !m[i] }))
   }
 
@@ -25,8 +36,10 @@ export default function Detective() {
 
       <ul className="detective__lista">
         {detective.frases.map((f, i) => {
+          if (enSala && i !== paso) return null
           const marcada = !!marcadas[i]
-          // En revelado, marca dónde el juicio del usuario discrepó de la realidad.
+          // En sala cada frase se revela en su propia diapositiva, al pulsar.
+          const revelado = enSala ? !!revelados[i] : revelarTodo
           const discrepa = revelado && Boolean(f.falsa) !== marcada
           let clase = 'detective__frase'
           if (revelado) {
@@ -60,11 +73,12 @@ export default function Detective() {
         })}
       </ul>
 
-      {!revelado ? (
-        <button className="btn btn--primary" onClick={() => setRevelado(true)}>
+      {!enSala && !revelarTodo ? (
+        <button className="btn btn--primary" onClick={() => setRevelarTodo(true)}>
           🔍 Comprobar mis sospechas
         </button>
       ) : (
+        (!enSala || paso >= detective.frases.length) && (
         <div className="detective__resultado">
           <p className="detective__score">
             🎯 Cazaste <strong>{cazadas} de {totalFalsas}</strong> mentiras.
@@ -89,16 +103,20 @@ export default function Detective() {
           <button
             className="btn"
             onClick={() => {
-              setRevelado(false)
+              setRevelarTodo(false)
+              setRevelados({})
               setMarcadas({})
             }}
           >
             ↺ Reintentar
           </button>
         </div>
+        )
       )}
 
-      <p className="detective__leccion">💡 {detective.leccion}</p>
+      {(!enSala || paso >= detective.frases.length) && (
+        <p className="detective__leccion">💡 {detective.leccion}</p>
+      )}
     </div>
   )
 }

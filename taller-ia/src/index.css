@@ -310,7 +310,10 @@ button { font-family: inherit; cursor: pointer; }
    App.css (reescalar los tokens --fs-* solo alcanzaria a 9 de 165), y deja el
    menu lateral a tamano nativo, asi que no hace falta abrir el cajon movil.
    ========================================================================= */
-:root[data-proyeccion] .contenido {
+/* En presentacion el zoom lo calcula App.jsx midiendo cada diapositiva, para
+   garantizar que quepa. Este valor fijo solo aplica al modo proyeccion suelto
+   (?proyeccion sobre el taller general), donde si hay scroll y no pasa nada. */
+:root[data-proyeccion]:not([data-presentacion]) .contenido {
   zoom: 2;
 }
 :root[data-proyeccion] .seccion {
@@ -433,7 +436,47 @@ button { font-family: inherit; cursor: pointer; }
    justo lo que el avance por pasos venia a evitar. A esa resolucion el
    texto ya es grande de sobra con 1.5. Comprobado capturando a 1024. */
 @media (max-width: 1280px) {
-  :root[data-proyeccion] .contenido {
+  :root[data-proyeccion]:not([data-presentacion]) .contenido {
     zoom: 1.5;
+  }
+}
+
+/* En presentacion el hero es una portada, no un parrafo: la ilustracion estorba
+   y el relleno sobra. Sin esto llega al suelo del ajuste automatico y desborda. */
+:root[data-presentacion] .hero {
+  padding: clamp(20px, 3vw, 36px);
+}
+:root[data-presentacion] .hero__ilustracion {
+  display: none;
+}
+:root[data-presentacion] .hero__texto {
+  max-width: 34ch;
+}
+
+/* Proyectores de poca altura (768 y similares): la cabecera de seccion se come
+   una parte grande de la pantalla y deja sin sitio a los interactivos. Aqui se
+   compacta, que es mejor que encoger el contenido util. */
+@media (max-height: 820px) {
+  :root[data-presentacion] .seccion__cabecera {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    gap: 10px;
+  }
+  :root[data-presentacion] .seccion__icono-grande {
+    font-size: 26px;
+  }
+  :root[data-presentacion] .seccion__sub {
+    display: none;
+  }
+  :root[data-presentacion] .progreso {
+    margin: -4px 0 8px;
+  }
+  :root[data-presentacion] .contenido {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  :root[data-presentacion] .seccion__nav {
+    margin-top: 10px;
+    padding-top: 8px;
   }
 }

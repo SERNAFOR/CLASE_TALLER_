@@ -3,7 +3,10 @@ import { useTaller } from '../taller/contexto'
 
 // Actividad de gobernanza G3: autodiagnóstico exprés de madurez de datos.
 // 5 preguntas sí/no → nivel (Inicial / En desarrollo / Básico logrado).
-export default function MadurezDatos() {
+export default function MadurezDatos({ paso }) {
+  // En sala, una pregunta por diapositiva: se levanta la mano, se marca lo que
+  // diga la mayoria, y se pasa. La ultima diapositiva es el resultado.
+  const enSala = paso != null
   const { madurezDatos } = useTaller()
   const [respuestas, setRespuestas] = useState({}) // idx → true (sí) / false (no)
   const [resultado, setResultado] = useState(false)
@@ -21,7 +24,8 @@ export default function MadurezDatos() {
   return (
     <div className="mdatos">
       <ol className="mdatos__preguntas">
-        {madurezDatos.preguntas.map((p, i) => (
+        {madurezDatos.preguntas.map((p, i) =>
+          enSala && i !== paso ? null : (
           <li key={i} className="mdatos__pregunta">
             <span className="mdatos__texto">{p}</span>
             <span className="mdatos__opciones">
@@ -38,19 +42,24 @@ export default function MadurezDatos() {
                 No
               </button>
             </span>
-          </li>
-        ))}
+            </li>
+          ),
+        )}
       </ol>
 
-      <button
-        className="btn btn--primary"
-        onClick={() => setResultado(true)}
-        disabled={contestadas < total || resultado}
-      >
-        {contestadas < total ? `Responde las ${total} preguntas (${contestadas}/${total})` : '📏 Ver mi resultado'}
-      </button>
+      {!enSala && (
+        <button
+          className="btn btn--primary"
+          onClick={() => setResultado(true)}
+          disabled={contestadas < total || resultado}
+        >
+          {contestadas < total
+            ? `Responde las ${total} preguntas (${contestadas}/${total})`
+            : '📏 Ver mi resultado'}
+        </button>
+      )}
 
-      {resultado && nivel && (
+      {(enSala ? paso >= total && nivel : resultado && nivel) && (
         <div className="mdatos__resultado">
           <div className="mdatos__nivel">
             <span className="mdatos__nivel-icono">{nivel.icono}</span>
@@ -65,7 +74,9 @@ export default function MadurezDatos() {
         </div>
       )}
 
-      <p className="mdatos__leccion">💡 {madurezDatos.leccion}</p>
+      {(!enSala || paso >= total) && (
+        <p className="mdatos__leccion">💡 {madurezDatos.leccion}</p>
+      )}
     </div>
   )
 }

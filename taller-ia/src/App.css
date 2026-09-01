@@ -2832,3 +2832,16 @@
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Las frases del Detective y los tokens de Privacidad son <button> que se
+   deshabilitan al revelarse. Sin un color explicito, el navegador les aplica el
+   gris de "deshabilitado" —rgba(16,16,16,.3)— y la frase revelada, que es
+   justo la que hay que leer, se vuelve ilegible. Proyectada, invisible. */
+.detective__frase,
+.detective__frase:disabled,
+.privacidad__dato,
+.privacidad__dato:disabled {
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  opacity: 1;
+}

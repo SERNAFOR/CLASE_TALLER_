@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import './App.css'
 import { useTaller } from './taller/contexto'
 import Bloque from './components/Bloque'
@@ -56,6 +56,16 @@ const BADGES = {
 // Reparte los bloques de una seccion en pasos de diapositiva. Un bloque con
 // `conAnterior: true` aparece en el mismo paso que el de arriba, para pares que
 // no tienen sentido separados.
+// Los interactivos con lista larga ocupan UNA diapositiva por pregunta: en una
+// sala se lee una, se vota, se revela, y se pasa. Los que no estan aqui ocupan
+// una sola diapositiva. Solo aplica en modo presentacion.
+const SUBPASOS = {
+  rolesDatos: (d) => d.rolesDatos.situaciones.length + 1,
+  termometro: (d) => d.termometro.situaciones.length + 1,
+  detective: (d) => d.detective.frases.length + 1,
+  madurezDatos: (d) => d.madurezDatos.preguntas.length + 1,
+}
+
 function repartirPasos(bloques) {
   const de = []
   let n = -1
@@ -67,7 +77,8 @@ function repartirPasos(bloques) {
 }
 
 function App({ seccionInicial, proyeccion }) {
-  const { secciones, marca, grupos } = useTaller()
+  const datos = useTaller()
+  const { secciones, marca, grupos } = datos
   const [activa, setActiva] = useState(() =>
     seccionInicial && secciones.some((s) => s.id === seccionInicial)
       ? seccionInicial
@@ -117,8 +128,10 @@ function App({ seccionInicial, proyeccion }) {
   }
 
   // Cuantas diapositivas tiene una seccion: un paso por bloque (salvo los
-  // agrupados) mas uno para el interactivo, si lo hay.
-  const pasosDe = (s) => repartirPasos(s.bloques).total + (s.interactivo ? 1 : 0)
+  // agrupados) mas los que ocupe el interactivo.
+  const subpasosDe = (id) => (presentacion && SUBPASOS[id] ? SUBPASOS[id](datos) : 1)
+  const pasosDe = (s) =>
+    repartirPasos(s.bloques).total + (s.interactivo ? subpasosDe(s.interactivo) : 0)
 
   // PageUp/PageDown y flechas recorren las secciones en orden. Es lo que manda
   // un presentador inalámbrico, y despega al facilitador del notebook.
@@ -175,6 +188,63 @@ function App({ seccionInicial, proyeccion }) {
   const Interactivo = seccion.interactivo ? INTERACTIVOS[seccion.interactivo] : null
 
   // Progreso dentro del Laboratorio (para la barra divulgativa).
+  // GARANTIA DE QUE NADA DESBORDA. Con "una diapositiva = un bloque" casi todo
+  // cabe, pero un interactivo largo puede seguir sin caber. Aqui se mide lo que
+  // hay en pantalla y se encoge hasta que entre: asi "no hace falta scroll" es
+  // un hecho medido, no una esperanza. El taller general no pasa por aqui.
+  const contenidoRef = useRef(null)
+  useLayoutEffect(() => {
+    if (!presentacion) return
+    const el = contenidoRef.current
+    if (!el) return
+    const ajustar = () => {
+      const seccionEl = el.querySelector('.seccion')
+      if (!seccionEl) return
+      const cs = getComputedStyle(el)
+      // COMPROBADO: scrollHeight de la seccion NO depende del zoom del padre
+      // (454 / 453 / 459 px a zoom 1, 2 y 0.5), mientras que el rect si. Por eso
+      // se puede medir sin resetear el zoom antes — y hacerlo era justo lo que
+      // provocaba medir a medio camino y aplicar un zoom equivocado.
+      const relleno = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)
+      const natural = seccionEl.scrollHeight + relleno
+      const disponible = window.innerHeight - el.getBoundingClientRect().top - 16
+      if (!natural || disponible <= 0) return
+
+      // Base generosa en pantallas grandes. El suelo NO es un numero fijo: lo
+      // que importa es que el texto ocupe una fraccion legible de la ALTURA de
+      // la pantalla, no un tamano absoluto en pixeles.
+      const base = window.innerWidth >= 1600 ? 2 : 1.5
+      const suelo = Math.max(0.45, (window.innerHeight / 1080) * 0.6)
+      const z = Math.max(suelo, Math.min(base, disponible / natural))
+      const nuevo = z.toFixed(3)
+      if (el.style.zoom !== nuevo) el.style.zoom = nuevo
+
+      // Si ni con el suelo cabe, esa diapositiva tiene demasiado contenido y hay
+      // que partirla, no encogerla mas. Se avisa en vez de callarlo.
+      if (import.meta.env.DEV && natural * z > disponible + 2) {
+        console.warn(
+          '[presentacion] no cabe ni al minimo:',
+          seccion.id,
+          'paso',
+          paso,
+          Math.ceil(natural * z - disponible) + 'px de mas',
+        )
+      }
+    }
+    ajustar()
+    window.addEventListener('resize', ajustar)
+    // Y cuando cambia el contenido SIN que App re-renderice: al revelar el
+    // feedback de una pregunta crece la diapositiva, y ese estado vive dentro
+    // del componente hijo.
+    const obs = new ResizeObserver(ajustar)
+    const seccionEl = el.querySelector('.seccion')
+    if (seccionEl) obs.observe(seccionEl)
+    return () => {
+      window.removeEventListener('resize', ajustar)
+      obs.disconnect()
+    }
+  })
+
   const reparto = repartirPasos(seccion.bloques)
   const idxRecorrido = recorrido.findIndex((s) => s.id === activa)
   const lab = secciones.filter((s) => s.grupo === 'lab')
@@ -278,7 +348,7 @@ function App({ seccionInicial, proyeccion }) {
 
       {menuAbierto && <div className="overlay" onClick={() => setMenuAbierto(false)} />}
 
-      <main className="contenido">
+      <main className="contenido" ref={contenidoRef}>
         <div className="seccion">
           <header className="seccion__cabecera">
             <span className="seccion__icono-grande">{seccion.icono}</span>
@@ -322,12 +392,17 @@ function App({ seccionInicial, proyeccion }) {
           )}
 
           {seccion.bloques.map((b, i) =>
-            presentacion && reparto.de[i] > paso ? null : (
+            presentacion && reparto.de[i] !== paso ? null : (
               <Bloque key={i} bloque={b} ir={ir} />
             ),
           )}
 
-          {Interactivo && (!presentacion || paso >= reparto.total) && <Interactivo />}
+          {Interactivo &&
+            (!presentacion ? (
+              <Interactivo />
+            ) : (
+              paso >= reparto.total && <Interactivo paso={paso - reparto.total} />
+            ))}
 
           <Navegacion activa={activa} ir={ir} recorrido={recorrido} />
         </div>
