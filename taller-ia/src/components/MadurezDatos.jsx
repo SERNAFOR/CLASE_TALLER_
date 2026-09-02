@@ -23,6 +23,12 @@ export default function MadurezDatos({ paso }) {
 
   return (
     <div className="mdatos">
+      {enSala && paso < total && (
+        <p className="actividad__contador">
+          Pregunta {paso + 1} de {total}
+        </p>
+      )}
+
       <ol className="mdatos__preguntas">
         {madurezDatos.preguntas.map((p, i) =>
           enSala && i !== paso ? null : (

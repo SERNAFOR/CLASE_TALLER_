@@ -512,3 +512,16 @@ button { font-family: inherit; cursor: pointer; }
 :root[data-presentacion] .seccion:not([data-remate]) [class$="__remate"] {
   display: none;
 }
+
+/* Contador dentro de una actividad paginada. Sin el, un texto que habla de "las
+   ocho frases" contradice a la pantalla, que muestra una. */
+.actividad__contador {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+:root:not([data-presentacion]) .actividad__contador {
+  display: none;
+}

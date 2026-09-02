@@ -583,7 +583,7 @@ export const subeNivel = {
 // una frase marcada como verdadera tiene un error, alguien lo va a decir en voz
 // alta y el taller se acaba ahí.
 export const detective = {
-  intro: 'Resumen sobre tramitación de licencias médicas, generado por IA. Tres frases son inventadas. ¿Cuáles?',
+  intro: 'Resumen sobre tramitación de licencias médicas, generado por IA. De las 8 frases, 3 son inventadas.',
   frases: [
     {
       texto: 'La entidad que autoriza la licencia puede rechazarla, reducir el reposo o ampliarlo.',
@@ -853,6 +853,7 @@ export const compararIA = {
 
 // ACTIVIDAD G1 — "¿Quién responde por este dato?".
 export const rolesDatos = {
+  etiquetaItem: 'Situación',
   roles: [
     { id: 'dueno', nombre: 'Dueño del dato', icono: '👑', desc: 'Del negocio: define qué significa el dato de personas, para qué se puede usar y quién accede. Y responde con nombre cuando alguien pide corregirlo.' },
     { id: 'custodio', nombre: 'Custodio técnico', icono: '🛠️', desc: 'De informática: administra el sistema donde vive el dato, los respaldos, los perfiles de acceso y el registro de quién entra.' },
@@ -1129,6 +1130,7 @@ export const fuga = {
 // "Verde, ámbar, rojo": el termómetro de riesgo. Reutiliza el componente de
 // quiz de opciones, el mismo de "¿Quién responde por este dato?".
 export const termometro = {
+  etiquetaItem: 'Tarea',
   roles: [
     {
       id: 'verde',

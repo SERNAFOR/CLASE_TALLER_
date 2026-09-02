@@ -39,6 +39,12 @@ export default function QuizOpciones({ datos, paso }) {
       </div>
       )}
 
+      {enSala && paso < datos.situaciones.length && (
+        <p className="actividad__contador">
+          {datos.etiquetaItem ?? 'Situación'} {paso + 1} de {datos.situaciones.length}
+        </p>
+      )}
+
       <div className="rdatos__situaciones">
         {datos.situaciones.map((s, i) => {
           if (enSala && i !== paso) return null

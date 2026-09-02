@@ -33,6 +33,14 @@ export default function Detective({ paso }) {
   return (
     <div className="detective">
       <p className="detective__intro">{detective.intro}</p>
+      {/* Sin contador, un texto que habla de "las ocho frases" contradice a la
+          pantalla, que muestra una. El contador las reconcilia y de paso orienta
+          a la sala: se sabe cuanto falta. */}
+      {enSala && paso < detective.frases.length && (
+        <p className="actividad__contador">
+          Frase {paso + 1} de {detective.frases.length}
+        </p>
+      )}
 
       <ul className="detective__lista">
         {detective.frases.map((f, i) => {
