@@ -129,7 +129,10 @@ function App({ seccionInicial, proyeccion }) {
 
   // Cuantas diapositivas tiene una seccion: un paso por bloque (salvo los
   // agrupados) mas los que ocupe el interactivo.
-  const subpasosDe = (id) => (presentacion && SUBPASOS[id] ? SUBPASOS[id](datos) : 1)
+  // En presentacion toda actividad tiene un paso final de REMATE, donde recien
+  // aparece la leccion. Las paginadas ya lo traen en su cuenta; las demas pasan
+  // de 1 a 2 pasos: primero la actividad, despues la conclusion.
+  const subpasosDe = (id) => (presentacion ? (SUBPASOS[id] ? SUBPASOS[id](datos) : 2) : 1)
   const pasosDe = (s) =>
     repartirPasos(s.bloques).total + (s.interactivo ? subpasosDe(s.interactivo) : 0)
 
@@ -218,6 +221,15 @@ function App({ seccionInicial, proyeccion }) {
       const z = Math.max(suelo, Math.min(base, disponible / natural))
       const nuevo = z.toFixed(3)
       if (el.style.zoom !== nuevo) el.style.zoom = nuevo
+
+      // Segunda pasada correctiva. La formula de `disponible` es un modelo del
+      // layout, y un modelo siempre se queda corto por algun margen. En vez de
+      // afinarlo a ciegas, se mide el RESULTADO real y se corrige si sobresale.
+      const sobra = document.documentElement.scrollHeight - window.innerHeight
+      if (sobra > 0 && z > suelo) {
+        const corregido = Math.max(suelo, z * (disponible / (disponible + sobra)))
+        el.style.zoom = corregido.toFixed(3)
+      }
 
       // Si ni con el suelo cabe, esa diapositiva tiene demasiado contenido y hay
       // que partirla, no encogerla mas. Se avisa en vez de callarlo.
@@ -349,7 +361,7 @@ function App({ seccionInicial, proyeccion }) {
       {menuAbierto && <div className="overlay" onClick={() => setMenuAbierto(false)} />}
 
       <main className="contenido" ref={contenidoRef}>
-        <div className="seccion">
+        <div className="seccion" data-remate={presentacion && paso === pasosDe(seccion) - 1 ? '' : undefined}>
           <header className="seccion__cabecera">
             <span className="seccion__icono-grande">{seccion.icono}</span>
             <div>
@@ -401,7 +413,17 @@ function App({ seccionInicial, proyeccion }) {
             (!presentacion ? (
               <Interactivo />
             ) : (
-              paso >= reparto.total && <Interactivo paso={paso - reparto.total} />
+              paso >= reparto.total && (
+                <>
+                  {seccion.consigna && (
+                    <p className="actividad__consigna">
+                      <span aria-hidden="true">{seccion.consigna.icono ?? '✋'}</span>{' '}
+                      {seccion.consigna.texto}
+                    </p>
+                  )}
+                  <Interactivo paso={paso - reparto.total} />
+                </>
+              )
             ))}
 
           <Navegacion activa={activa} ir={ir} recorrido={recorrido} />

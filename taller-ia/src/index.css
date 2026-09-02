@@ -479,4 +479,36 @@ button { font-family: inherit; cursor: pointer; }
     margin-top: 10px;
     padding-top: 8px;
   }
+  /* La consigna sigue siendo lo primero que se lee, pero ocupando menos. */
+  :root[data-presentacion] .actividad__consigna {
+    font-size: 15px;
+    padding: 8px 14px;
+    margin-bottom: 10px;
+  }
+}
+
+/* ============================================================================
+   PEDAGOGIA DE LA DIAPOSITIVA
+   1. La consigna va en la MISMA pantalla que la actividad. Si estan separadas,
+      la sala lee la descripcion de algo que todavia no ve.
+   2. La leccion no aparece hasta el paso de remate: dar la conclusion antes de
+      preguntar convierte el ejercicio en una lectura.
+   ========================================================================= */
+:root[data-presentacion] .actividad__consigna {
+  margin: 0 0 16px;
+  padding: 12px 18px;
+  border-left: 6px solid var(--warning);
+  border-radius: 10px;
+  background: var(--warning-soft);
+  color: var(--warning-ink);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+}
+:root:not([data-presentacion]) .actividad__consigna {
+  display: none;
+}
+:root[data-presentacion] .seccion:not([data-remate]) [class$="__leccion"],
+:root[data-presentacion] .seccion:not([data-remate]) [class$="__remate"] {
+  display: none;
 }

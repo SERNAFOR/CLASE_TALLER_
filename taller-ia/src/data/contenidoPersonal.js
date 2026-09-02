@@ -85,16 +85,9 @@ export const secciones = [
     icono: '🧑‍⚖️',
     titulo: '¿Quién responde por este dato?',
     subtitulo: 'los roles de la gobernanza',
+    consigna: { icono: '👑', texto: '¿A quién le toca actuar? Levanten la tarjeta.' },
     interactivo: 'rolesDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'La gobernanza de datos se sostiene en roles claros, y el PMG-MEI exige a CONAF ' +
-          'formalizar al menos dos. Primero conocemos los tres. Después voy a leer cinco ' +
-          'situaciones y, antes de que yo toque nada, la sala vota: ¿a quién le toca actuar?',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -103,17 +96,9 @@ export const secciones = [
     icono: '📏',
     titulo: '¿Qué tan maduros son tus datos?',
     subtitulo: 'censo de la gerencia',
+    consigna: { icono: '✋', texto: 'Sí o no, a mano alzada. Marco lo que diga la mayoría.' },
     interactivo: 'madurezDatos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Cinco preguntas de sí o no sobre esta gerencia. No es un test individual: lo vamos a ' +
-          'responder entre todos, a mano alzada, y marco lo que diga la mayoría. El resultado que ' +
-          'salga en pantalla es el diagnóstico de la Gerencia de Desarrollo de las Personas, no ' +
-          'el de nadie en particular.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -169,23 +154,9 @@ export const secciones = [
     icono: '⏱️',
     titulo: 'Lo que cuesta hacerlo a mano',
     subtitulo: 'La misma tarea, con y sin IA, con los relojes a la vista',
+    consigna: { icono: '⏱️', texto: '¿Cuánto creen que cuesta hacer esto a mano? Miren los dos relojes.' },
     interactivo: 'cronometro',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Una tarea real de esta gerencia, de las que se hacen varias veces al mes. A la ' +
-          'izquierda, cómo se hace hoy. A la derecha, con IA. Voy a poner los dos relojes en ' +
-          'marcha y los miramos correr.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '👀',
-        titulo: 'Miren el reloj de la derecha cuando termine de redactar',
-        texto:
-          'No se para. Sigue corriendo un rato más. Ese tramo tiene nombre y es el que importa.',
-      },
-    ],
+    bloques: [],
   },
 
   // ===================== LABORATORIO · NÚCLEO =====================
@@ -195,17 +166,9 @@ export const secciones = [
     icono: '✍️',
     titulo: 'Pídelo bien',
     subtitulo: 'la única habilidad que importa hoy',
+    consigna: { icono: '🗣️', texto: '¿Qué le falta a esta instrucción? Grítenmelo y lo escribo.' },
     interactivo: 'prompt',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Esto lo armamos entre todos. Parto con una instrucción floja y el medidor va a marcar ' +
-          'lo que le falta. Ustedes me gritan qué agregar —quién debe ser, cuánto, sobre qué y en ' +
-          'qué formato— y yo escribo. Cuando lleguemos a cuatro de cuatro, ese prompt sirve tal ' +
-          'cual el lunes.',
-      },
-    ],
+    bloques: [],
   },
 
   // ===================== LABORATORIO · OPCIONALES =====================
@@ -215,15 +178,9 @@ export const secciones = [
     icono: '📈',
     titulo: 'De "necesito unos datos" a un dato que sirve',
     subtitulo: 'el mismo encargo, tres niveles',
+    consigna: { icono: '🤔', texto: 'Tres formas de pedir lo mismo. ¿En cuál empezarían a confiar?' },
     interactivo: 'subeNivel',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Tres versiones del mismo encargo. Voy moviendo el control y ustedes me dicen en cuál ' +
-          'empezarían a confiar.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -232,17 +189,9 @@ export const secciones = [
     icono: '🕵️',
     titulo: 'Detective de alucinaciones',
     subtitulo: 'caza los datos que la IA inventó',
+    consigna: { icono: '👍', texto: '¿Verdad o inventado? Pulgar arriba o abajo.' },
     interactivo: 'detective',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Abajo hay un resumen sobre licencias médicas generado por IA. La mayoría es correcto, ' +
-          'pero tres frases traen datos inventados. Voy a leerlas una por una: pulgar arriba si ' +
-          'creen que es verdad, pulgar abajo si creen que la IA la inventó. Marco lo que diga la ' +
-          'sala y después comprobamos.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -251,16 +200,9 @@ export const secciones = [
     icono: '❄️',
     titulo: 'La bola de nieve',
     subtitulo: 'Un plazo inventado, cinco pasos después',
+    consigna: { icono: '❄️', texto: 'El plazo era falso y ya salió del chat. ¿Y ahora qué pasa?' },
     interactivo: 'cadena',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Acabamos de ver que la IA inventa datos con total seguridad. La pregunta no es si se ' +
-          'equivoca: es qué pasa después. Vamos a seguir un plazo inventado, paso a paso, y a ' +
-          'mirar cuánta gente va quedando dentro.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -269,15 +211,9 @@ export const secciones = [
     icono: '🤖',
     titulo: 'Le preguntamos a las tres',
     subtitulo: 'misma pregunta, ChatGPT, Claude y Gemini',
+    consigna: { icono: '🤖', texto: 'Tres respuestas a la misma pregunta. ¿Cuál usarían, y para qué?' },
     interactivo: 'compararIA',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'La misma pregunta a las tres herramientas más usadas. No hay una correcta: hay tres ' +
-          'formas válidas, y sirven para cosas distintas.',
-      },
-    ],
+    bloques: [],
   },
 
   // ===================== LABORATORIO · SEGUNDO NIVEL =====================
@@ -287,15 +223,9 @@ export const secciones = [
     icono: '⚖️',
     titulo: 'Una palabra lo cambia todo',
     subtitulo: 'caso: el proceso de licencias',
+    consigna: { icono: '⚖️', texto: 'Voy a añadir una sola palabra. ¿Qué creen que va a cambiar?' },
     interactivo: 'analisisLey',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Mismo documento, misma IA, casi el mismo prompt. Voy a añadir una sola palabra y el ' +
-          'análisis entero cambia de naturaleza. Antes de que la pulse: ¿qué creen que va a pasar?',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -304,15 +234,9 @@ export const secciones = [
     icono: '🗣️',
     titulo: '¿Y ahora cómo se lo explico a…?',
     subtitulo: 'al trabajador, a la jefatura, al gremio, a la Dirección del Trabajo',
+    consigna: { icono: '🗣️', texto: '¿A quién se lo explicamos primero? Ustedes eligen.' },
     interactivo: 'publicos',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Los hechos no se mueven; cambia a quién se le habla. Elijan ustedes a quién le ' +
-          'explicamos primero.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -321,16 +245,9 @@ export const secciones = [
     icono: '🔒',
     titulo: 'Qué NO contarle a la IA',
     subtitulo: 'el ejercicio más importante del día',
+    consigna: { icono: '🔒', texto: 'Griten "¡tacha!" cuando pase por algo que NO debería ir ahí.' },
     interactivo: 'privacidad',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Voy a leer en voz alta un prompt que alguien podría escribir un martes cualquiera. ' +
-          'Cuando pase por un dato que NO debería ir ahí, ustedes gritan "tacha". Ojo: no todo lo ' +
-          'que parece dato es sensible, y tachar de más deja el texto inservible.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -339,16 +256,9 @@ export const secciones = [
     icono: '💧',
     titulo: 'El dato que se escapó',
     subtitulo: 'Un diagnóstico pegado en un chat, paso a paso',
+    consigna: { icono: '💧', texto: 'El diagnóstico ya salió de la institución. ¿Hasta dónde llega?' },
     interactivo: 'fuga',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Alguien, con toda la buena intencion del mundo y a las seis de la tarde, pega un ' +
-          'párrafo en un chat de IA para que se lo redacte mejor. Dentro del párrafo va un ' +
-          'diagnóstico. Vamos a ver dónde termina eso.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -357,16 +267,9 @@ export const secciones = [
     icono: '⚙️',
     titulo: 'Del artículo a la lista de pendientes',
     subtitulo: 'de texto normativo a checklist',
+    consigna: { icono: '⚙️', texto: '¿Cuántos pasos concretos creen que saca de este párrafo?' },
     interactivo: 'docAccion',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Un párrafo normativo denso, y un botón. Miren lo que devuelve — y fíjense sobre todo ' +
-          'en una cosa: para hacer esto no le pegamos ni un dato del caso. Le pegamos el texto de ' +
-          'la norma, no el expediente.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -375,16 +278,9 @@ export const secciones = [
     icono: '🌡️',
     titulo: 'Verde, ámbar, rojo',
     subtitulo: 'Dónde sí, dónde con cuidado, y dónde no',
+    consigna: { icono: '🌡️', texto: '¿Verde, ámbar o rojo? Levanten la tarjeta.' },
     interactivo: 'termometro',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Seis tareas de esta gerencia. Para cada una, ustedes levantan la tarjeta del color ' +
-          'que crean: verde si la IA puede hacerla, ámbar si puede pero hay que revisarla, rojo ' +
-          'si no debería tocarla. Voy marcando lo que diga la mayoría.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -504,34 +400,9 @@ export const secciones = [
     icono: '📏',
     titulo: 'Dónde se pone la raya',
     subtitulo: 'esto es una neurona artificial',
+    consigna: { icono: '📏', texto: '¿Dónde pondrían ustedes la raya para separar los dos colores?' },
     interactivo: 'perceptron',
-    bloques: [
-      {
-        tipo: 'destacado',
-        icono: '🔧',
-        titulo: 'Se llama perceptrón y suena a nave espacial',
-        texto:
-          'Es una raya en un plano que separa dos grupos. Eso es todo. En dos minutos van a poder ' +
-          'moverla ustedes, sin leer una sola fórmula — el detalle técnico queda plegado para ' +
-          'quien lo quiera.',
-      },
-      {
-        tipo: 'parrafo',
-        texto:
-          'Abajo hay dos grupos de puntos y una raya. Muevan los controles y miren cómo la raya ' +
-          'se inclina y se desplaza. Cuando separe bien los dos colores, el marcador lo dice. ' +
-          'Después dejen que aprenda sola.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '🤝',
-        titulo: 'Esto es lo que ustedes hacen a mano',
-        texto:
-          'Cada vez que arman una terna están poniendo una raya: de aquí para allá pasa, de aquí ' +
-          'para acá no. La diferencia es que ustedes pueden explicar por qué la pusieron ahí, y ' +
-          'la máquina no. Por eso la decisión sobre personas es humana y fundada.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -540,25 +411,9 @@ export const secciones = [
     icono: '🧠',
     titulo: 'Cuando una sola raya no alcanza',
     subtitulo: 'de una neurona a muchas, en capas',
+    consigna: { icono: '🧠', texto: 'Una raya no alcanza para todo. ¿Qué pasa cuando son muchas?' },
     interactivo: 'redNeuronal',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Una neurona traza una raya. Muchas neuronas en capas trazan fronteras tan complicadas ' +
-          'como haga falta. Pulsen y miren cómo la señal recorre la red.',
-      },
-      {
-        tipo: 'destacado',
-        icono: '🌲',
-        titulo: 'Por qué el ejemplo es de terreno y no de personal',
-        texto:
-          'Podríamos haber puesto una red que prediga quién va a renunciar a partir de su ' +
-          'antigüedad y sus evaluaciones — técnicamente es lo mismo. No lo hicimos a propósito, ' +
-          'porque el punto de esta jornada es el contrario: sobre incendios, la máquina propone; ' +
-          'sobre personas, la decisión es humana, fundada y firmada.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -567,16 +422,9 @@ export const secciones = [
     icono: '🎯',
     titulo: 'A qué le pone atención',
     subtitulo: 'el mecanismo detrás de ChatGPT. En inglés se llama "attention"',
+    consigna: { icono: '🎯', texto: '¿A qué palabras creen que le presta atención el modelo?' },
     interactivo: 'attention',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Cada palabra reparte su atención entre las demás y se queda con lo que le sirve. Es lo ' +
-          'mismo que hace usted revisando una carpeta de postulación: mira el certificado de ' +
-          'título, no el color de la carátula.',
-      },
-    ],
+    bloques: [],
   },
 
   {
@@ -585,16 +433,9 @@ export const secciones = [
     icono: '🎲',
     titulo: 'Por qué sabe pero alucina',
     subtitulo: 'optimizado para sonar plausible, no para decir verdad',
+    consigna: { icono: '🎲', texto: 'Dos respuestas a la misma pregunta. ¿Cuál es mejor? Voten.' },
     interactivo: 'alucina',
-    bloques: [
-      {
-        tipo: 'parrafo',
-        texto:
-          'Dos respuestas a la misma pregunta sobre licencias médicas: una de un modelo sin ' +
-          'pulir y otra ya entrenada con humanos. Ustedes votan cuál es mejor — y de paso hacen ' +
-          'exactamente lo que hacen las personas que entrenan estos modelos.',
-      },
-    ],
+    bloques: [],
   },
 
   {
