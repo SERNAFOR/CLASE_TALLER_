@@ -10,6 +10,10 @@ const ALIAS = {
   personal: 'personal',
   rrhh: 'personal',
   personas: 'personal',
+  // La misma jornada contada como charla: sin actividades, solo preguntas.
+  personal2: 'personal2',
+  charla: 'personal2',
+  ted: 'personal2',
 }
 
 function norm(s) {

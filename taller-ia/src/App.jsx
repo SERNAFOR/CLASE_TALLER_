@@ -53,6 +53,17 @@ const BADGES = {
   lab: '🧪 Laboratorio',
 }
 
+// ANCHOS LOGICOS CANDIDATOS. Una lamina de dos columnas medida a 825px se
+// estira a lo alto y hay que encogerla a 0.6 (texto de 10px, ilegible en sala);
+// la misma a 1250px cabe casi a tamano natural. Por eso el ancho se ELIGE por
+// lamina en vez de fijarlo: se prueban unos pocos y gana el que permita el
+// texto mas grande. Empatados, gana el mas estrecho (lineas mas cortas).
+const ANCHOS_ESCENA = [700, 825, 950, 1100, 1250]
+// El aumento que se busca segun la pantalla: en un proyector de 1920 el texto
+// va al doble; en una ventana estrecha, a tamano natural.
+const aumentoDe = (anchoVentana) =>
+  anchoVentana >= 1600 ? 2 : anchoVentana >= 1100 ? 1.5 : 1
+
 // Reparte los bloques de una seccion en pasos de diapositiva. Un bloque con
 // `conAnterior: true` aparece en el mismo paso que el de arriba, para pares que
 // no tienen sentido separados.
@@ -191,66 +202,70 @@ function App({ seccionInicial, proyeccion }) {
   const Interactivo = seccion.interactivo ? INTERACTIVOS[seccion.interactivo] : null
 
   // Progreso dentro del Laboratorio (para la barra divulgativa).
-  // GARANTIA DE QUE NADA DESBORDA. Con "una diapositiva = un bloque" casi todo
-  // cabe, pero un interactivo largo puede seguir sin caber. Aqui se mide lo que
-  // hay en pantalla y se encoge hasta que entre: asi "no hace falta scroll" es
-  // un hecho medido, no una esperanza. El taller general no pasa por aqui.
+  // GARANTIA DE QUE NADA DESBORDA: cada diapositiva se mide y se escala hasta
+  // que entra en la pantalla. El taller general no pasa por aqui.
+  //
+  // Se escala con `transform`, NO con `zoom`. Con zoom la lamina LATE sin
+  // parar (visto en video, 2026-09-02): zoom si reflúa el texto, asi que al
+  // escalar cambian los saltos de linea, cambia la altura, se recalcula otra
+  // escala, y el bucle no converge nunca. `transform` no toca el layout: la
+  // altura medida es la misma antes y despues de escalar, y el calculo da el
+  // mismo numero a la primera. Por eso el escenario tiene ANCHO FIJO en CSS.
   const contenidoRef = useRef(null)
   useLayoutEffect(() => {
     if (!presentacion) return
     const el = contenidoRef.current
     if (!el) return
+    el.style.zoom = ''
+    let ultimaFirma = null
     const ajustar = () => {
-      const seccionEl = el.querySelector('.seccion')
-      if (!seccionEl) return
+      const escena = el.querySelector('.seccion')
+      if (!escena) return
       const cs = getComputedStyle(el)
-      // COMPROBADO: scrollHeight de la seccion NO depende del zoom del padre
-      // (454 / 453 / 459 px a zoom 1, 2 y 0.5), mientras que el rect si. Por eso
-      // se puede medir sin resetear el zoom antes — y hacerlo era justo lo que
-      // provocaba medir a medio camino y aplicar un zoom equivocado.
-      const relleno = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)
-      const natural = seccionEl.scrollHeight + relleno
-      const disponible = window.innerHeight - el.getBoundingClientRect().top - 16
-      if (!natural || disponible <= 0) return
+      const anchoDisp =
+        el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)
+      const altoDisp =
+        el.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom)
+      if (anchoDisp <= 0 || altoDisp <= 0) return
+      const aumento = aumentoDe(window.innerWidth)
 
-      // Base generosa en pantallas grandes. El suelo NO es un numero fijo: lo
-      // que importa es que el texto ocupe una fraccion legible de la ALTURA de
-      // la pantalla, no un tamano absoluto en pixeles.
-      const base = window.innerWidth >= 1600 ? 2 : 1.5
-      const suelo = Math.max(0.45, (window.innerHeight / 1080) * 0.6)
-      const z = Math.max(suelo, Math.min(base, disponible / natural))
-      const nuevo = z.toFixed(3)
-      if (el.style.zoom !== nuevo) el.style.zoom = nuevo
+      // FIRMA. Probar anchos toca el elemento que el ResizeObserver vigila, asi
+      // que el observador se dispararia por la propia medicion — el bucle de
+      // siempre. Se corta aqui: si la lamina mide lo mismo que la ultima vez en
+      // el ancho ya aplicado, no hay nada que recalcular y se sale sin tocar
+      // nada. La reentrada que provoca la medicion muere en esta linea.
+      const firma = anchoDisp + 'x' + altoDisp + '|' + escena.style.width + '|' + escena.scrollHeight
+      if (firma === ultimaFirma) return
 
-      // Segunda pasada correctiva. La formula de `disponible` es un modelo del
-      // layout, y un modelo siempre se queda corto por algun margen. En vez de
-      // afinarlo a ciegas, se mide el RESULTADO real y se corrige si sobresale.
-      const sobra = document.documentElement.scrollHeight - window.innerHeight
-      if (sobra > 0 && z > suelo) {
-        const corregido = Math.max(suelo, z * (disponible / (disponible + sobra)))
-        el.style.zoom = corregido.toFixed(3)
+      let mejor = null
+      for (const w of ANCHOS_ESCENA) {
+        escena.style.width = w + 'px'
+        const h = escena.scrollHeight
+        if (!h) continue
+        const k = Math.min(aumento, anchoDisp / w, altoDisp / h)
+        // Solo gana por un margen real; si empata, se queda el mas estrecho.
+        if (!mejor || k > mejor.k * 1.02) mejor = { w, k }
       }
-
-      // Si ni con el suelo cabe, esa diapositiva tiene demasiado contenido y hay
-      // que partirla, no encogerla mas. Se avisa en vez de callarlo.
-      if (import.meta.env.DEV && natural * z > disponible + 2) {
-        console.warn(
-          '[presentacion] no cabe ni al minimo:',
-          seccion.id,
-          'paso',
-          paso,
-          Math.ceil(natural * z - disponible) + 'px de mas',
-        )
+      if (!mejor) return
+      escena.style.width = mejor.w + 'px'
+      const nuevo = 'scale(' + mejor.k.toFixed(4) + ')'
+      if (escena.style.transform !== nuevo) escena.style.transform = nuevo
+      ultimaFirma = anchoDisp + 'x' + altoDisp + '|' + escena.style.width + '|' + escena.scrollHeight
+      // Si hay que comprimir tanto, esa diapositiva tiene demasiado contenido y
+      // hay que partirla, no encogerla mas. Se avisa en vez de callarlo.
+      if (import.meta.env.DEV && mejor.k < 0.7) {
+        console.warn('[presentacion] lamina muy comprimida:', seccion.id, 'paso', paso, mejor.k.toFixed(2))
       }
     }
     ajustar()
     window.addEventListener('resize', ajustar)
     // Y cuando cambia el contenido SIN que App re-renderice: al revelar el
     // feedback de una pregunta crece la diapositiva, y ese estado vive dentro
-    // del componente hijo.
+    // del componente hijo. La reentrada que provoca el propio ajuste la corta
+    // la firma de arriba, no el observador.
     const obs = new ResizeObserver(ajustar)
-    const seccionEl = el.querySelector('.seccion')
-    if (seccionEl) obs.observe(seccionEl)
+    const escena = el.querySelector('.seccion')
+    if (escena) obs.observe(escena)
     return () => {
       window.removeEventListener('resize', ajustar)
       obs.disconnect()

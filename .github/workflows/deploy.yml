@@ -42,12 +42,13 @@ jobs:
       - name: Compilar (Vite build)
         run: npm run build
 
-      - name: Rutas del segundo taller y fallback SPA
+      - name: Rutas de los otros talleres y fallback SPA
         run: |
-          mkdir -p dist/personal
+          mkdir -p dist/personal dist/personal2
           cp dist/index.html dist/personal/index.html
+          cp dist/index.html dist/personal2/index.html
           cp dist/index.html dist/404.html
-          test -f dist/personal/index.html && test -f dist/404.html
+          test -f dist/personal/index.html && test -f dist/personal2/index.html && test -f dist/404.html
           grep -q '/CLASE_TALLER_/assets/' dist/index.html             || { echo "ERROR: los assets no son absolutos, revisa 'base' en vite.config.js"; exit 1; }
 
       - name: Configurar Pages

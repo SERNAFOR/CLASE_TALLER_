@@ -420,6 +420,46 @@ button { font-family: inherit; cursor: pointer; }
   font-variant-numeric: tabular-nums;
 }
 
+/* ESCENARIO DE ANCHO FIJO. Antes la lamina se escalaba con `zoom`, y `zoom` SI
+   reflúa el texto: al escalar cambian los saltos de linea, cambia la altura,
+   App.jsx recalcula otra escala, y el bucle no para. En el video del 2 de
+   septiembre la lamina late indefinidamente sin que nadie toque nada.
+   Con ancho fijo + transform el texto envuelve SIEMPRE igual y la altura medida
+   no depende de la escala aplicada: el calculo converge en una sola pasada. */
+:root[data-presentacion] .layout {
+  /* `min-height: 100vh` deja que una lamina alta ESTIRE la rejilla, y entonces
+     el hueco disponible crece con el contenido: la escala se queda en 1 y
+     aparece scroll. En una presentacion la altura es un dato, no un resultado. */
+  height: 100vh;
+  min-height: 0;
+}
+:root[data-presentacion] .contenido {
+  min-height: 0; /* sin esto, un item de rejilla nunca encoge por debajo de su contenido */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+:root[data-presentacion] .seccion {
+  width: 820px; /* valor de arranque: App.jsx lo fija segun la ventana */
+  max-width: none;
+  margin: 0;
+  transform-origin: top center;
+  animation: none; /* su translateY pisaria el scale() que calcula App.jsx */
+}
+
+/* LA CHARLA (/personal2) va centrada verticalmente. Es la diferencia entre una
+   lamina de una sola pregunta que parece pegada al techo y una que parece
+   puesta ahi a proposito. Se aprovecha el data-taller que App.jsx ya escribe,
+   asi que /personal no se entera. Centrar con flex + transform-origin no toca
+   el layout: la altura medida sigue siendo la misma y la escala no cambia. */
+:root[data-taller='personal2'] .contenido {
+  align-items: center;
+}
+:root[data-taller='personal2'] .seccion {
+  transform-origin: center;
+}
+
 /* Cada bloque que aparece lo hace con una entrada corta: la sala nota que ha
    pasado algo sin que el movimiento distraiga. */
 :root[data-presentacion] .seccion > * {
