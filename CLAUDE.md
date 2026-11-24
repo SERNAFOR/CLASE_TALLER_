@@ -4,14 +4,27 @@ Web en **React (Vite)** para apoyar un taller de IA dirigido a funcionarios de C
 Público: funcionarios públicos **no técnicos**. Todo debe ser intuitivo, visual y en
 español, sin matemática expuesta. La IA se presenta como **apoyo, no reemplazo**.
 
-## Cómo crear / levantar la app
+## Estado y estructura (verificado el 2026-11-24)
 
-```bash
-npm create vite@latest taller-ia -- --template react
-cd taller-ia
-npm install
-npm run dev   # http://localhost:5173
-```
+La app ya existe en `taller-ia/` (Vite 8 + React 19); ya no se crea con `npm create vite`.
+Cómo correrla y desplegarla está en el [README](README.md), que manda en eso.
+
+- `taller-ia/src/components/` — un componente por actividad (`Perceptron.jsx`, `PromptBuilder.jsx`,
+  `RedNeuronal.jsx`, `Alucina.jsx`, `Privacidad.jsx`…).
+- `taller-ia/src/data/` — el contenido de los talleres: `contenido.js` (CONAF/UIA),
+  `contenidoPersonal.js` (`/personal`) y `contenidoPersonal2.js` (`/personal2`, la charla sin actividades).
+  `talleres.js` los registra y `ruta.js` elige cuál mostrar.
+- `taller-ia/src/data/ruta.js` — decide el taller **una sola vez** al arrancar, por la ruta y sus alias
+  (`uia`, `rrhh`, `personas`, `charla`, `ted`…). No hay router ni listeners a propósito: menos piezas
+  móviles en vivo. Un taller nuevo necesita entrada aquí **y** una carpeta copiada en el workflow
+  (`.github/workflows/deploy.yml` copia `index.html` a `dist/personal/`, `dist/personal2/` y `404.html`).
+- `vite.config.js` — `base: '/CLASE_TALLER_/'` debe coincidir con el nombre del repo; el workflow falla
+  si los assets no salen con ese prefijo.
+- Raíz: material fuente del taller (`*-fuente.html` y sus PDF, `leyes/`, `ppt/`, `MATERIAL_UIA/`) y
+  `VALIDAR-CONTENIDO-LEGAL.md`, la lista de afirmaciones legales por validar.
+
+Lint: `npm run lint` da **1 error** en el estado base (`react-hooks/set-state-in-effect` en `RedNeuronal.jsx`, un
+`setState` síncrono dentro de un efecto); no es una regresión nueva. Build en verde. Ambos medidos el 2026-11-24.
 
 ## Líneas del taller (extraídas del material UIA / PPT)
 
